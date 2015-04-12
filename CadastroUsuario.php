@@ -48,7 +48,7 @@ function formatar(mascara, documento){
 
 
 
-<div id='corpo' style="height: 600px;">
+<div id='corpo' style="height: 650px;">
 <h2>Cadastro </h2>
 	<form name="CadastroUsuario" method="post" action="?go=cadastrar">
 		<table id="cad_table">
@@ -102,13 +102,6 @@ function formatar(mascara, documento){
 				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" size=2/></td>
 			</tr>
 
-			<tr>
-				<td>Foto de exibição:</td>
-				<td><input type="file" name="foto" id="foto"/></td>
-			</tr>
-
-
-			
 				<td colspan="2"><input class='btn' type="submit" value="Cadatrar" id="buton1" name="btvalidar"><br>
 				
 				</td>
