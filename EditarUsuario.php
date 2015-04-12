@@ -1,8 +1,38 @@
-<?php
+<?php  
 require_once "Conexao.php";
+session_start();
+if((!isset ($_SESSION['login']) == true))
+{
+  unset($_SESSION['login']);
+  header('location:index.php');
+ }
 
+$logado = $_SESSION['login'];
+$codigo = $_SESSION['codigo'];
+$tipo = $_SESSION['tipo'];
 
+$sql = mysql_query("SELECT V_NOME, V_EMAIL, V_IDADE, V_CPF, V_LOGIN, V_SENHA, V_TELEFONE, V_CELULAR, V_CEP, V_CIDADE, V_BAIRRO, V_UF FROM usuario WHERE N_COD_USUARIO = '$codigo' ");
+$linha = mysql_fetch_assoc($sql);
+if (!$linha) {
+  //Se o select não retornou registros, é porque não tem o que apagar
+  header("Location: painel.php");
+  die();
+}
+$nome = $linha["V_NOME"];
+$email = $linha["V_EMAIL"];
+$idade = $linha["V_IDADE"];
+$cpf = $linha["V_CPF"];
+$login = $linha["V_LOGIN"];
+$senha = $linha["V_SENHA"];
+$telefone = $linha["V_TELEFONE"];
+$celular = $linha["V_CELULAR"];
+$cep = $linha["V_CEP"];
+$cidade = $linha["V_CIDADE"];
+$bairro = $linha["V_BAIRRO"];
+$uf = $linha["V_UF"];
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,16 +55,17 @@ function formatar(mascara, documento){
 </script>
 </head>
 <body>
-	 <div id='cssmenu'>
+	   <div id='cssmenu'>
       <div id='container'>
         <ul>
            <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
            <li><a href='index.php'><span>ÍNICIO</span></a></li>
-           <li style="float: right" class="right"><a href='Login.php'><span>LOGIN</span></a></li>
-           <li class='active' style="float: right" class="right"><a href='CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>
            <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
            <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
            <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
+           <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
+           <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
+           <li class='active' style="float: right" class="right"><a href='PerfilUsuario.php'><span>PAINEL</span></a></li> 
            <li>
            <form name="frmBusca" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?a=buscar" >
             <input type="text" name="palavra" />
@@ -45,71 +76,62 @@ function formatar(mascara, documento){
       </div>
     </div>
 
-
-
-
-<div id='corpo' style="height: 600px;">
-<h2>Cadastro </h2>
-	<form name="CadastroUsuario" method="post" action="?go=cadastrar">
+<div id='corpo' style="height: 680px;">
+<h2>Editar Perfil </h2>
+	<form name="CadastroUsuario" method="post" action="?go=salvar">
 		<table id="cad_table">
 			<tr>
 				<td>Nome:*</td>
-				<td><input type="text" name="nome" id="nome" class="txt"  size=35 required/></td>
+				<td><input type="text" name="nome" id="nome" class="txt" value="<?php echo $nome; ?>" size=35 required/></td>
 			</tr>
 			<tr>
 				<td>Email:*</td>
-				<td><input type="email" name="email" id="email" class="txt" size=35 required/></td>
+				<td><input type="email" name="email" id="email" class="txt" value="<?php echo $email; ?>" size=35 required/></td>
 			</tr>
 			<tr>
 				<td>Idade: </td>
-				<td><input type="text" name="idade" id="idade" class="txt" size=2 required/>&nbsp Anos</td>
+				<td><input type="text" name="idade" id="idade" class="txt" value="<?php echo $idade; ?>" size=2 required/>&nbsp Anos</td>
 			</tr>
 			<tr>
 				<td>CPF:*</td>
-				<td><input type="text" name="cpf" id="cpf" class="txt2" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" size=35 required='aa'/></td>
+				<td><input type="text" name="cpf" id="cpf" class="txt2" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" value="<?php echo $cpf; ?>" size=35 required='aa'/></td>
 			</tr>
 			<tr>
 				<td>Login:*</td>
-				<td><input type="text" name="login" id="login" class="txt1" maxlength="10" size=35 required/></td>
+				<td><input type="text" name="login" id="login" class="txt1" maxlength="10" value="<?php echo $login; ?>" size=35 required/></td>
 			</tr>
 			<tr>
 				<td>Senha:*</td>
-				<td><input type="password" name="senha" id="senha" class="txt1" maxlength="15" size=35 required/></td>
+				<td><input type="password" name="senha" id="senha" class="txt1" maxlength="15" value="<?php echo $senha; ?>" size=35 required/></td>
 			</tr>
             <tr>
 				<td>Telefone:</td>
-				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" size=35/></td>
+				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" value="<?php echo $telefone; ?>" size=35/></td>
 			</tr>
 			<tr>
 				<td>Celular:</td>
-				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" size=35/></td>
+				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" value="<?php echo $celular; ?>" size=35/></td>
 			</tr>
 			<tr>
 				<td>Cep:*</td>
-				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="10" OnKeyPress="formatar('#####-###', this)" size=35 required/></td>
+				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="10" OnKeyPress="formatar('#####-###', this)" value="<?php echo $cep; ?>" size=35 required/></td>
 			</tr>
 			<tr>
 				<td>cidade:</td>
-				<td><input type="text" name="cidade" id="cidade" class="txt2" maxlength="100"  size=35/></td>
+				<td><input type="text" name="cidade" id="cidade" class="txt2" maxlength="100"  value="<?php echo $cidade; ?>" size=35/></td>
 			</tr>
 			<tr>
 				<td>Bairro:</td>
-				<td><input type="text" name="bairro" id="bairro" class="txt" maxlength="50" size=35 /></td>
+				<td><input type="text" name="bairro" id="bairro" class="txt" maxlength="50" value="<?php echo $bairro; ?>" size=35 /></td>
 			</tr>
 
 			<tr>
 				<td>UF:</td>
-				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" size=2/></td>
+				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" value="<?php echo $uf; ?>" size=2/></td>
 			</tr>
 
-			<tr>
-				<td>Foto de exibição:</td>
-				<td><input type="file" name="foto" id="foto"/></td>
-			</tr>
-
-
-			
-				<td colspan="2"><input class='btn' type="submit" value="Cadatrar" id="buton1" name="btvalidar"><br>
+				<td colspan="2"><input class='btn' type="submit" value="Salvar" id="buton1" name="btvalidar">
+					<br><input class='btn' type="button" value="Cancelar" onclick="location.href='painel.php'" id="buton1" name="btvalidar">
 				
 				</td>
 			</tr>
@@ -135,11 +157,15 @@ function formatar(mascara, documento){
 
 <?php
 
+$logado = $_SESSION['login'];
+$codigo = $_SESSION['codigo'];
+$tipo = $_SESSION['tipo'];
+
 require_once "Conexao.php";		
 $conecta = mysql_connect("localhost", "root", ""); 
 mysql_select_db("trocalivro", $conecta);
 
-if(@$_GET['go'] == 'cadastrar'){
+if(@$_GET['go'] == 'salvar'){
 		$nome = $_POST['nome'];
 		$user = $_POST['login'];
 		$pwd = $_POST['senha'];
@@ -152,6 +178,33 @@ if(@$_GET['go'] == 'cadastrar'){
 		$cidade =$_POST['cidade'];
 		$cep = $_POST['cep'];
 		$uf = $_POST['uf'];
+
+
+		/*if ($nome == ''){
+			echo "<script>alert('nome Inválido'); history.back();</script>";
+		}else if ($user == ''){
+			echo "<script>alert('user Inválido'); history.back();</script>";
+		}else if ($pwd == ''){
+			echo "<script>alert('pwd Inválido'); history.back();</script>";
+		}else if ($email == ''){
+			echo "<script>alert('email Inválido'); history.back();</script>";
+		}else if ($idade == ''){
+			echo "<script>alert('idade Inválido'); history.back();</script>";
+		}else if ($cpf == ''){
+			echo "<script>alert('cpf Inválido'); history.back();</script>";
+		}else if ($telefone == ''){
+			echo "<script>alert('telefone Inválido'); history.back();</script>";
+		}else if ($celular == ''){
+			echo "<script>alert('celular Inválido'); history.back();</script>";
+		}else if ($bairro == ''){
+			echo "<script>alert('bairro Inválido'); history.back();</script>";
+		}else if ($cidade == ''){
+			echo "<script>alert('cidade Inválido'); history.back();</script>";
+		}else if ($cep == ''){
+			echo "<script>alert('cep Inválido'); history.back();</script>";
+		}else if ($uf == ''){
+			echo "<script>alert('uf Inválido'); history.back();</script>";
+		}*/
 
 		function validaCPF($cpf)
 		{	// Verifiva se o número digitado contém todos os digitos
@@ -213,7 +266,8 @@ if(@$_GET['go'] == 'cadastrar'){
 		}elseif ($email_enviado == true) {
 				echo "<script>;</script>";
 			
-
+		$query4 = mysql_query("SELECT V_LOGIN, V_CPF FROM usuario WHERE N_COD_USUARIO = $codigo ");
+		$dados = mysql_fetch_row($query4);
 		
 		
 		$query1 = mysql_query("SELECT COUNT(N_COD_USUARIO) FROM usuario WHERE V_LOGIN='$user'");
@@ -224,22 +278,22 @@ if(@$_GET['go'] == 'cadastrar'){
 		$eReg3 = mysql_fetch_array($query3);
 		$cpf_check = $eReg3[0];
 
-		if ($login_check > 0){
+		if (($dados[0] != $user) && ($login_check > 0)){
 			echo "<script>document.getElementById('#login').focus();</script>";
 			echo "<script>alert('Login Inválido!!'); history.back();</script>";
-
-
-		} if ($cpf_check > 0){
+		} 
+			
+		if (($dados[1] != $cpf) && ($cpf_check > 0)){
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
-			$data = date('Y,m,d');
-			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0')");		
+
+			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', V_IDADE = '$idade', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf' where N_COD_USUARIO = $codigo");		
 
 			if (!$query2) {
 			echo "<script>alert('Erro'); history.back();</script>";
 			}else{
-			echo "<script>alert('Cadastrado com sucesso!!');</script>";
-			echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
+			echo "<script>alert('Cadastrado alterado com sucesso!!');</script>";
+			echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 	
 			}
 		}
 		}
@@ -247,8 +301,6 @@ if(@$_GET['go'] == 'cadastrar'){
 	}
 }
 	
-/*N_TIPO_USUARIO = 0 (USUARIO NORMAL)
-N_TIPO_USUARIO = 1 (USUARIO ADMINISTRADOR)
-*/
+
 }
 ?>
