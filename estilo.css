@@ -84,7 +84,7 @@ body{
   
   #corpo{
     width: 960px;
-    height: 700px;
+    height: 1000px;
     position: relative;
     background-color: #FFF;
     border-radius: 9px;
@@ -203,6 +203,23 @@ body{
   padding: 5px 10px 5px 10px;
   text-decoration: none;
 }
+#corpo .btnLivro {
+  width: 200px;
+  background: #133141;
+  background-image: -webkit-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -moz-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -ms-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -o-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: linear-gradient(to bottom, #133141, #133141#2980b9);
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
 
   #div-input-file{
     background:url(img/file.gif) no-repeat 100% 1px;
@@ -254,7 +271,7 @@ body{
 #corpo #centro p{
     margin: 0px;
     padding-bottom: 5px;
-    text-transform: uppercase; 
+    /*text-transform: uppercase; */
     font-size: 15pt; 
     font-family: 'Slabo 27px', serif;
     margin-top:0px;
@@ -282,3 +299,33 @@ body{
     -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
   z-index: 9999;
 }
+
+
+
+/*meus livos */
+#box-livro-1{
+  border: 1px solid #ccc;
+  width: 735px;
+  
+}
+#box-livro-1 img{
+ 
+}
+#informacao{
+  width: 735px;
+}
+#tabela-livro{
+  border-collapse: collapse;
+  width: 735px;
+  text-align: center;
+}
+
+#tabela-livro tr td, th{
+  border-top: 1px solid #ccc;
+  width: 284px;
+}
+
+#meuslivros{
+  width: 950px;
+}
+

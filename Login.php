@@ -40,6 +40,14 @@ session_start();
 		<form method="post" action="?go=logar">
 			<table id="login_table">
 				<tr>
+         <td><?php 
+                if(isset($_SESSION['errologin'])){
+                  echo $_SESSION['errologin'];
+                  unset($_SESSION['errologin']);
+                }
+              ?></td>
+              </tr>
+              <tr>
           <td><input class='login' type="text" placeholder='Login' name="usuario" id="usuario" class="txt" maxlength="15" required/></td>
 				</tr>
 				<tr>
@@ -94,10 +102,12 @@ if(@$_GET['go'] == 'logar'){
 			echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 
 		}else{
 			unset ($_SESSION['login']);
-			echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
+      $_SESSION['errologin'] = "Usuário e senha nao correspondem, tente novamente!";
+			//echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
 
 		}
   }else{
-     echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
+    $_SESSION['errologin'] = "Usuário e senha nao correspondem, tente novamente!";
+     //echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
   }
 }

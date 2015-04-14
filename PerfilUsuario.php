@@ -85,6 +85,7 @@ $foto = $dados[9];
             <input  type="submit" value="Mudar Foto" class="btnPerfil" id="btnPerfil">
             </form>
               <input  type="submit" value="Editar Perfil" onclick="location.href='EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
+              <input type="submit" value="Cadastre seu livro" onclick="location.href='CadastroLivro.php'" class="btnLivro" id="btnLivro">
       </div>
       <div id='centro'>
 
@@ -103,12 +104,18 @@ $foto = $dados[9];
       <p>Data Último Login: <?php echo date('d/m/Y \á\s H:i:s', strtotime($datalogin)); ?></p>
 
     </fieldset>
-   <div>
-    <h4>Meus Livros</h4> <b class="text_container">-</b><p class="text_container2">+</p>
-    <div><!--div that we want to hide-->
-        <p><h5 class="hide">hgg</h5> <h5 class="hide">hgg</h5> <h5 class="hide">hgg</h5></p>
-    </div>
-</div><!--end div_text_container-->
+    <div>
+      <h4>Meus Livros</h4> <b class="text_container">-</b><p class="text_container2">+</p>
+      <div id="box-livro-1"><!--div that we want to hide-->
+        <img src="FotoPerfilUsuario/896943baf92bb9ffde64925c18e4ffa8.jpg" width="100" height="150">
+        <div id="informacao">
+          <p><span class="titulo">Nome do livro</span></p>
+          <p><span class="nomeusuario">Nome do usuario</span></p>
+          <p><span class="autor">Nome do autor do livro</span></p>
+          <p><span class="solicitar">Botao para solicitar</span></p>
+        </div>
+      </div>
+    </div><!--end div_text_container-->
     </div>
     </div>
 
