@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+require"Conexao.php";
 ?>
 <html>
 <head>
@@ -57,7 +57,7 @@ $tipo = $_SESSION['tipo'];
     </div>
 
 <?php
-$query1 = mysql_query("SELECT V_NOME, V_CIDADE, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, V_IDADE, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
+$query1 = mysql_query("SELECT Nome, Cidade, Uf, Email, Cep, Bairro, Datacadastro, Idade, DataUltimoLogin, Foto FROM usuario WHERE Login = '$logado'");
 
 
 $dados = mysql_fetch_row($query1);
@@ -72,6 +72,8 @@ $datacadastro = $dados[6];
 $idade = $dados[7];
 $datalogin = $dados[8];
 $foto = $dados[9];
+
+mysql_close($conecta);
 ?>
 
     <div style='height:800px;' id='corpo'>
@@ -103,21 +105,61 @@ $foto = $dados[9];
       <p>Data de Cadastro: <?php echo date('d/m/Y', strtotime($datacadastro)); ?></p>
       <p>Data Último Login: <?php echo date('d/m/Y \á\s H:i:s', strtotime($datalogin)); ?></p>
 
-    </fieldset>
-    <div>
-      <h4>Meus Livros</h4> <b class="text_container">-</b><p class="text_container2">+</p>
+     </fieldset>
+    <div id="meuslivros">
+      <h4>Meus Livros</h4> <b class="text_container"></b><p class="text_container2"></p>
       <div id="box-livro-1"><!--div that we want to hide-->
-        <img src="FotoPerfilUsuario/896943baf92bb9ffde64925c18e4ffa8.jpg" width="100" height="150">
-        <div id="informacao">
-          <p><span class="titulo">Nome do livro</span></p>
-          <p><span class="nomeusuario">Nome do usuario</span></p>
-          <p><span class="autor">Nome do autor do livro</span></p>
-          <p><span class="solicitar">Botao para solicitar</span></p>
-        </div>
-      </div>
-    </div><!--end div_text_container-->
+          <div id="informacao">
+        <?php  
+		require("Conexao.php");
+          $pegar = "SELECT * FROM livro WHERE IdUsuario = $codigo";
+          $resultado = mysql_query($pegar);
+          
+        ?>
+        <table id="tabela-livro">
+          <tr>
+            <th><p><span class="foto">Foto</span></p></th>
+            <th><p><span class="titulo">Nome do livro</span></p></th>
+            <th><p><span class="nomeusuario">Autor</span></p></th>
+            <th><p><span class="autor">Editora</span></p></th>
+            <th><p><span class="autor">Idioma</span></p></th>
+            <th><p><span class="autor">Ano</span></p></th>
+          </tr>
+          <?php
+          while ($user = mysql_fetch_assoc($resultado)) 
+          {
+              $nomelivro = $user['NomeLivro'];
+              $autorlivro = $user['Autor'];
+              $editoralivro = $user['Editora'];
+              $idiomalivro = $user['Idioma'];
+              $anolivro = $user['Ano'];
+              $fotolivro = $user['Foto'];
+
+              echo "<tr>
+                    <td><img src='$fotolivro' width='50' height='50'></td>
+                    <td>$nomelivro</td>
+                    <td>$autorlivro</td>
+                    <td>$editoralivro</td>
+                    <td>$idiomalivro</td>
+                    <td>$anolivro</td>                    
+                    </tr>";
+            }
+            mysql_close($conecta);
+            
+          ?>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+
+            <input type="button" value="solicitar">
+          </div>
+        </div><!-- fim div box-livro-1-->
+      </div><!--end div_text_container-->
     </div>
     </div>
+
 
     <footer>
       <div class="bar">
@@ -133,7 +175,7 @@ $foto = $dados[9];
 </html>
 
 <?php
-require_once "Conexao.php";
+require"Conexao.php";
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
@@ -193,7 +235,7 @@ if (@$_GET['go'] == 'salvarfoto') {
       move_uploaded_file($foto["tmp_name"], $caminho_imagem);
       
       // Insere os dados no banco
-      $sql = mysql_query("UPDATE usuario SET V_FOTO = '".$caminho_imagem."' WHERE N_COD_USUARIO = $codigo");   
+      $sql = mysql_query("UPDATE usuario SET Foto = '".$caminho_imagem."' WHERE IdUsuario = $codigo");   
       
       // Se os dados forem inseridos com sucesso
       if (!$sql){

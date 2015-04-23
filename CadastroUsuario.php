@@ -1,5 +1,5 @@
 <?php
-require_once "Conexao.php";
+require"Conexao.php";
 
 
 ?>
@@ -209,11 +209,11 @@ if(@$_GET['go'] == 'cadastrar'){
 
 		
 		
-		$query1 = mysql_query("SELECT COUNT(N_COD_USUARIO) FROM usuario WHERE V_LOGIN='$user'");
+		$query1 = mysql_query("SELECT COUNT(IdUsuario) FROM usuario WHERE Login='$user'");
 		$eReg = mysql_fetch_array($query1);
 		$login_check = $eReg[0];
 
-		$query3 = mysql_query("SELECT COUNT(V_CPF) FROM usuario WHERE V_CPF='$cpf'");
+		$query3 = mysql_query("SELECT COUNT(Cpf) FROM usuario WHERE Cpf='$cpf'");
 		$eReg3 = mysql_fetch_array($query3);
 		$cpf_check = $eReg3[0];
 
@@ -226,7 +226,7 @@ if(@$_GET['go'] == 'cadastrar'){
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
 			$data = date('Y,m,d');
-			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0')");		
+			$query2 = mysql_query("insert into usuario (Nome, Login, Senha, Email, Cpf, Idade, Telefone, Celular, Bairro, Cidade, Cep, Uf, DataCadastro, Ativo, TipoUsuario) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0')");		
 
 			if (!$query2) {
 			echo "<script>alert('Erro'); history.back();</script>";

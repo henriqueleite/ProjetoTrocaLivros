@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Slabo+27px);
 
 body{
-  z-index: 1;
+  background:#FBFBFB;
 }
 #cssmenu #container{
   width: 960px;
@@ -81,41 +81,25 @@ body{
     position: absolute;
   }
 }
-  
-  #corpo{
-    width: 960px;
-    height: 1000px;
-    position: relative;
-    background-color: #FFF;
-    border-radius: 9px;
-    margin: 0px auto;
-    margin-top: 30px;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
-    z-index: 2;
-}
-  
-  #corpo h2{
-    padding: 4px;
-    padding-left: 12px;
-    background-color: #133141;
-    color: #9C9C9C;
-    font-family: 'Slabo 27px', serif;
-    margin: -11px -11px 40px -11px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-  }
+ /*corpo*/
+ #corpo{width:90%; height:1000px; margin:0 auto; }
+ #ultimosdisponivel{color:#066;}
+ #box-livro{width:300px; height:600px;float:left;}
+ #box-info-livro{width: 300px;height: 150px;border-bottom: 1px solid #ccc;background: #fff;border: 1px solid #999;border-radius: 3px 3px;margin-top: 5px;font-family:GothamHTFBold;}
+ #box-info-livro .imagem-livro{float: left;}
+ #box-info-livro .info-livro{margin-left:20px; width:180px;height:136px;float:left; margin-top:13px;}
+ #box-info-livro .info-livro p{margin:0px;}
+ #box-info-livro .info-livro a{text-decoration:none;}
+ #box-info-livro .info-livro a:hover{text-decoration:underline;}
+ #box-info-livro .info-livro .nomelivro{text-transform:uppercase;color:#366;}
+ #box-info-livro .info-livro .nomelivro:hover{color:#396;}
+ #box-info-livro .info-livro .nomeuser{color:#000; }
+ #box-info-livro .info-livro .nomeuser:hover{text-decoration:underline; color:#366;}
 
-  #corpo h5{
-    border: 2px solid black;
-    width: 15%;
-    float: left;
-    margin: -10px 5px 15px 6px;
-    height: 150px;
-    font-family: 'Slabo 27px', serif;
-  }
+  
+	  
+	  
+  /*footer*/
   
   footer{
     background-color: #133141;

@@ -80,13 +80,13 @@ if(@$_GET['go'] == 'logar'){
 	$user = $_POST['usuario'];
 	$pwd = $_POST['senha'];
 
-    $query2 = mysql_query("SELECT N_COD_USUARIO, V_LOGIN, N_TIPO_USUARIO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA = '$pwd' ");
+    $query2 = mysql_query("SELECT IdUsuario, Login, TipoUsuario FROM usuario WHERE Login = '$user' AND Senha = '$pwd' ");
     $dados = mysql_fetch_row($query2);
 
     $codusuario = $dados[0];
     $tipousuario = $dados[2];
 
-		$query1 = mysql_query("SELECT B_ATIVO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA = '$pwd'");
+		$query1 = mysql_query("SELECT Ativo FROM usuario WHERE Login = '$user' AND Senha = '$pwd'");
     $ativo = mysql_fetch_row($query1);
     if ($ativo[0] == 'T'){
 
