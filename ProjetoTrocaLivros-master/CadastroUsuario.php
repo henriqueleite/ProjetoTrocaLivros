@@ -202,7 +202,7 @@ if(@$_GET['go'] == 'cadastrar'){
 		if(isset($_POST['btvalidar'])){
 			$email_enviado = validaemail($_POST['email']);
 			if($email_enviado == false){
-				echo "<script>alert('Email Inválido'); history.back();</script>";			
+				echo "<script>alert('Email Inexistente'); history.back();</script>";			
 		}elseif ($email_enviado == true) {
 				echo "<script>;</script>";
 			
@@ -223,13 +223,13 @@ if(@$_GET['go'] == 'cadastrar'){
 
 
 		} if ($cpf_check > 0){
-			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
+			echo "<script>alert('CPF já cadastrado!!'); history.back();</script>";
 		}else{
 			$data = date('Y,m,d');
 			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0')");		
 
 			if (!$query2) {
-			echo "<script>alert('Erro'); history.back();</script>";
+			echo "<script>alert('Ocorreu um Erro'); history.back();</script>";
 			}else{
 			echo "<script>alert('Cadastrado com sucesso!!');</script>";
 			echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
