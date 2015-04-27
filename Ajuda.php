@@ -13,7 +13,7 @@ $tipo = $_POST["tipo"];
 $mensagem = $_POST["mensagem"];
 
 
-$query = mysql_query("insert into ajuda (Titulo, Tipo, Mensagem) values ('$titulo','$tipo','$mensagem')");
+$query = mysql_query("insert into ajuda (V_TITULO, V_TIPO, V_MENSAGEM) values ('$titulo','$tipo','$mensagem')");
 
 if ($query){
 	header("Location: Form_Ajuda.php");

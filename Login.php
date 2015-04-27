@@ -40,14 +40,6 @@ session_start();
 		<form method="post" action="?go=logar">
 			<table id="login_table">
 				<tr>
-         <td><?php 
-                if(isset($_SESSION['errologin'])){
-                  echo $_SESSION['errologin'];
-                  unset($_SESSION['errologin']);
-                }
-              ?></td>
-              </tr>
-              <tr>
           <td><input class='login' type="text" placeholder='Login' name="usuario" id="usuario" class="txt" maxlength="15" required/></td>
 				</tr>
 				<tr>
@@ -80,34 +72,31 @@ if(@$_GET['go'] == 'logar'){
 	$user = $_POST['usuario'];
 	$pwd = $_POST['senha'];
 
-    $query2 = mysql_query("SELECT IdUsuario, Login, TipoUsuario FROM usuario WHERE Login = '$user' AND Senha = '$pwd' ");
-    $dados = mysql_fetch_row($query2);
+  $query2 = mysql_query("SELECT N_COD_USUARIO, V_LOGIN, N_TIPO_USUARIO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA = '$pwd' ");
+  $dados = mysql_fetch_row($query2);
+  $codusuario = $dados[0];
+  $tipousuario = $dados[2];
 
-    $codusuario = $dados[0];
-    $tipousuario = $dados[2];
-
-		$query1 = mysql_query("SELECT Ativo FROM usuario WHERE Login = '$user' AND Senha = '$pwd'");
-    $ativo = mysql_fetch_row($query1);
-    if ($ativo[0] == 'T'){
-
-     
+	$query1 = mysql_query("SELECT B_ATIVO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA = '$pwd'");
+  $ativo = mysql_fetch_row($query1);
+  if ($ativo[0] == 'T'){
     $dados = mysql_num_rows($query1);
-    
-    
 		if($dados == 1){
-			echo "<script>alert('Bem vindo, ".$user." !!');</script>";
-			$_SESSION["login"]     = $user;
+		  echo "<script>alert('Bem vindo, ".$user." !!');</script>";
+		  $_SESSION["login"]     = $user;
       $_SESSION["codigo"]    = $codusuario;
       $_SESSION["tipo"]      = $tipousuario;
-			echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 
+      if ($_SESSION["tipo"] == 1) {
+			    echo "<meta http-equiv='refresh' content='0, url=PerfilAdministrador.php'>";
+      }else{
+          echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 
+      }
 		}else{
 			unset ($_SESSION['login']);
-      $_SESSION['errologin'] = "Usuário e senha nao correspondem, tente novamente!";
-			//echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
+			echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
 
 		}
   }else{
-    $_SESSION['errologin'] = "Usuário e senha nao correspondem, tente novamente!";
-     //echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
+     echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
   }
 }

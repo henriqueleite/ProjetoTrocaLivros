@@ -1,5 +1,5 @@
 <?php
-require"Conexao.php";
+require_once "Conexao.php";
 
 
 ?>
@@ -22,6 +22,25 @@ function formatar(mascara, documento){
 }
 
 
+</script>
+<script type="text/javascript">
+jQuery(function($){
+   $("#cep").change(function(){
+      var cep_code = $(this).val();
+      if( cep_code.length <= 0 ) return;
+      $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
+         function(result){
+            if( result.status!=1 ){
+               alert(result.message || "Houve um erro desconhecido");
+               return;
+            }
+            $("input#cep").val( result.code );
+            $("input#uf").val( result.state );
+            $("input#cidade").val( result.city );
+            $("input#bairro").val( result.district );
+         });
+   });
+});
 </script>
 </head>
 <body>
@@ -209,11 +228,11 @@ if(@$_GET['go'] == 'cadastrar'){
 
 		
 		
-		$query1 = mysql_query("SELECT COUNT(IdUsuario) FROM usuario WHERE Login='$user'");
+		$query1 = mysql_query("SELECT COUNT(N_COD_USUARIO) FROM usuario WHERE V_LOGIN='$user'");
 		$eReg = mysql_fetch_array($query1);
 		$login_check = $eReg[0];
 
-		$query3 = mysql_query("SELECT COUNT(Cpf) FROM usuario WHERE Cpf='$cpf'");
+		$query3 = mysql_query("SELECT COUNT(V_CPF) FROM usuario WHERE V_CPF='$cpf'");
 		$eReg3 = mysql_fetch_array($query3);
 		$cpf_check = $eReg3[0];
 
@@ -226,7 +245,7 @@ if(@$_GET['go'] == 'cadastrar'){
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
 			$data = date('Y,m,d');
-			$query2 = mysql_query("insert into usuario (Nome, Login, Senha, Email, Cpf, Idade, Telefone, Celular, Bairro, Cidade, Cep, Uf, DataCadastro, Ativo, TipoUsuario) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0')");		
+			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");		
 
 			if (!$query2) {
 			echo "<script>alert('Erro'); history.back();</script>";
@@ -244,4 +263,25 @@ if(@$_GET['go'] == 'cadastrar'){
 N_TIPO_USUARIO = 1 (USUARIO ADMINISTRADOR)
 */
 }
+/*
+if(@$_GET['go'] == 'buscarcep'){
+
+	$cep = $_POST['cep'];
+	function busca_cep($cep){  
+    $resultado = @file_get_contents('http://republicavirtual.com.br/web_cep.php?cep='.urlencode($cep).'&formato=query_string');  
+    if(!$resultado){  
+        $resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";  
+    }  
+    parse_str($resultado, $retorno);  
+    return $retorno;  
+}  
+$resultado_busca = busca_cep($cep);  
+
+ 
+   $resultado_busca['tipo_logradouro']
+    $resultado_busca['logradouro']
+   	$resultado_busca['bairro']
+    $resultado_busca['cidade']
+    $resultado_busca['uf'];  */
+
 ?>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-require_once "config.php";
+require_once "Conexao.php";
+$codigolivro = $_POST['codigolivro'];
 ?>
 <html>
 <head>
@@ -10,6 +11,8 @@ require_once "config.php";
     <link rel="stylesheet" type="text/css" href="estilo.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
     </script>
+
+ 
 </head>
 <body>
     <div id='cssmenu'>
@@ -43,30 +46,50 @@ require_once "config.php";
       </div>
     </div>
 
-    <div id='corpo'>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      Corpo do Site</br>
-      <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
+    <?php
 
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
-      <h5 class='listar-livro'> </h5>
 
+    $query = mysql_query("SELECT livro.*, categoria_livro.V_GENERO, usuario.V_NOME FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE INNER JOIN usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE N_COD_LIVRO = '$codigolivro'");
+
+    while($linha=mysql_fetch_array($query)){
+
+    $codigo = $linha['N_COD_LIVRO'];
+    $titulo = $linha['V_TITULO'];
+    $autor = $linha['V_AUTOR'];
+    $editora = $linha['V_EDITORA'];
+    $estado = $linha['V_ESTADO_LIVRO'];
+    $observacao = $linha['V_OBSERVACAO'];
+    $foto = $linha['V_FOTO'];
+    $genero = $linha['V_GENERO'];
+    $ano = $linha['D_ANO'];
+    $nomeusuario = $linha['V_NOME'];
+    $codigousuario = $linha['N_COD_USUARIO_IE'];
+  }
+    
+    ?>
+
+    <div style="height: 500px;" id='corpo'>
+     <h2>Livro: <?php echo $titulo; ?></h2>
+     <div style="height: 450px;" id="lateral">
+      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="<?php echo $foto; ?>"width="198" height="198"></p>
+    </div>
+      <div id="centro">
+          <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $titulo; ?></p>
+          <p style="text-transform: uppercase; font-size: 10pt; margin-bottom:0px; margin-top: 0px;">Dono: <?php echo $nomeusuario; ?></p>
+
+          <fieldset style="margin-top: 10px;">
+          <p class='info-central'>Autor: <?php echo $autor; ?></p>
+          <p class='info-central'>Editora: <?php echo $editora; ?></p>
+          <p class='info-central'>Estado do livro: <?php echo $estado; ?></p>
+          <p class='info-central'>Gênero: <?php echo $genero; ?></p>
+          <p class='info-central'>Ano: <?php echo $ano; ?></p>
+          <p class='info-central'>Observação: <?php echo $observacao; ?></p>
+
+    </fieldset>
+      </div>
+
+
+       
     </div>
 
     <footer>
