@@ -1,5 +1,10 @@
 <?php
 require_once "Conexao.php";
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 ?>
 <!DOCTYPE html>
 <html>
@@ -244,6 +249,7 @@ if(@$_GET['go'] == 'cadastrar'){
 		else
 		{
 			$data = date('Y,m,d');
+<<<<<<< HEAD
 			$query2 = mysql_query("INSERT INTO usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) VALUES('$nome','$user','$pwd', '$email', '$cpf','$idade','$telefone', '$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");	
 			if (!$query2) 
 			{				
@@ -252,6 +258,15 @@ if(@$_GET['go'] == 'cadastrar'){
 			{
 			  echo "<script>alert('Cadastrado com sucesso!!');</script>";
 			  echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
+=======
+			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");		
+
+			if (!$query2) {
+			echo "<script>alert('Erro'); history.back();</script>";
+			}else{
+			echo "<script>alert('Cadastrado com sucesso!!');</script>";
+			echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 			}
 		}
 		}

@@ -70,7 +70,11 @@ function contarCaracteres(box,valor){
 
     <div id='corpo'>
      <h2>Cadastro Livro</h2>
+<<<<<<< HEAD
         <form name="CadastroUsuario" method="post" action="?go=cadastrar" enctype="multipart/form-data">
+=======
+        <form name="CadastroUsuario" method="post" action="?go=cadastrar">
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
           <table id="cad_table">
             <tr >  
               <td>
@@ -102,7 +106,11 @@ function contarCaracteres(box,valor){
               <td> <select id="genero" name="genero">
               <option value="1">Comédia</option>
               <option value="2">Drama</option>
+<<<<<<< HEAD
               <option value="4">Ficcão</option>
+=======
+              <option value="3">Ficcão</option>
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
               </select> </td>
             </tr>
             <tr>
@@ -151,7 +159,11 @@ if(@$_GET['go'] == 'cadastrar'){
     $observacao = $_POST['observacao'];
     $foto = $_FILES["foto"];
 
+<<<<<<< HEAD
 //echo "<script>alert(".$foto["name"]."); history.back();</script>";
+=======
+echo "<script>alert(".$foto["name"]."); history.back();</script>";
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 
 
     $error;
@@ -207,7 +219,12 @@ if(@$_GET['go'] == 'cadastrar'){
       move_uploaded_file($foto["tmp_name"], $caminho_imagem);
   }
 }
+<<<<<<< HEAD
     $query2 = mysql_query("insert into livro(V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, D_ANO, V_FOTO, N_COD_USUARIO_IE) values('$titulo', '$autor', '$editora', '$estado', '$observacao', '$genero','$ano','$caminho_imagem', '$codigo')"); //, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, D_ANO, V_FOTO, N_COD_USUARIO_IE) values ('$titulo','$autor','$editora','$estado','$observacao', '$genero','$ano', '$caminho_imagem', '1')");   
+=======
+
+    $query2 = mysql_query("insert into livro (V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, D_ANO, V_FOTO, N_COD_USUARIO_IE) values ('$titulo','$autor','$editora','$estado','$observacao', '$genero','$ano', '".$caminho_imagem."', '1')");   
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 
       if (!$query2) {
       echo "<script>alert('Falha no cadastro!!'); history.back();</script>";

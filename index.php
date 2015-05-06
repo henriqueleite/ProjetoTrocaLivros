@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <?php
+<<<<<<< HEAD
 session_start();
 require_once "config.php";
 require_once "Conexao.php";
+=======
+require_once "config.php";
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 ?>
 <html>
 <head>
@@ -30,7 +34,11 @@ require_once "Conexao.php";
           </form>
 
             <?php
+<<<<<<< HEAD
             
+=======
+            session_start();
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
             if((isset ($_SESSION['login']) == true)){
                echo "<li style='float: right' class='right'><a href='Logout.php'><span>SAIR</span></a></li>";
                echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
@@ -56,6 +64,7 @@ require_once "Conexao.php";
       Corpo do Site</br>
       <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
+<<<<<<< HEAD
       <?php 
          $query = mysql_query("SELECT livro.V_TITULO, usuario.V_NOME, livro.N_COD_LIVRO FROM livro
          inner join usuario on
@@ -75,6 +84,22 @@ require_once "Conexao.php";
          {
              $id = $_GET['s'];
              $codigoUser = $_SESSION['codigo'];
+=======
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+      <h5 class='listar-livro'> </h5>
+
+    </div>
+>>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 
              $sql = mysql_query("SELECT usuario.N_COD_USUARIO from livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE where livro.N_COD_LIVRO = $id");
              $resul = mysql_fetch_row($sql);
