@@ -11,25 +11,25 @@ $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
 
-$sql = mysql_query("SELECT Nome, Email, Idade, Cpf, Login, Senha, Telefone, Celular, Cep, Cidade, Bairro, Uf FROM usuario WHERE IdUsuario = '$codigo' ");
+$sql = mysql_query("SELECT V_NOME, V_EMAIL, V_IDADE, V_CPF, V_LOGIN, V_SENHA, V_TELEFONE, V_CELULAR, V_CEP, V_CIDADE, V_BAIRRO, V_UF FROM usuario WHERE N_COD_USUARIO = '$codigo' ");
 $linha = mysql_fetch_assoc($sql);
 if (!$linha) {
   //Se o select não retornou registros, é porque não tem o que apagar
   header("Location: painel.php");
   die();
 }
-$nome = $linha["Nome"];
-$email = $linha["Email"];
-$idade = $linha["Idade"];
-$cpf = $linha["Cpf"];
-$login = $linha["Login"];
-$senha = $linha["Senha"];
-$telefone = $linha["Telefone"];
-$celular = $linha["Celular"];
-$cep = $linha["Cep"];
-$cidade = $linha["Cidade"];
-$bairro = $linha["Bairro"];
-$uf = $linha["Uf"];
+$nome = $linha["V_NOME"];
+$email = $linha["V_EMAIL"];
+$idade = $linha["V_IDADE"];
+$cpf = $linha["V_CPF"];
+$login = $linha["V_LOGIN"];
+$senha = $linha["V_SENHA"];
+$telefone = $linha["V_TELEFONE"];
+$celular = $linha["V_CELULAR"];
+$cep = $linha["V_CEP"];
+$cidade = $linha["V_CIDADE"];
+$bairro = $linha["V_BAIRRO"];
+$uf = $linha["V_UF"];
 ?>
 
 
@@ -131,7 +131,7 @@ function formatar(mascara, documento){
 			</tr>
 
 				<td colspan="2"><input class='btn' type="submit" value="Salvar" id="buton1" name="btvalidar">
-					<br><input class='btn' type="button" value="Cancelar" onclick="location.href='painel.php'" id="buton1" name="btvalidar">
+					<br><input class='btn' type="button" value="Cancelar" onclick="location.href='PerfilUsuario.php'" id="buton1" name="btvalidar">
 				
 				</td>
 			</tr>
@@ -266,15 +266,15 @@ if(@$_GET['go'] == 'salvar'){
 		}elseif ($email_enviado == true) {
 				echo "<script>;</script>";
 			
-		$query4 = mysql_query("SELECT Login, Cpf FROM usuario WHERE IdUsuario = $codigo ");
+		$query4 = mysql_query("SELECT V_LOGIN, V_CPF FROM usuario WHERE N_COD_USUARIO = $codigo ");
 		$dados = mysql_fetch_row($query4);
 		
 		
-		$query1 = mysql_query("SELECT COUNT(IdUsuario) FROM usuario WHERE Login='$user'");
+		$query1 = mysql_query("SELECT COUNT(N_COD_USUARIO) FROM usuario WHERE V_LOGIN='$user'");
 		$eReg = mysql_fetch_array($query1);
 		$login_check = $eReg[0];
 
-		$query3 = mysql_query("SELECT COUNT(Cpf) FROM usuario WHERE Cpf='$cpf'");
+		$query3 = mysql_query("SELECT COUNT(V_CPF) FROM usuario WHERE V_CPF='$cpf'");
 		$eReg3 = mysql_fetch_array($query3);
 		$cpf_check = $eReg3[0];
 
@@ -287,7 +287,7 @@ if(@$_GET['go'] == 'salvar'){
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
 
-			$query2 = mysql_query("update usuario set Nome = '$nome', Login = '$user', Senha = '$pwd', Email = '$email', Cpf = '$cpf', Idade = '$idade', Telefone = '$telefone', Celular = '$celular', Bairro = '$bairro', Cidade = '$cidade', Cep = '$cep', Uf = '$uf' where IdUsuario = $codigo");		
+			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', V_IDADE = '$idade', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf' where N_COD_USUARIO = $codigo");		
 
 			if (!$query2) {
 			echo "<script>alert('Erro'); history.back();</script>";

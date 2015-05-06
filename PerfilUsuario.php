@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require"Conexao.php";
+require_once "Conexao.php";
 ?>
 <html>
 <head>
@@ -26,10 +26,10 @@ $tipo = $_SESSION['tipo'];
     <script>
     $(document).ready(function(){
     $(".text_container").click(function(){
-        $(".hide").hide(1000);
+        $(".listar-livro").hide(1000);
     });
     $(".text_container2").click(function(){
-        $(".hide").show(1000);
+        $(".listar-livro").show(1000);
     });
     });
     </script>
@@ -57,26 +57,53 @@ $tipo = $_SESSION['tipo'];
     </div>
 
 <?php
-$query1 = mysql_query("SELECT Nome, Cidade, Uf, Email, Cep, Bairro, Datacadastro, Idade, DataUltimoLogin, Foto FROM usuario WHERE Login = '$logado'");
 
 
-$dados = mysql_fetch_row($query1);
+$query1 = mysql_query("SELECT V_NOME, V_CIDADE, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, V_IDADE, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
+$query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo'");
+$query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
+$query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' and troca.V_STATUS = 'Pendente'");
+$query5 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_IE FROM local_troca INNER JOIN troca ON troca.N_COD_TROCA = local_troca.N_COD_TROCA_IE INNER JOIN livro on troca.N_COD_LIVRO = livro.N_COD_LIVRO INNER JOIN usuario on livro.N_COD_USUARIO_IE = usuario.N_COD_USUARIO WHERE usuario.N_COD_USUARIO = '$codigo'");
+$query6 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_IE FROM local_troca INNER JOIN troca ON troca.N_COD_TROCA = local_troca.N_COD_TROCA_IE INNER JOIN livro on troca.N_COD_LIVRO_SOLICITANTE = livro.N_COD_LIVRO INNER JOIN usuario on livro.N_COD_USUARIO_IE = usuario.N_COD_USUARIO WHERE usuario.N_COD_USUARIO = '$codigo'");
+$query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
+$query8 = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, D_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE WHERE N_COD_USUARIO_IE = '$codigo'");
 
-$nome = $dados[0];
-$cidade = $dados[1];
-$uf = $dados[2];
-$email = $dados[3];
-$cep = $dados[4];
-$bairro = $dados[5];
-$datacadastro = $dados[6];
-$idade = $dados[7];
-$datalogin = $dados[8];
-$foto = $dados[9];
+$dados = mysql_fetch_assoc($query1);
 
-mysql_close($conecta);
+$Livros = mysql_fetch_row($query2);
+$LivrosDesejados = mysql_fetch_row($query3);
+$Solitacoes = mysql_fetch_row($query4);
+$TrocasPendentesRecebidas = mysql_fetch_row($query5);
+$TrocasPendentesFeitas = mysql_fetch_row($query6);
+$TrocasRealizadas = mysql_fetch_row($query7);
+
+$nome = $dados['V_NOME'];
+$cidade = $dados['V_CIDADE'];
+$uf = $dados['V_UF'];
+$email = $dados['V_EMAIL'];
+$cep = $dados['V_CEP'];
+$bairro = $dados['V_BAIRRO'];
+$datacadastro = $dados['D_DATA_CADASTRO'];
+$idade = $dados['V_IDADE'];
+$datalogin = $dados['D_DATA_ULTIMO_LOGIN'];
+if ($dados['V_FOTO']) {
+$foto = $dados['V_FOTO'];
+}else{
+$foto = "FotoPerfilUsuario/foto_padrao.jpg";
+}
+
+$QuantidadeLivros = $Livros[0];
+$QuantidadeLivrosDesejados = $LivrosDesejados[0];
+$status = $Solitacoes[1];
+$QuantidadeSolicitacoes = $Solitacoes[0];
+$QuantidadeTrocasPendentes = $TrocasPendentesRecebidas[0] + $TrocasPendentesFeitas[0];
+$QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
+
+
+
 ?>
 
-    <div style='height:800px;' id='corpo'>
+    <div style="height: 2000px;" id='corpo'>
       <h2>Painel</h2>
       <div id='lateral'>
 
@@ -87,79 +114,89 @@ mysql_close($conecta);
             <input  type="submit" value="Mudar Foto" class="btnPerfil" id="btnPerfil">
             </form>
               <input  type="submit" value="Editar Perfil" onclick="location.href='EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
-              <input type="submit" value="Cadastre seu livro" onclick="location.href='CadastroLivro.php'" class="btnLivro" id="btnLivro">
+            <div id='quantidaderegistro'>
+              <p class='info-lateral'>Livros Publicados: <?php echo $QuantidadeLivros; ?> </p>
+              <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
+              <p class='info-lateral'>Solicitações : <a href="Solicitacao.php"><?php echo $QuantidadeSolicitacoes; ?></a></p>
+              <p class='info-lateral'>Trocas Pendentes : <?php echo $QuantidadeTrocasPendentes; ?></p>
+              <p class='info-lateral'>Trocas Realizadas : <?php echo $QuantidadeTrocasRealizadas; ?></p>
+            </div>
+
       </div>
       <div id='centro'>
 
-    <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px;"><?php echo $nome; ?></p>
-    <p style="text-transform: uppercase; font-size: 12pt; margin-top:0px;margin-bottom:0px;"><?php echo $cidade; ?>,<?php echo $uf; ?></p>
+    <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $nome; ?></p>
+    <p style="text-transform: uppercase; font-size: 12pt; margin-top:0px;margin-bottom:0px; margin-top: 0px;"><?php echo $cidade; ?>,<?php echo $uf; ?></p>
   
 
     <fieldset style="margin-top: 10px;"><legend>Informações Pessoais</legend>
-      <p>País: Brasil</p>
-      <p>Estado: <?php echo $uf; ?> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CEP: <?php echo $cep; ?></p>
-      <p>Cidade / Município: <?php echo $cidade; ?></p>
-      <p>Bairro: <?php echo $bairro; ?></p>
-      <p>Endereço de Email: <?php echo $email; ?></p>
-      <p>Idade: <?php echo $idade; ?> Anos</p>
-      <p>Data de Cadastro: <?php echo date('d/m/Y', strtotime($datacadastro)); ?></p>
-      <p>Data Último Login: <?php echo date('d/m/Y \á\s H:i:s', strtotime($datalogin)); ?></p>
+      <p class='info-central'>País: Brasil</p>
+      <p class='info-central'>Estado: <?php echo $uf; ?> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CEP: <?php echo $cep; ?></p>
+      <p class='info-central'>Cidade / Município: <?php echo $cidade; ?></p>
+      <p class='info-central'>Bairro: <?php echo $bairro; ?></p>
+      <p class='info-central'>Endereço de Email: <?php echo $email; ?></p>
+      <p class='info-central'>Idade: <?php echo $idade; ?> Anos</p>
+      <p class='info-central'>Data de Cadastro: <?php echo date('d/m/Y', strtotime($datacadastro)); ?></p>
+      <p class='info-central'>Data Último Login: <?php echo date('d/m/Y \á\s H:i:s', strtotime($datalogin)); ?></p>
 
-     </fieldset>
-    <div id="meuslivros">
-      <h4>Meus Livros</h4> <b class="text_container"></b><p class="text_container2"></p>
-      <div id="box-livro-1"><!--div that we want to hide-->
-          <div id="informacao">
-        <?php  
-		require("Conexao.php");
-          $pegar = "SELECT * FROM livro WHERE IdUsuario = $codigo";
-          $resultado = mysql_query($pegar);
-          
-        ?>
-        <table id="tabela-livro">
-          <tr>
-            <th><p><span class="foto">Foto</span></p></th>
-            <th><p><span class="titulo">Nome do livro</span></p></th>
-            <th><p><span class="nomeusuario">Autor</span></p></th>
-            <th><p><span class="autor">Editora</span></p></th>
-            <th><p><span class="autor">Idioma</span></p></th>
-            <th><p><span class="autor">Ano</span></p></th>
-          </tr>
-          <?php
-          while ($user = mysql_fetch_assoc($resultado)) 
-          {
-              $nomelivro = $user['NomeLivro'];
-              $autorlivro = $user['Autor'];
-              $editoralivro = $user['Editora'];
-              $idiomalivro = $user['Idioma'];
-              $anolivro = $user['Ano'];
-              $fotolivro = $user['Foto'];
+    </fieldset>
+   <div>
 
-              echo "<tr>
-                    <td><img src='$fotolivro' width='50' height='50'></td>
-                    <td>$nomelivro</td>
-                    <td>$autorlivro</td>
-                    <td>$editoralivro</td>
-                    <td>$idiomalivro</td>
-                    <td>$anolivro</td>                    
-                    </tr>";
-            }
-            mysql_close($conecta);
-            
-          ?>
-        </table>
-        <br>
-        <br>
-        <br>
-        <br>
+    <h4 class="centro-esquerda"><a href="CadastroLivro.php">Cadastrar Livro</a><h4>
+    <h4>Meus Livros</h4> <b class="text_container">-</b><p class="text_container2">+</p>
+    <div><!--div that we want to hide-->
 
-            <input type="button" value="solicitar">
-          </div>
-        </div><!-- fim div box-livro-1-->
-      </div><!--end div_text_container-->
+            <table class="listar-livro-exibicao">
+
+        <td style="width: 60px; margin-left: -10px;">Foto</td>
+        <td style="width: 40px;">Título</td>
+        <td style="width: 40px;">Autor</td>
+        <td style="width: 40px;">Editora</td>
+        <td style="width: 35px;">Estado</td>
+        <td style="width: 40px;">Ano</td>
+        <td style="width: 40px;">Gênero</td>
+        <td style="width: 30px;">Obs</td>
+
+      </table>
+
+
+      <?php
+      while ($linha=mysql_fetch_array($query8)){
+        $codigolivro = $linha["N_COD_LIVRO"];
+        $titulo= $linha['V_TITULO']; 
+        $autor= $linha['V_AUTOR']; 
+        $ano= $linha['D_ANO']; 
+        $foto= $linha['V_FOTO'];
+        $observacao= $linha['V_OBSERVACAO']; 
+        $editora = $linha['V_EDITORA'];
+        $estado_livro= $linha['V_ESTADO_LIVRO'];   
+        $genero= $linha['V_GENERO']; 
+      ?>
+
+      <form id="form2" name="form2" method="post" action="VisualizarLivro.php">
+      <h5 class="listar-livro">
+      <table class="table-listar-livro">
+      <tr class="listar-livro-tr">
+      <td class="listar-livro-foto"><img src="<?php echo $foto; ?>"width="100" height="100"></td>
+      <td class="listar-livro-titulo" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $titulo; ?></td> <br>
+      <td class="listar-livro-autor" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $autor;?></td>
+      <td class="listar-livro-genero" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $editora;?></td>
+      <td class="listar-livro-estado-livro" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $estado_livro;?></td>
+      <td class="listar-livro-ano" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $ano;?></td>
+      <td class="listar-livro-genero" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $genero;?></td>
+      <td class="listar-livro-observacao" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $observacao;?></td>
+      <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
+      <td class="listar-livro-genero" align="center" valign="middle" bgcolor="#FFFFCC"><input type="submit" name="Ver"  id="Ver"   value="Ver" /></td>
+      </tr>
+      </table>
+    </form>
+    </h5>
+    
+     <?php } ?>
+    </div>
+</div><!--end div_text_container-->
     </div>
     </div>
-
 
     <footer>
       <div class="bar">
@@ -174,8 +211,11 @@ mysql_close($conecta);
 </body>
 </html>
 
+
+
+
 <?php
-require"Conexao.php";
+require_once "Conexao.php";
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
@@ -235,7 +275,7 @@ if (@$_GET['go'] == 'salvarfoto') {
       move_uploaded_file($foto["tmp_name"], $caminho_imagem);
       
       // Insere os dados no banco
-      $sql = mysql_query("UPDATE usuario SET Foto = '".$caminho_imagem."' WHERE IdUsuario = $codigo");   
+      $sql = mysql_query("UPDATE usuario SET V_FOTO = '".$caminho_imagem."' WHERE N_COD_USUARIO = $codigo");   
       
       // Se os dados forem inseridos com sucesso
       if (!$sql){
