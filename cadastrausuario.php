@@ -104,8 +104,9 @@ require_once "Conexao.php";
 				echo "<script>alert('Esse Nome de Usuário já existe.'); history.back();</script>";
 			}else{
 				mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_USUARIO, V_EMAIL, V_CPF, V_TELEFONE, V_CELULAR, V_LOGRADOURO, V_CIDADE, V_CEP, V_UF) values ('$nome','$user','$pwd','$email','$cpf','$telefone','$celular','$rua','$cidade','$cep','$uf')");				echo "<script>alert('Usuário cadastrado com sucesso.'); </script>";
-				echo "<meta http-equiv='refresh' content='0, url=Principal.php'>";
+				//echo "<meta http-equiv='refresh' content='0, url=Principal.php'>";
 				header("location:index.php");
+				die();
 			}
 		}
 

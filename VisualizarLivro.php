@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
-$codigolivro = $_POST['codigolivro'];
+  session_start();
+  require_once "Conexao.php";
+
+  if (! isset($_POST["codigolivro"])){
+    header("Location: PerfilUsuario.php");  
+    die();
+  }
+
+  $codigolivro = $_POST['codigolivro'];
+  $_SESSION['codigoLivroAlt'] = $codigolivro;
 ?>
 <html>
 <head>
@@ -31,7 +39,7 @@ $codigolivro = $_POST['codigolivro'];
           </form>
 
             <?php
-            session_start();
+            
             if((isset ($_SESSION['login']) == true)){
                echo "<li style='float: right' class='right'><a href='Logout.php'><span>SAIR</span></a></li>";
                echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
@@ -48,7 +56,6 @@ $codigolivro = $_POST['codigolivro'];
 
     <?php
 
-
     $query = mysql_query("SELECT livro.*, categoria_livro.V_GENERO, usuario.V_NOME FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE INNER JOIN usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE N_COD_LIVRO = '$codigolivro'");
 
     while($linha=mysql_fetch_array($query)){
@@ -61,13 +68,13 @@ $codigolivro = $_POST['codigolivro'];
     $observacao = $linha['V_OBSERVACAO'];
     $foto = $linha['V_FOTO'];
     $genero = $linha['V_GENERO'];
-    $ano = $linha['D_ANO'];
+    $ano = $linha['V_ANO'];
     $nomeusuario = $linha['V_NOME'];
     $codigousuario = $linha['N_COD_USUARIO_IE'];
   }
     
     ?>
-
+    <form id="form2" name="form2" method="post" action="AltLivro.php">
     <div style="height: 500px;" id='corpo'>
      <h2>Livro: <?php echo $titulo; ?></h2>
      <div style="height: 450px;" id="lateral">
@@ -87,11 +94,12 @@ $codigolivro = $_POST['codigolivro'];
 
     </fieldset>
       </div>
-
-
+      
+        <td colspan="2"> <input style=" width: 200px;" type="submit" name="excluir" class='btn' id="excluir" value="Excluir"/> <input style="  width: 200px;" type="submit" class='btn' name="alterar" id="alterar" value="Alterar"/></td>
+        <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
        
     </div>
-
+   </form> 
     <footer>
       <div class="bar">
         Rodapé

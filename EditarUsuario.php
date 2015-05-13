@@ -1,36 +1,36 @@
 <?php  
 require_once "Conexao.php";
 session_start();
-if((!isset ($_SESSION['login']) == true))
-{
-  unset($_SESSION['login']);
-  header('location:index.php');
- }
+	if((!isset ($_SESSION['login']) == true))
+	{
+	  unset($_SESSION['login']);
+	  header('location:index.php');
+	 }
 
-$logado = $_SESSION['login'];
-$codigo = $_SESSION['codigo'];
-$tipo = $_SESSION['tipo'];
+	$logado = $_SESSION['login'];
+	$codigo = $_SESSION['codigo'];
+	$tipo = $_SESSION['tipo'];
 
-$sql = mysql_query("SELECT V_NOME, V_EMAIL, V_IDADE, V_CPF, V_LOGIN, V_SENHA, V_TELEFONE, V_CELULAR, V_CEP, V_CIDADE, V_BAIRRO, V_UF FROM usuario WHERE N_COD_USUARIO = '$codigo' ");
-$linha = mysql_fetch_assoc($sql);
-if (!$linha) {
-  //Se o select não retornou registros, é porque não tem o que apagar
-  header("Location: painel.php");
-  die();
-}
-$nome = $linha["V_NOME"];
-$email = $linha["V_EMAIL"];
-$idade = $linha["V_IDADE"];
-$cpf = $linha["V_CPF"];
-$login = $linha["V_LOGIN"];
-$senha = $linha["V_SENHA"];
-$telefone = $linha["V_TELEFONE"];
-$celular = $linha["V_CELULAR"];
-$cep = $linha["V_CEP"];
-$cidade = $linha["V_CIDADE"];
-$bairro = $linha["V_BAIRRO"];
-$uf = $linha["V_UF"];
-?>
+	$sql = mysql_query("SELECT V_NOME, V_EMAIL, V_IDADE, V_CPF, V_LOGIN, V_SENHA, V_TELEFONE, V_CELULAR, V_CEP, V_CIDADE, V_BAIRRO, V_UF FROM usuario WHERE N_COD_USUARIO = '$codigo' ");
+	$linha = mysql_fetch_assoc($sql);
+	if (!$linha) {
+	  //Se o select não retornou registros, é porque não tem o que apagar
+	  header("Location: painel.php");
+	  die();
+	}
+	$nome = $linha["V_NOME"];
+	$email = $linha["V_EMAIL"];
+	$idade = $linha["V_IDADE"];
+	$cpf = $linha["V_CPF"];
+	$login = $linha["V_LOGIN"];
+	$senha = $linha["V_SENHA"];
+	$telefone = $linha["V_TELEFONE"];
+	$celular = $linha["V_CELULAR"];
+	$cep = $linha["V_CEP"];
+	$cidade = $linha["V_CIDADE"];
+	$bairro = $linha["V_BAIRRO"];
+	$uf = $linha["V_UF"];
+	?>
 
 
 <!DOCTYPE html>
@@ -180,43 +180,28 @@ if(@$_GET['go'] == 'salvar'){
 		$uf = $_POST['uf'];
 
 
-		/*if ($nome == ''){
-			echo "<script>alert('nome Inválido'); history.back();</script>";
-		}else if ($user == ''){
-			echo "<script>alert('user Inválido'); history.back();</script>";
-		}else if ($pwd == ''){
-			echo "<script>alert('pwd Inválido'); history.back();</script>";
-		}else if ($email == ''){
-			echo "<script>alert('email Inválido'); history.back();</script>";
-		}else if ($idade == ''){
-			echo "<script>alert('idade Inválido'); history.back();</script>";
-		}else if ($cpf == ''){
-			echo "<script>alert('cpf Inválido'); history.back();</script>";
-		}else if ($telefone == ''){
-			echo "<script>alert('telefone Inválido'); history.back();</script>";
-		}else if ($celular == ''){
-			echo "<script>alert('celular Inválido'); history.back();</script>";
-		}else if ($bairro == ''){
-			echo "<script>alert('bairro Inválido'); history.back();</script>";
-		}else if ($cidade == ''){
-			echo "<script>alert('cidade Inválido'); history.back();</script>";
-		}else if ($cep == ''){
-			echo "<script>alert('cep Inválido'); history.back();</script>";
-		}else if ($uf == ''){
-			echo "<script>alert('uf Inválido'); history.back();</script>";
-		}*/
+		//if ($nome == ''){
+		//	echo "<script>alert('Preencha o campo Nome'); history.back(); </script>";
+		//}else if ($user == ''){
+		//	echo "<script>alert('Preencha o campo Login'); history.back(); </script>";
+		//}else if ($pwd == ''){
+		//	echo "<script>alert('Preencha o campo Senha'); history.back(); </script>";
+		//}else if ($email == ''){
+		//	echo "<script>alert('Preencha o campo Email'); history.back(); </script>";
+		//}else if ($idade == ''){
+		//	echo "<script>alert('Preencha o campo Idade'); history.back(); </script>";
+		//}else if ($cpf == ''){
+		//	echo "<script>alert('Preencha o campo CPF'); history.back(); </script>";
+		//}else{
 
-		function validaCPF($cpf)
-		{	// Verifiva se o número digitado contém todos os digitos
+		function validaCPF($cpf){	
+			// Verifiva se o número digitado contém todos os digitos
 		    $cpf = str_pad(ereg_replace('[^0-9]', '', $cpf), 11, '0', STR_PAD_LEFT);
 			
 			// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
-		    if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999')
-			{
-			return false;
-		    }
-			else
-			{   // Calcula os números para verificar se o CPF é verdadeiro
+		    if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999'){
+				return false;
+		    }else{   // Calcula os números para verificar se o CPF é verdadeiro
 		        for ($t = 9; $t < 11; $t++) {
 		            for ($d = 0, $c = 0; $c < $t; $c++) {
 		                $d += $cpf{$c} * (($t + 1) - $c);
@@ -232,15 +217,14 @@ if(@$_GET['go'] == 'salvar'){
 		        return true;
 		    }
 		}
-// Verifica se o botão de validação foi acionado
-			if(isset($_POST['btvalidar']))
-				{// Adiciona o numero enviado na variavel $cpf_enviado, poderia ser outro nome, e executa a função acima
-				$cpf_enviado = validaCPF($_POST['cpf']);
-				// Verifica a resposta da função e exibe na tela
-				if($cpf_enviado == false){
-					echo "<script>alert('CPF Inválido'); history.back();</script>";
-				} elseif($cpf_enviado == true){
-					echo "<script>;</script>";
+		// Verifica se o botão de validação foi acionado
+		if(isset($_POST['btvalidar'])){// Adiciona o numero enviado na variavel $cpf_enviado, poderia ser outro nome, e executa a função acima
+			$cpf_enviado = validaCPF($_POST['cpf']);
+			// Verifica a resposta da função e exibe na tela
+			if($cpf_enviado == false){
+				echo "<script>alert('CPF Inválido'); history.back();</script>";
+			} elseif($cpf_enviado == true){
+				echo "<script>;</script>";
 				
 
 			function validaemail($email){

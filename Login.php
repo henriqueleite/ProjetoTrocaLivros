@@ -46,7 +46,7 @@ session_start();
 					<td><input class='login' type="password" placeholder='Senha' name="senha" id="senha" class="txt" maxlength="15" required/></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="Entrar" class="btn" id="btnEntrar"> 
+					<td colspan="2"><input type="submit" value="Entrar" class="btn" id="btnEntrar" name = "btnEntrar"> 
 					&nbsp;<a style="text-decoration: none;" href="CadastroUsuario.php"><input style='margin-top: -10px;' type="button" value="Cadastre-se" class="btn" id="btnCad"></a></td>
 				</tr>	
 			</table>
@@ -68,35 +68,39 @@ session_start();
 </html>
 
 <?php
+
 if(@$_GET['go'] == 'logar'){
+
 	$user = $_POST['usuario'];
-	$pwd = $_POST['senha'];
+	$pwd  = $_POST['senha'];
 
-  $query2 = mysql_query("SELECT N_COD_USUARIO, V_LOGIN, N_TIPO_USUARIO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA = '$pwd' ");
-  $dados = mysql_fetch_row($query2);
-  $codusuario = $dados[0];
-  $tipousuario = $dados[2];
+  $queryUsuario = mysql_query("SELECT N_COD_USUARIO, V_LOGIN, N_TIPO_USUARIO,B_ATIVO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA ='$pwd' ");  
+  $coluna       = mysql_fetch_array($queryUsuario);
+  $consulta     = mysql_num_rows($queryUsuario);
 
-	$query1 = mysql_query("SELECT B_ATIVO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA = '$pwd'");
-  $ativo = mysql_fetch_row($query1);
-  if ($ativo[0] == 'T'){
-    $dados = mysql_num_rows($query1);
-		if($dados == 1){
-		  echo "<script>alert('Bem vindo, ".$user." !!');</script>";
-		  $_SESSION["login"]     = $user;
-      $_SESSION["codigo"]    = $codusuario;
-      $_SESSION["tipo"]      = $tipousuario;
+  if ($consulta == 1) {
+
+    $usuarioOK = $coluna['B_ATIVO'];
+
+    if ($usuarioOK == 'F') {
+      echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
+      die();
+    } 
+
+    $_SESSION["login"]     = $user;
+    $_SESSION["codigo"]    = $coluna['N_COD_USUARIO'];
+    $_SESSION["tipo"]      = $coluna['N_TIPO_USUARIO'];
+
       if ($_SESSION["tipo"] == 1) {
-			    echo "<meta http-equiv='refresh' content='0, url=PerfilAdministrador.php'>";
+          header("Location: PerfilAdministrador.php");
       }else{
-          echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 
+          header("Location: PerfilUsuario.php");
       }
-		}else{
-			unset ($_SESSION['login']);
-			echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
-
-		}
-  }else{
-     echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
+  
+  } else {
+    echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
   }
+  
+
+
 }

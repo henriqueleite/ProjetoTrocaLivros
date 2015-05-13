@@ -1,10 +1,6 @@
 <?php
 require_once "Conexao.php";
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
 ?>
 <!DOCTYPE html>
 <html>
@@ -84,7 +80,11 @@ jQuery(function($){
 			</tr>
 			<tr>
 				<td>Idade: </td>
-				<td><input type="text" name="idade" id="idade" class="txt" size=2 required/>&nbsp Anos</td>
+				<td><input type="text" name="idade" id="idade" class="txt" size=3 required/>&nbsp Anos</td>
+			</tr>
+			<tr>
+				<td>Sexo: </td>
+				<td><input type="text" name="sexo" id="sexo" class="txt" size=2 required/>&nbsp (M/F)</td>
 			</tr>
 			<tr>
 				<td>CPF:*</td>
@@ -156,6 +156,7 @@ if(@$_GET['go'] == 'cadastrar'){
 		$pwd = $_POST['senha'];
 		$email = $_POST['email'];
 		$idade = $_POST['idade'];
+		$sexo  = $_POST['sexo'];
 		$cpf = $_POST['cpf'];
 		$telefone = $_POST['telefone'];
 		$celular =$_POST['celular'];
@@ -249,8 +250,8 @@ if(@$_GET['go'] == 'cadastrar'){
 		else
 		{
 			$data = date('Y,m,d');
-<<<<<<< HEAD
-			$query2 = mysql_query("INSERT INTO usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) VALUES('$nome','$user','$pwd', '$email', '$cpf','$idade','$telefone', '$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");	
+
+			$query2 = mysql_query("INSERT INTO usuario (V_NOME,V_SEXO, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) VALUES('$nome','$sexo','$user','$pwd', '$email', '$cpf','$idade','$telefone', '$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");	
 			if (!$query2) 
 			{				
 			  echo "<script>alert('Erro'); history.back();</script>";
@@ -258,16 +259,6 @@ if(@$_GET['go'] == 'cadastrar'){
 			{
 			  echo "<script>alert('Cadastrado com sucesso!!');</script>";
 			  echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
-=======
-			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");		
-
-			if (!$query2) {
-			echo "<script>alert('Erro'); history.back();</script>";
-			}else{
-			echo "<script>alert('Cadastrado com sucesso!!');</script>";
-			echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
->>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
-			}
 		}
 		}
 		}
@@ -298,5 +289,6 @@ $resultado_busca = busca_cep($cep);
    	$resultado_busca['bairro']
     $resultado_busca['cidade']
     $resultado_busca['uf'];  */
+}
 
 ?>

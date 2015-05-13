@@ -4,12 +4,6 @@ body{
   z-index: 1;
   font-family: 'Slabo 27px', serif;
 }
-
-
-#testeCrystian{
-  font-size:32;
-}
-
 #cssmenu #container{
   width: 960px;
   margin: 0px auto;
@@ -39,7 +33,7 @@ body{
 #cssmenu {
   border-bottom: 3px solid #036564;
   margin: -8px auto auto -8px;
-  padding: 10px;
+  padding: 5px;
   z-index: 9998;
   width: 101%;
   background-color: #133141;

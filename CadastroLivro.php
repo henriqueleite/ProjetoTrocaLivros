@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+  session_start();
+  require_once "Conexao.php";
+  //$titulo = $autor = $editora = $estado = $genero = $ano = $observacao = $foto = "";
+
 ?>
 <html>
 <head>
@@ -53,7 +56,7 @@ function contarCaracteres(box,valor){
           </form>
 
             <?php
-            session_start();
+          
             if((isset ($_SESSION['login']) == true)){
                echo "<li style='float: right' class='right'><a href='Logout.php'><span>SAIR</span></a></li>";
                echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
@@ -70,15 +73,12 @@ function contarCaracteres(box,valor){
 
     <div id='corpo'>
      <h2>Cadastro Livro</h2>
-<<<<<<< HEAD
+
         <form name="CadastroUsuario" method="post" action="?go=cadastrar" enctype="multipart/form-data">
-=======
-        <form name="CadastroUsuario" method="post" action="?go=cadastrar">
->>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
           <table id="cad_table">
             <tr >  
               <td>
-                Foto do livro*:
+                Foto:
               </td>
               <td>
                 <input style="width: 325px;" type="file" name="foto" />
@@ -91,26 +91,22 @@ function contarCaracteres(box,valor){
             </tr>
             <tr>
               <td>Autor:*</td>
-              <td><input type="text" name="autor" id="autor" class="txt" size=35 required/></td>
+              <td><input type="text" name="autor" id="autor" class="txt"  size=35 required/></td>
             </tr>
             <tr>
               <td>Editora:*</td>
-              <td><input type="text" name="editora" id="editora" class="txt" size=35 required/></td>
+              <td><input type="text" name="editora" id="editora" class="txt"  size=35 required/></td>
             </tr>
             <tr>
-              <td>Estado do livro:* </td>
-              <td><input type="text" name="estado" id="estado" class="txt" size=35 required/>
+              <td>Estado:* </td>
+              <td><input type="text" name="estado" id="estado" class="txt"  size=35 required/>
             </tr>
             <tr>
               <td>Genero:*</td>
               <td> <select id="genero" name="genero">
               <option value="1">Comédia</option>
               <option value="2">Drama</option>
-<<<<<<< HEAD
-              <option value="4">Ficcão</option>
-=======
               <option value="3">Ficcão</option>
->>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
               </select> </td>
             </tr>
             <tr>
@@ -146,24 +142,26 @@ function contarCaracteres(box,valor){
 
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
-$tipo = $_SESSION['tipo'];
+$tipo   = $_SESSION['tipo'];
 
 
 if(@$_GET['go'] == 'cadastrar'){
-    $titulo = $_POST['titulo'];
-    $autor = $_POST['autor'];
-    $editora = $_POST['editora'];
-    $estado = $_POST['estado'];
-    $genero = $_POST['genero'];
-    $ano = $_POST['ano'];
-    $observacao = $_POST['observacao'];
-    $foto = $_FILES["foto"];
 
-<<<<<<< HEAD
-//echo "<script>alert(".$foto["name"]."); history.back();</script>";
-=======
-echo "<script>alert(".$foto["name"]."); history.back();</script>";
->>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
+    $titulo     = $_POST['titulo'];
+    $autor      = $_POST['autor'];
+    $editora    = $_POST['editora'];
+    $estado     = $_POST['estado'];
+    $genero     = $_POST['genero'];
+    $ano        = $_POST['ano'];
+    $observacao = $_POST['observacao'];
+    $foto       = $_FILES["foto"];
+
+
+
+    //echo "<script>alert(".$foto["name"]."); history.back();</script>";
+
+  
+
 
 
     $error;
@@ -171,7 +169,7 @@ echo "<script>alert(".$foto["name"]."); history.back();</script>";
 
   // Se a foto estiver sido selecionada
   if (!empty($foto)) {
-    echo "<script>alert('CHEGOU AUQI2222!!'); history.back();</script>";
+    
     // Largura máxima em pixels
     $largura = 1920;
     // Altura máxima em pixels
@@ -217,20 +215,36 @@ echo "<script>alert(".$foto["name"]."); history.back();</script>";
  
       // Faz o upload da imagem para seu respectivo caminho
       move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+    }
+  }else{
+    $caminho_imagem = "";
   }
-}
-<<<<<<< HEAD
-    $query2 = mysql_query("insert into livro(V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, D_ANO, V_FOTO, N_COD_USUARIO_IE) values('$titulo', '$autor', '$editora', '$estado', '$observacao', '$genero','$ano','$caminho_imagem', '$codigo')"); //, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, D_ANO, V_FOTO, N_COD_USUARIO_IE) values ('$titulo','$autor','$editora','$estado','$observacao', '$genero','$ano', '$caminho_imagem', '1')");   
-=======
 
-    $query2 = mysql_query("insert into livro (V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, D_ANO, V_FOTO, N_COD_USUARIO_IE) values ('$titulo','$autor','$editora','$estado','$observacao', '$genero','$ano', '".$caminho_imagem."', '1')");   
->>>>>>> 4b449509ea126b5727ce5ed1d37c974368cb6c20
+   if ($titulo == ""){
+      echo "<script>alert('Preencha o campo Titulo'); history.back(); </script>";
+    }else if ($autor == ""){
+      echo "<script>alert('Preencha o campo Autor'); history.back(); </script>";
+    }else if ($editora  == ""){
+     echo "<script>alert('Preencha o campo Editora'); history.back(); </script>";
+    }else if ($estado  == ""){
+      echo "<script>alert('Preencha o camp Estado'); history.back(); </script>";
+    }else if ($genero  == ""){
+      echo "<script>alert('Preencha o camp Genero'); history.back(); </script>";
+    }else if ($ano  == ""){
+      echo "<script>alert('Preencha o camp Ano'); history.back(); </script>";
+    }else{
+
+      $query2 = mysql_query("INSERT INTO LIVRO (V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, V_ANO, V_FOTO, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$autor."', '".$editora."', '".$estado."', '".$observacao."', '".$genero."', '".$ano."', '".$caminho_imagem."', '".$codigo."')");
+
 
       if (!$query2) {
-      echo "<script>alert('Falha no cadastro!!'); history.back();</script>";
+        echo "<script>alert('Falha no cadastro!!'); history.back();</script>";
+        die();
       }else{
-      echo "<script>alert('Livro cadastrado com sucesso!!');</script>";
-      echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";  
+        echo "<script>alert('Livro cadastrado com sucesso!!');</script>"; 
+        echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
+        die();
       }
+    }
 }
 ?>
