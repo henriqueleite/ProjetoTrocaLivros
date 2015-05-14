@@ -67,12 +67,7 @@ $query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$cod
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
 
 $query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' and troca.V_STATUS = 'Pendente'");
-$query5 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_IE FROM local_troca INNER JOIN troca ON troca.N_COD_TROCA = local_troca.N_COD_TROCA_IE INNER JOIN livro on troca.N_COD_LIVRO = livro.N_COD_LIVRO INNER JOIN usuario on livro.N_COD_USUARIO_IE = usuario.N_COD_USUARIO WHERE usuario.N_COD_USUARIO = '$codigo'");
-$query6 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_IE FROM local_troca INNER JOIN troca ON troca.N_COD_TROCA = local_troca.N_COD_TROCA_IE INNER JOIN livro on troca.N_COD_LIVRO_SOLICITANTE = livro.N_COD_LIVRO INNER JOIN usuario on livro.N_COD_USUARIO_IE = usuario.N_COD_USUARIO WHERE usuario.N_COD_USUARIO = '$codigo'");
 
-$query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
-
-$query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo'");
 $query5 = mysql_query("SELECT COUNT(*) FROM TROCA INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '.$codigo.' or LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '.$codigo.'");
 $query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
 
