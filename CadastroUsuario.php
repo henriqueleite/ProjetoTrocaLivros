@@ -165,6 +165,18 @@ if(@$_GET['go'] == 'cadastrar'){
 		$cep = $_POST['cep'];
 		$uf = $_POST['uf'];
 
+		   if ($nome == ""){
+      echo "<script>alert('Preencha o campo Nome'); history.back(); </script>";
+    }else if ($user == ""){
+      echo "<script>alert('Preencha o campo Login'); history.back(); </script>";
+    }else if ($pwd  == ""){
+     echo "<script>alert('Preencha o campo Senha'); history.back(); </script>";
+    }else if ($cpf  == ""){
+      echo "<script>alert('Preencha o camp CPF'); history.back(); </script>";
+    }else if ($cep  == ""){
+      echo "<script>alert('Preencha o camp CEP'); history.back(); </script>";
+    }else{
+
 		function validaCPF($cpf)
 		{	// Verifiva se o número digitado contém todos os digitos
 		    $cpf = str_pad(ereg_replace('[^0-9]', '', $cpf), 11, '0', STR_PAD_LEFT);
@@ -290,5 +302,5 @@ $resultado_busca = busca_cep($cep);
     $resultado_busca['cidade']
     $resultado_busca['uf'];  */
 }
-
+}
 ?>

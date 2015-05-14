@@ -10,6 +10,15 @@
 
   $codigolivro = $_POST['codigolivro'];
   $_SESSION['codigoLivroAlt'] = $codigolivro;
+
+  if((isset ($_SESSION['login']) == true))
+  {
+  $logado = $_SESSION['login'];
+  $codigo = $_SESSION['codigo'];
+  $tipo = $_SESSION['tipo'];
+  }
+
+
 ?>
 <html>
 <head>
@@ -56,6 +65,14 @@
 
     <?php
 
+    if (isset ($_POST['Solicitar'])){
+            echo "<script>alert('Solicitação enviada com sucesso!');</script>"; 
+    }
+
+    if (isset ($_POST['alterar'])){
+            echo "<meta http-equiv='refresh' content='0, url=AltLivro.php'>"; ; 
+    }
+
     $query = mysql_query("SELECT livro.*, categoria_livro.V_GENERO, usuario.V_NOME FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE INNER JOIN usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE N_COD_LIVRO = '$codigolivro'");
 
     while($linha=mysql_fetch_array($query)){
@@ -74,7 +91,7 @@
   }
     
     ?>
-    <form id="form2" name="form2" method="post" action="AltLivro.php">
+    <form id="form2" name="form2" method="post" action="">
     <div style="height: 500px;" id='corpo'>
      <h2>Livro: <?php echo $titulo; ?></h2>
      <div style="height: 450px;" id="lateral">
@@ -93,11 +110,33 @@
           <p class='info-central'>Observação: <?php echo $observacao; ?></p>
 
     </fieldset>
+    <?php
+    if((isset ($_SESSION['login']) == true)){
+    ?>
+     <td colspan="2"><input style="  width: 200px;" type="submit" class='btn' name="Solicitar" id="Solicitar" value="Solicitar"/>
+    <?php
+    }
+    ?>
+        <?php 
+        if((isset ($_SESSION['login']) == true) and ($_SESSION['codigo'] == $codigousuario)){
+        ?>
+                        <input style=" width: 200px; margin-top: 4px;" type="submit" name="excluir" class='btn' id="excluir" value="Excluir"/> 
+                        <input style="  width: 200px; margin-top: 4px;" type="submit" class='btn' name="alterar" id="alterar" value="Alterar"/>
+        <?php
+
+        } 
+        ?>
+        </td>
+
+
+        <h2 style="margin-top: 10px;">Comentários</h2>
       </div>
       
-        <td colspan="2"> <input style=" width: 200px;" type="submit" name="excluir" class='btn' id="excluir" value="Excluir"/> <input style="  width: 200px;" type="submit" class='btn' name="alterar" id="alterar" value="Alterar"/></td>
+
+
         <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
        
+
     </div>
    </form> 
     <footer>

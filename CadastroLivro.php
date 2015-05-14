@@ -98,8 +98,12 @@ function contarCaracteres(box,valor){
               <td><input type="text" name="editora" id="editora" class="txt"  size=35 required/></td>
             </tr>
             <tr>
-              <td>Estado:* </td>
-              <td><input type="text" name="estado" id="estado" class="txt"  size=35 required/>
+              <td>Estado:*</td>
+              <td> <select id="estado" name="estado">
+              <option value="Novo">Novo</option>
+              <option value="Semi-Novo">Semi-Novo</option>
+              <option value="Velho">Velho</option>
+              </select> </td>
             </tr>
             <tr>
               <td>Genero:*</td>
@@ -160,11 +164,8 @@ if(@$_GET['go'] == 'cadastrar'){
 
     //echo "<script>alert(".$foto["name"]."); history.back();</script>";
 
-  
-
-
-
-    $error;
+    $error = "Sem Erro";
+    $caminho_imagem = '';
   // Recupera os dados dos campos
 
   // Se a foto estiver sido selecionada
@@ -179,31 +180,32 @@ if(@$_GET['go'] == 'cadastrar'){
  
       // Verifica se o arquivo é uma imagem
       if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $foto["type"])){
-         $error[1] = "Isso não é uma imagem.";
+         $error = "Isso não é uma imagem.";
       } 
   
     // Pega as dimensões da imagem
     $dimensoes = getimagesize($foto["tmp_name"]);
+
   
     // Verifica se a largura da imagem é maior que a largura permitida
     if($dimensoes[0] > $largura) {
-      $error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
+      $error = "A largura da imagem não deve ultrapassar ".$largura." pixels";
     }
  
     // Verifica se a altura da imagem é maior que a altura permitida
     if($dimensoes[1] > $altura) {
-      $error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
+      $error = "Altura da imagem não deve ultrapassar ".$altura." pixels";
+
     }
     
     // Verifica se o tamanho da imagem é maior que o tamanho permitido
     if($foto["size"] > $tamanho) {
-        $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
+        $error = "A imagem deve ter no máximo ".$tamanho." bytes";
     }
  
 
     // Se não houver nenhum erro
-    if (count($error) == 0) {
-    
+    if ($error == 'Sem Erro') {
       // Pega extensão da imagem
       preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
  
@@ -215,6 +217,7 @@ if(@$_GET['go'] == 'cadastrar'){
  
       // Faz o upload da imagem para seu respectivo caminho
       move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+
     }
   }else{
     $caminho_imagem = "";

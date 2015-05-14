@@ -25,7 +25,7 @@ require_once "Conexao.php";
            <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
            <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
            <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
-           <li><form name="frmBusca" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?a=buscar" >
+           <li><form name="frmBusca" method="post" action="Buscar.php" >
 
             <input type="text" name="palavra" />
             <input type="submit"  value="Buscar" />

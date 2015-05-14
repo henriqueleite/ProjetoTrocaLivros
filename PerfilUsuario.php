@@ -46,14 +46,15 @@ $tipo = $_SESSION['tipo'];
            <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
            <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
            <li class='active' style="float: right" class="right"><a href='Painel.php'><span>PERFIL</span></a></li>
-           <li class='active' style="float: right" class="right"><a href='CadastroLivro.php'><span>CADASTRAR LIVRO</span></a></li> 
-            
            <li>
            <form name="frmBusca" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?a=buscar" >
             <input type="text" name="palavra" />
             <input type="submit"  value="Buscar" />
           </li>
           </form>
+        </ul>
+        <ul>
+          <li class="right"><a href='CadastroLivro.php'><span>CADASTRAR LIVRO</span></a></li> 
         </ul>
       </div>
     </div>
@@ -72,8 +73,7 @@ $query6 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_I
 $query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
 
 $query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo'");
-$query5 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_IE FROM local_troca INNER JOIN troca ON troca.N_COD_TROCA = local_troca.N_COD_TROCA_IE INNER JOIN livro on troca.N_COD_LIVRO = livro.N_COD_LIVRO INNER JOIN usuario on livro.N_COD_USUARIO_IE = usuario.N_COD_USUARIO WHERE usuario.N_COD_USUARIO = '.$codigo.'");
-$query6 = mysql_query("SELECT COUNT(*), troca.N_COD_LIVRO, livro.N_COD_USUARIO_IE FROM local_troca INNER JOIN troca ON troca.N_COD_TROCA = local_troca.N_COD_TROCA_IE INNER JOIN livro on troca.N_COD_LIVRO_SOLICITANTE = livro.N_COD_LIVRO INNER JOIN usuario on livro.N_COD_USUARIO_IE = usuario.N_COD_USUARIO WHERE usuario.N_COD_USUARIO = '$codigo'");
+$query5 = mysql_query("SELECT COUNT(*) FROM TROCA INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '.$codigo.' or LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '.$codigo.'");
 $query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
 
 $query8 = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE WHERE N_COD_USUARIO_IE = '$codigo'");
@@ -83,8 +83,7 @@ $dados = mysql_fetch_assoc($query1);
 $Livros = mysql_fetch_row($query2);
 $LivrosDesejados = mysql_fetch_row($query3);
 $Solitacoes = mysql_fetch_row($query4);
-$TrocasPendentesRecebidas = mysql_fetch_row($query5);
-$TrocasPendentesFeitas = mysql_fetch_row($query6);
+$TrocasPendentes = mysql_fetch_row($query5);
 $TrocasRealizadas = mysql_fetch_row($query7);
 
 $nome = $dados['V_NOME'];
@@ -113,7 +112,7 @@ $QuantidadeLivrosDesejados = $LivrosDesejados[0];
 $status = $Solitacoes[1];
 
 $QuantidadeSolicitacoes = $Solitacoes[0];
-$QuantidadeTrocasPendentes = $TrocasPendentesRecebidas[0] + $TrocasPendentesFeitas[0];
+$QuantidadeTrocasPendentes = $TrocasPendentes[0];
 $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
 
@@ -136,8 +135,6 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
               <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
 
               <p class='info-lateral'>Solicitações : <a href="Solicitacao.php"><?php echo $QuantidadeSolicitacoes; ?></a></p>
-
-              <p class='info-lateral'>Solicitações : <?php echo $QuantidadeSolicitacoes; ?></p>
 
               <p class='info-lateral'>Trocas Pendentes : <?php echo $QuantidadeTrocasPendentes; ?></p>
               <p class='info-lateral'>Trocas Realizadas : <?php echo $QuantidadeTrocasRealizadas; ?></p>

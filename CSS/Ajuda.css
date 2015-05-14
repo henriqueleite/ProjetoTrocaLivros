@@ -1,0 +1,52 @@
+@import url(http://fonts.googleapis.com/css?family=Slabo+27px);
+
+.formulario{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+    padding: 20px;
+    width: 30%;
+    margin: 0px auto;
+    margin-top: 90px;
+}
+
+h2 .titulo_formulario {
+    margin-bottom: 20px;
+    color: #133141;
+}
+.input_formulario, textarea {
+    padding: 10px;
+    border: 1px solid #E5E5E5;
+    width: 530px;
+    color: #999999;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+}
+textarea {
+    width: 530px;
+    height: 150px;
+    max-width: 530px;
+    line-height: 18px;
+}
+.input_formulario:hover, textarea:hover,
+.input_formulario:focus, textarea:focus {
+    border-color: 1px solid #C9C9C9;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;     
+}
+.form label {
+    margin-bottom: 10px;
+    color: #999999;
+    display: block;
+}
+.submit input {
+    width: 100px;
+    height: 40px;
+    background-color: #133141;
+    color: #FFF;
+    border-radius: 3px;
+    moz-border-radius: 3px;
+    -webkit-border-radius: 3px;                     
+}

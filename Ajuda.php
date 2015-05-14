@@ -1,24 +1,32 @@
 <meta http-equiv="Content-Type" content="text/html, charset=utf-8">
 <?php
-
-$con = @mysql_connect("localhost", "root", "") or die("Não foi possível conectar com o servidor de dados!");
-mysql_select_db("ajuda", $con) or die("Banco de dados não localizado!");
-mysql_query("SET NAMES 'utf8'");
-mysql_query('SET character_set_connection=utf8');
-mysql_query('SET character_set_client=utf8');
-mysql_query('SET character_set_results=utf8');
+require_once "Conexao.php";
 
 $titulo = $_POST["titulo"];
 $tipo = $_POST["tipo"];
 $mensagem = $_POST["mensagem"];
+$codigo = null;
 
 
-$query = mysql_query("insert into ajuda (V_TITULO, V_TIPO, V_MENSAGEM) values ('$titulo','$tipo','$mensagem')");
+session_start();
+if((!isset ($_SESSION['login']) == true))
+{
+echo "<script>alert('Você precisa estar logado para enviar uma mensagem !!'); </script>";
+echo "<meta http-equiv='refresh' content='0, url=Form_Ajuda.php'>";
+}else{
+$codigo = $_SESSION['codigo'];
+
+
+$query = mysql_query("insert into ajuda (V_TITULO, N_COD_USUARIO_IE, V_TIPO, V_MENSAGEM) values ('$titulo', '$codigo', '$tipo','$mensagem')");
 
 if ($query){
-	header("Location: Form_Ajuda.php");
+	echo "<script>alert('Mensagem enviada com sucesso !!'); </script>";
+	echo "<meta http-equiv='refresh' content='0, url=Form_Ajuda.php'>";
 }else{
-	echo "nao";
+	echo "<script>alert('Erro no envio da mensagem, tente novamente !!'); </script>";
+	echo "<meta http-equiv='refresh' content='0, url=Form_Ajuda.php'>";
 }
+}
+
 
 ?>

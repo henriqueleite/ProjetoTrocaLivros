@@ -1,91 +1,61 @@
 <!DOCTYPE html>
 <?php
-require_once "config.php";
+require_once "Conexao.php";
+session_start();
 ?>
 <html>
 <head>
-    <title>Ajuda</title>
+    <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="CSS/Ajuda.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
     </script>
 
-
-<style type="text/css">
-body {
-    font-size: 13px;
-    font-family: arial, Tahoma, sans-serif;
-    position: absolute;
-    left: 38%;
-    top: 20%;
-}
-div{
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
-    padding: 20px;
-}
-
-a { color:#000; }
-
-h2 {
-    margin-bottom: 20px;
-    color: #133141;
-}
-input, textarea {
-    padding: 10px;
-    border: 1px solid #E5E5E5;
-    width: 200px;
-    color: #999999;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-}
-textarea {
-    width: 400px;
-    height: 150px;
-    max-width: 400px;
-    line-height: 18px;
-}
-input:hover, textarea:hover,
-input:focus, textarea:focus {
-    border-color: 1px solid #C9C9C9;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;     
-}
-.form label {
-    margin-bottom: 10px;
-    color: #999999;
-    display: block;
-}
-.submit input {
-    width: 100px;
-    height: 40px;
-    background-color: #133141;
-    color: #FFF;
-    border-radius: 3px;
-    moz-border-radius: 3px;
-    -webkit-border-radius: 3px;                     
-}
-</style>
 </head>
 
 
 <body>
-    <div>
-    <h2>Formulário de Ajuda</h2>
+  <div id='cssmenu'>
+    <div id='container'>
+      <ul>
+        <li><a href='index.php'><img class='logo' src="LogoTrocaLivro.png"></img></a></li>
+        <li class='active'><a href='index.php'><span>ÍNICIO</span></a></li>
+        <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
+        <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
+        <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
+        <li><form name="frmBusca" method="post" action="Buscar.php" >
+            <input type="text" name="palavra" />
+            <input type="submit"  value="Buscar" /></form></li>
+
+        <?php
+          if((isset ($_SESSION['login']) == true)){
+            echo "<li class='right'><a href='Logout.php'><span>SAIR</span></a></li>";
+            echo "<li class='right'><span class='span'>|</span></li>";  
+            echo "<li class='right'><a href='PerfilUsuario.php'><span>PAINEL</span></a></li>";
+          } else {
+            echo "<li class='right'><a href='Login.php'><span>LOGIN</span></a></li>";
+            echo "<li class='right'><a href='CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>";
+          }
+        ?>
+      </ul>
+    </div>
+  </div>
+
+  <div class='formulario'>
+    <h2 class='titulo_formulario'>Formulário de Ajuda/Contato</h2>
     <form method="post" Action="Ajuda.php" class="form">
     <p class="name">
         <label for="name">Título</label>
-        <input type="text" name="titulo" id="titulo" size="50" placeholder="Título" required/>
+        <input class='input_formulario' type="text" name="titulo" id="titulo" size="50" placeholder="Título" required/>
     </p>
     <p class="email">
          <label for="name">Tipo</label>
          <select name="tipo" id="tipo" required>
             <option value="1">Dúvida</option>
             <option value="2">Sugestão</option>
-</select>
+         </select>
     </p>
     <p class="text">
         <label for="mensagem">Mensagem</label>
@@ -95,15 +65,18 @@ input:focus, textarea:focus {
         <input type="submit" value="Enviar" />
     </p>
     </form>
+  </div>
+
+  <footer>
+    <div class="bar">
+        Rodapé
     </div>
+    <div class='footer2'>
+    <div class="bar2">
+        Copyright © 2015 by Troca Livro
+    </div>
+    </div>
+  </footer>
     
 </body>
-
 </html>
-<?php
-$con = @mysql_connect("localhost", "root", "") or die("Não foi possível conectar com o servidor de dados!");
-mysql_select_db("ajuda", $con) or die("Banco de dados não localizado!");
-$query = mysql_query("select * from ajuda", $con);
-$total = mysql_num_rows($query);
-echo '<h2> Total de Registros: '.$total.'</h2>';
-?>
