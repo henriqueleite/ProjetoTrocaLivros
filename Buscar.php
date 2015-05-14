@@ -35,28 +35,7 @@ if (isset($_POST["palavra"])) {
     </script>
 </head>
 <body>
-  <div id='cssmenu'>
-    <div id='container'>
-      <ul>
-        <li><a href='index.php'><img class='logo' src="LogoTrocaLivro.png"></img></a></li>
-        <li class='active'><a href='index.php'><span>ÍNICIO</span></a></li>
-        <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
-        <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
-        <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
-        <?php
-          if((isset ($_SESSION['login']) == true)){
-            echo "<li class='right'><a href='Logout.php'><span>SAIR</span></a></li>";
-            echo "<li class='right'><span class='span'>|</span></li>";  
-            echo "<li class='right'><a href='PerfilUsuario.php'><span>PAINEL</span></a></li>";
-          } else {
-            echo "<li class='right'><a href='Login.php'><span>LOGIN</span></a></li>";
-            echo "<li class='right'><a href='CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>";
-          }
-        ?>
-      </ul>
-    </div>
-  </div>
-
+  <?php include('topo.php'); ?>
 
   <div id='corpo'>
     <h2>Gerenciador de Usuários</h2>
@@ -146,15 +125,6 @@ if (isset($_POST["palavra"])) {
       </table>
   </div>
 
-  <footer>
-    <div class="bar">
-        Rodapé
-    </div>
-    <div class='footer2'>
-    <div class="bar2">
-        Copyright © 2015 by Troca Livro
-    </div>
-    </div>
-  </footer>
+  <?php include('rodape.php'); ?>
 </body>
 </html>

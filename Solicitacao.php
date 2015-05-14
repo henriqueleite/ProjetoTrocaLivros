@@ -35,26 +35,7 @@ $tipo = $_SESSION['tipo'];
     </script>
 </head>
 <body>
-    <div id='cssmenu'>
-      <div id='container'>
-        <ul>
-           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-           <li><a href='index.php'><span>ÍNICIO</span></a></li>
-           <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
-           <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
-           <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
-           <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
-           <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
-           <li class='active' style="float: right" class="right"><a href='Painel.php'><span>PAINEL</span></a></li> 
-           <li>
-           <form name="frmBusca" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?a=buscar" >
-            <input type="text" name="palavra" />
-            <input type="submit"  value="Buscar" />
-          </li>
-          </form>
-        </ul>
-      </div>
-    </div>
+    <?php include('topo.php'); ?>
     <div id="troca">
         <?php
           $query4 = mysql_query("SELECT COUNT(*), usuario.V_NOME, livro.V_TITULO, troca.V_STATUS FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE inner join usuario on usuario.N_COD_USUARIO = troca.N_COD_USUARIO_IE WHERE livro.N_COD_USUARIO_IE = '$codigo'");

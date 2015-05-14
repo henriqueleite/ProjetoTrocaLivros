@@ -55,26 +55,7 @@ function formatar(mascara, documento){
 </script>
 </head>
 <body>
-	   <div id='cssmenu'>
-      <div id='container'>
-        <ul>
-           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-           <li><a href='index.php'><span>ÍNICIO</span></a></li>
-           <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
-           <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
-           <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
-           <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
-           <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
-           <li class='active' style="float: right" class="right"><a href='PerfilUsuario.php'><span>PAINEL</span></a></li> 
-           <li>
-           <form name="frmBusca" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?a=buscar" >
-            <input type="text" name="palavra" />
-            <input type="submit"  value="Buscar" />
-          </li>
-          </form>
-        </ul>
-      </div>
-    </div>
+	   <?php include('topo.php'); ?>
 
 <div id='corpo' style="height: 680px;">
 <h2>Editar Perfil </h2>
@@ -141,16 +122,7 @@ function formatar(mascara, documento){
 	</form>
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
 </div>
-    <footer style='margin-top: 110px;'>
-      <div class="bar">
-        Rodapé
-      </div>
-      <div class='footer2'>
-      <div class="bar2">
-        Copyright © 2015 by Troca Livro
-      </div>
-    </div>
-    </footer>
+    <?php include('rodape.php'); ?>
 </body>
 </html>
 

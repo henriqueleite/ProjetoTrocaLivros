@@ -23,7 +23,7 @@ session_destroy();
 session_unset(); 
 
 
-echo "<h5 style='width: 900px; margin: 0px auto; font-size: 25px;'>Você foi desconectado e será redirecionado para a página inicial em 3 segundos...</h5>";
+echo "<h5 style='width: 900px; margin: 0px auto; font-size: 25px;'>Voce foi desconectado e sera redirecionado para a pagina inicial em 3 segundos...</h5>";
 
 ?>
 

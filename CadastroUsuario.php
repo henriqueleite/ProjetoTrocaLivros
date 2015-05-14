@@ -43,26 +43,7 @@ jQuery(function($){
 </script>
 </head>
 <body>
-	 <div id='cssmenu'>
-      <div id='container'>
-        <ul>
-           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-           <li><a href='index.php'><span>ÍNICIO</span></a></li>
-           <li style="float: right" class="right"><a href='Login.php'><span>LOGIN</span></a></li>
-           <li class='active' style="float: right" class="right"><a href='CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>
-           <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
-           <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
-           <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
-           <li>
-           <form name="frmBusca" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?a=buscar" >
-            <input type="text" name="palavra" />
-            <input type="submit"  value="Buscar" />
-          </li>
-          </form>
-        </ul>
-      </div>
-    </div>
-
+	 <?php include('topo.php'); ?>
 
 
 
@@ -134,16 +115,7 @@ jQuery(function($){
 	</form>
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
 </div>
-    <footer style='margin-top: 110px;'>
-      <div class="bar">
-        Rodapé
-      </div>
-      <div class='footer2'>
-      <div class="bar2">
-        Copyright © 2015 by Troca Livro
-      </div>
-    </div>
-    </footer>
+   <?php include('rodape.php'); ?>
 </body>
 </html>
 
