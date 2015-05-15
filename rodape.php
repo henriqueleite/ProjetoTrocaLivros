@@ -1,4 +1,4 @@
-<footer id='footer'>
+<footer>
 	<div class="bar">
 		Rodapé
 	</div>

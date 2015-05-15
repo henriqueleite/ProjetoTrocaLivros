@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Slabo+27px);
 
 footer{
-    position:fixed;
+    position:absolute;
     background-color: #133141;
     margin: 10px auto auto -8px; 
     width: 100%;
@@ -9,7 +9,6 @@ footer{
     border-top: 3px solid #036564;
     padding: 10px;
     color: #9C9C9C;
-
 }  
 footer .bar{
     width: 960px;

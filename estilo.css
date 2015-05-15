@@ -140,7 +140,7 @@ body{
     margin: 0px auto;
   }
 
-  #corpo #cad_table .tr_cadastro{
+  #corpo #cad_table tr td{
       font-family: 'Slabo 27px', serif;
       padding-right: 50px; 
       padding-bottom: 15px;
@@ -151,7 +151,6 @@ body{
     font-size: 10pt;
     margin-top: -7px;
   }
-
 
   #corpo .btn {
   width: 350px;

@@ -178,7 +178,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
     
     <?php } ?>
 
-    <h4 class="centro-esquerda-desejados"><a href="CadastroLivroDesejado.php">Cadastrar Livro</a><h4>
+    <h4 class="centro-esquerda-desejados"><a href="CadastroLivro.php">Cadastrar Livro</a><h4>
     <h2 class="MeusLivros-desejados">Meus Livros Desejados</h2>
 
 
