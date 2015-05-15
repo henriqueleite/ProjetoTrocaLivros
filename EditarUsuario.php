@@ -38,6 +38,8 @@ session_start();
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<link rel="stylesheet" type="text/css" href="CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
 	<title>Troca Livro</title>
 	<script>
 function formatar(mascara, documento){

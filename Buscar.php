@@ -15,13 +15,13 @@ if (isset ($_POST['buscar'])){
 }else{
   $pesquisa = '';
 }
+
 (isset($_POST["filtro"])) ? $filtro = $_POST["filtro"] : $filtro=1;
 
 if (isset($_POST["palavra"])) {
   $pesquisa = $_POST["palavra"];
 }
 
-    echo $pesquisa;
 ?>
 <html>
 <head>
@@ -65,11 +65,9 @@ if (isset($_POST["palavra"])) {
 
 
     <?php
-    if ($pesquisa = ''){
-    $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE LIMIT 20");
-    }else{
+
      $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where V_TITULO like'%".$pesquisa."%' LIMIT 20"); 
-    }
+
 
     if (isset ($_POST['buscar'])){
       $filtro = $_POST['filtro'];

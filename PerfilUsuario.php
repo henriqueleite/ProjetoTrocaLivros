@@ -15,13 +15,13 @@ if((!isset ($_SESSION['login']) == true))
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
+
 ?>
-
-
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" type="text/css" href="CSS/PerfilUsuario.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/></script>
     <script>
     $(document).ready(function(){
@@ -35,11 +35,9 @@ $tipo = $_SESSION['tipo'];
     </script>
 </head>
 <body>
-    <?php include('topo.php'); ?>
+<?php include('topo.php'); ?>
 
 <?php
-
-
 $query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, V_IDADE, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
 $query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo'");
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
@@ -50,6 +48,12 @@ $query5 = mysql_query("SELECT COUNT(*) FROM TROCA INNER JOIN LIVRO AS LIVRO_SOLI
 $query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
 
 $query8 = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE WHERE N_COD_USUARIO_IE = '$codigo'");
+
+$query9 = mysql_query("SELECT N_COD_LIVRO_DESEJADO, V_TITULO, D_ANO, N_COD_USUARIO_IE, N_COD_CATEGORIA_IE, categoria_livro.V_GENERO FROM livro_desejado INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro_desejado.N_COD_CATEGORIA_IE where N_COD_USUARIO_IE = '$codigo'");
+
+$query10 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
+INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
+INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' or LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo'");
 
 $dados = mysql_fetch_assoc($query1);
 
@@ -81,46 +85,38 @@ if ($dados['V_FOTO']) {
 
 $QuantidadeLivros = $Livros[0];
 $QuantidadeLivrosDesejados = $LivrosDesejados[0];
-
 $status = $Solitacoes[1];
-
 $QuantidadeSolicitacoes = $Solitacoes[0];
 $QuantidadeTrocasPendentes = $TrocasPendentes[0];
 $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
-
-
-
 ?>
 
-    <div style="height: 2000px;" id='corpo'>
-      <h2>Perfil</h2>
+  <div id='corpo'>
+    <h2>Perfil</h2>
       <div id='lateral'>
-
-        <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="<?php echo $foto; ?>"width="198" height="198"></p>
-            <form action="?go=salvarfoto" method="post" enctype="multipart/form-data" name="cadastro" >
-            Foto de exibição:<br />
-            <input style="width: 200px;" type="file" name="foto" /><br />
-            <input  type="submit" value="Mudar Foto" class="btnPerfil" id="btnPerfil">
-            </form>
-              <input  type="submit" value="Editar Perfil" onclick="location.href='EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
-            <div id='quantidaderegistro'>
-              <p class='info-lateral'>Livros Publicados: <?php echo $QuantidadeLivros; ?> </p>
-              <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
-
-              <p class='info-lateral'>Solicitações : <a href="Solicitacao.php"><?php echo $QuantidadeSolicitacoes; ?></a></p>
-
-              <p class='info-lateral'>Trocas Pendentes : <?php echo $QuantidadeTrocasPendentes; ?></p>
-              <p class='info-lateral'>Trocas Realizadas : <?php echo $QuantidadeTrocasRealizadas; ?></p>
-            </div>
-
+         <p ><img class="foto_usuario" src="<?php echo $foto; ?>"width="198" height="198"></p>
+         <form action="?go=salvarfoto" method="post" enctype="multipart/form-data" name="cadastro" >
+           Foto de exibição:<br />
+           <input style="width: 200px;" type="file" name="foto" /><br />
+           <input  type="submit" value="Mudar Foto" class="btnPerfil" id="btnPerfil">
+         </form>
+         <input  type="submit" value="Editar Perfil" onclick="location.href='EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
+         <div id='quantidaderegistro'>
+          <p class='info-lateral'>Livros Publicados: <?php echo $QuantidadeLivros; ?> </p>
+          <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
+          <p class='info-lateral'>Solicitações : <a href="Solicitacao.php"><?php echo $QuantidadeSolicitacoes; ?></a></p>
+          <p class='info-lateral'>Trocas Pendentes : <?php echo $QuantidadeTrocasPendentes; ?></p>
+          <p class='info-lateral'>Trocas Realizadas : <?php echo $QuantidadeTrocasRealizadas; ?></p>
       </div>
-      <div id='centro'>
+  </div>
 
-    <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $nome; ?></p>
-    <p style="text-transform: uppercase; font-size: 12pt; margin-top:0px;margin-bottom:0px; margin-top: 0px;"><?php echo $cidade; ?>,<?php echo $uf; ?></p>
+  <div id='centro'>
+
+    <p class="nome_usuario"><?php echo $nome; ?></p>
+    <p class="cidade_uf_usuario"><?php echo $cidade; ?>,<?php echo $uf; ?></p>
   
 
-    <fieldset style="margin-top: 10px;"><legend>Informações Pessoais</legend>
+    <fieldset class="fieldset-info-central"><legend>Informações Pessoais</legend>
       <p class='info-central'>País: Brasil</p>
       <p class='info-central'>Estado: <?php echo $uf; ?> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CEP: <?php echo $cep; ?></p>
       <p class='info-central'>Cidade / Município: <?php echo $cidade; ?></p>
@@ -131,26 +127,23 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
       <p class='info-central'>Data Último Login: <?php echo date('d/m/Y \á\s H:i:s', strtotime($datalogin)); ?></p>
 
     </fieldset>
-   <div>
+
     <h4 class="centro-esquerda"><a href="CadastroLivro.php">Cadastrar Livro</a><h4>
-    <h2>Meus Livros</h2> <b class="text_container"></b><p class="text_container2"></p>
-    <div><!--div that we want to hide-->
-
-            <table class="listar-livro-exibicao">
-
-        <td style="width: 60px; margin-left: -10px;">Foto</td>
-        <td style="width: 40px;">Título</td>
-        <td style="width: 40px;">Autor</td>
-        <td style="width: 40px;">Editora</td>
-        <td style="width: 35px;">Estado</td>
-        <td style="width: 40px;">Ano</td>
-        <td style="width: 40px;">Gênero</td>
-        <td style="width: 30px;">Obs</td>
-
-      </table>
+    <h2 class="MeusLivros">Meus Livros</h2>
 
 
-      <?php
+    <table class="listar-livro-exibicao">
+      <td style="width: 60px; margin-left: -10px;">Foto</td>
+      <td style="width: 40px;">Título</td>
+      <td style="width: 40px;">Autor</td>
+      <td style="width: 40px;">Editora</td>
+      <td style="width: 35px;">Estado</td>
+      <td style="width: 40px;">Ano</td>
+      <td style="width: 40px;">Gênero</td>
+      <td style="width: 30px;">Obs</td>
+    </table>
+
+    <?php
       while ($linha=mysql_fetch_array($query8)){
         $codigolivro = $linha["N_COD_LIVRO"];
         $titulo= $linha['V_TITULO']; 
@@ -161,37 +154,112 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
         $editora = $linha['V_EDITORA'];
         $estado_livro= $linha['V_ESTADO_LIVRO'];   
         $genero= $linha['V_GENERO']; 
-      ?>
+    ?>
 
-      <form id="form2" name="form2" method="post" action="VisualizarLivro.php">
+    <form id="form2" name="form2" method="post" action="VisualizarLivro.php">
       <h5 class="listar-livro">
       <table class="table-listar-livro">
-      <tr class="listar-livro-tr">
-      <td class="listar-livro-foto"><img src="<?php echo $foto; ?>"width="100" height="100"></td>
-      <td class="listar-livro-titulo" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $titulo; ?></td> <br>
-      <td class="listar-livro-autor" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $autor;?></td>
-      <td class="listar-livro-genero" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $editora;?></td>
-      <td class="listar-livro-estado-livro" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $estado_livro;?></td>
-      <td class="listar-livro-ano" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $ano;?></td>
-      <td class="listar-livro-genero" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $genero;?></td>
-      <td class="listar-livro-observacao" align="center" valign="middle" bgcolor="#FFFFCC"><?php echo $observacao;?></td>
-      <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
-      <td class="listar-livro-genero" align="center" valign="middle" bgcolor="#FFFFCC"><input type="submit" name="Ver"  id="Ver"   value="Ver" /></td>
+        <tr class="listar-livro-tr">
+          <td class="listar-livro-foto"><img src="<?php echo $foto; ?>"width="100" height="100"></td>
+          <td class="listar-livro-titulo"><?php echo $titulo; ?></td> <br>
+          <td class="listar-livro-autor"><?php echo $autor;?></td>
+          <td class="listar-livro-genero"><?php echo $editora;?></td>
+          <td class="listar-livro-estado-livro"><?php echo $estado_livro;?></td>
+          <td class="listar-livro-ano"><?php echo $ano;?></td>
+          <td class="listar-livro-genero"><?php echo $genero;?></td>
+          <td class="listar-livro-observacao"><?php echo $observacao;?></td>
+          <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
+          <td class="listar-livro-genero"><input type="submit" name="Ver"  id="Ver"   value="Ver" /></td>
       </tr>
       </table>
+      </h5>
     </form>
-    </h5>
+
     
-     <?php } ?>
+    <?php } ?>
+
+    <h4 class="centro-esquerda-desejados"><a href="CadastroLivro.php">Cadastrar Livro</a><h4>
+    <h2 class="MeusLivros-desejados">Meus Livros Desejados</h2>
+
+
+    <table class="listar-livro-exibidos-desejados">
+      <td>Título</td>
+      <td>Ano</td>
+      <td class="listar-livro-exibidos-desejados-ultimo">Gênero</td>
+    </table>
+
+    <table class="listar-livro-exibidos-desejados-preenche">
+      <td> </td>
+    </table>
+    
+
+
+    <?php
+      while ($linhadesejado=mysql_fetch_array($query9)){
+        $codigolivrodesejado = $linhadesejado["N_COD_LIVRO_DESEJADO"];
+        $titulodesejado= $linhadesejado['V_TITULO']; 
+        $anodesejado= $linhadesejado['D_ANO']; 
+        $generodesejado= $linhadesejado['V_GENERO']; 
+    ?>
+
+
+
+    <form id="form2" name="form2" method="post" action="">
+      <h5 class="listar-livro-desejados">
+      <table class="table-listar-livro-desejados">
+        <tr class="listar-livro-tr-desejados">
+          <td class="listar-livro-titulo-desejados"><?php echo $titulodesejado; ?></td> <br>
+          <td class="listar-livro-ano-desejados"><?php echo $anodesejado;?></td>
+          <td class="listar-livro-genero-desejados"><?php echo $generodesejado;?></td>
+          <input type='hidden' name="codigolivrodesejado" id="codigolivrodesejado" value="<?php echo $codigolivrodesejado;?>" >
+          <td class="listar-livro-alterar-desejados"><input type="submit" name="Ver"  id="Ver"   value="Alterar" /></td>
+          <td class="listar-livro-deletar-desejados"><input type="submit" name="Ver"  id="Ver"   value="Excluir" /></td>
+      </tr>
+      </table>
+      </h5>
+    </form>
+
+    <?php } ?>
+
+    <h2 class="Solicitacoes">Solicitações</h2>
+ 
+    <?php
+      while ($linhasolicitacao=mysql_fetch_array($query10)){
+        $codigosolicitacao = $linhasolicitacao["N_COD_TROCA"];
+        $foto_solicitado = $linhasolicitacao["FOTO_SOLICITADO"];
+        $foto_solicitante= $linhasolicitacao['FOTO_SOLICITANTE']; 
+        $usuario_solicitado= $linhasolicitacao['NOME_SOLICITADO']; 
+        $usuario_solicitante= $linhasolicitacao['NOME_SOLICITANE']; 
+    ?>
+
+
+
+    <form id="form2" name="form2" method="post" action="">
+      <h5 class="listar-solicitacoes">
+      <table class="table-listar-solicitacoes">
+        <tr class="listar-solicitacoes">
+          <td class="listar-solicitacoes-foto-solicitado"><img src="<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
+          <td class="listar-solicitacoes-foto-troca"><img src="Imagens/Troca.png"width="50" height="50"></td>
+          <td class="listar-solicitacoes-foto-solicitante"><img src="<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
+          <td class="listar-livro-solicitacoes-usuario-solicitado"><?php echo $usuario_solicitado;?></td>
+          <td class="listar-livro-solicitacoes-usuario-solicitante"><?php echo $usuario_solicitante;?></td>
+          <input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" >
+          <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Aceitar" /></td>
+          <td class="listar-livro-solicitacoes-recusar"><input type="submit" name="Ver"  id="Ver"   value="Recusar" /></td>
+      </tr>
+      </table>
+      </h5>
+    </form>
+
+    <?php } ?>
+
+
     </div>
-</div><!--end div_text_container-->
-    </div>
-    </div>
+  </div>
 
    <?php include('rodape.php'); ?>
 </body>
 </html>
-
 
 
 

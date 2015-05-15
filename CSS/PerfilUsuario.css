@@ -4,102 +4,22 @@ body{
   z-index: 1;
   font-family: 'Slabo 27px', serif;
 }
-#cssmenu #container{
-  width: 960px;
-  margin: 0px auto;
-  padding: 0px;
-  display: block;
-}
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul li a {
-  margin: 0px auto;
-  padding: 2px;
-  border: 0;
-  list-style: none;
-  line-height: 1;
-  display: block;
-  position: relative;
-  font-family: 'Slabo 27px', serif;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
-#cssmenu ul li{
-  display: inline-block;
-}
-#cssmenu {
-  border-bottom: 3px solid #036564;
-  margin: -8px auto auto -8px;
-  padding: 5px;
-  z-index: 9998;
-  width: 101%;
-  background-color: #133141;
-  display: block;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-#cssmenu:after,
-#cssmenu ul:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
-#cssmenu.align-right ul li {
-  float: right;
-}
-#cssmenu.align-center ul {
-  text-align: center;
-}
-#cssmenu ul li a {
-  font-size: 14px;
-  padding: 15px;
-  text-decoration: none;
-  color: #999999;
-}
-#cssmenu ul li:hover a,
-#cssmenu ul li a:hover,
-#cssmenu ul li.active a {
-  color: #036564;
-}
-@media all and (max-width: 640px) {
-  #cssmenu {
-    padding: 0;
-    border-radius: 0;
-    border: 0;
-  }
-  #cssmenu ul li,
-  #cssmenu.align-center,
-  #cssmenu.align-right {
-  }
-  #cssmenu input{
-    float: right;
-    position: absolute;
-  }
-}
-  
-  #corpo{
+#corpo{
     width: 960px;
     height: auto;
     display: table;
     position: relative;
     background-color: #FFF;
     border-radius: 9px;
-    margin: 0px auto;
-    margin-top: 30px;
+    margin: 30px auto 100px auto;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
     -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
     z-index: 2;
 }
-  
-  #corpo h2{
+#corpo h2{
     padding: 4px;
     padding-left: 12px;
     background-color: #133141;
@@ -108,51 +28,44 @@ body{
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
-  }
+}
 
-  
-  footer{
+#corpo .MeusLivros{
+	padding: 4px;
+    padding-left: 12px;
     background-color: #133141;
-    margin: 10px auto auto -8px; 
-    width: 100%;
-    bottom: 0;
-    border-top: 3px solid #036564;
-    padding: 10px;
     color: #9C9C9C;
-  }
-  footer .bar{
-    width: 960px;
-    margin: 0px auto;
-  }
-  footer .bar2{
-    width: 960px;
-    margin: 0px auto;
-  }
+    font-family: 'Slabo 27px', serif;
+    margin: -11px -11px 11px -11px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 
-  footer .footer2{
-    background-color: #133d41;
-    margin: 10px auto -8px -9px; 
-    width: 100%;
-    padding: 10px;
-  }
+}
 
-  #corpo #cad_table{
-    margin: 0px auto;
-  }
+#corpo .MeusLivros-desejados{
+	padding: 4px;
+    padding-left: 12px;
+    background-color: #133141;
+    color: #9C9C9C;
+    font-family: 'Slabo 27px', serif;
+    margin: -11px -11px 11px -11px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 
-  #corpo #cad_table tr td{
-      font-family: 'Slabo 27px', serif;
-      padding-right: 50px; 
-      padding-bottom: 15px;
-  }
+}
 
-  #corpo .campo-obrigatorio{
-    float: right;
-    font-size: 10pt;
-    margin-top: -7px;
-  }
+#corpo .Solicitacoes{
+	padding: 4px;
+    padding-left: 12px;
+    background-color: #133141;
+    color: #9C9C9C;
+    font-family: 'Slabo 27px', serif;
+    margin: -7px -11px 11px -11px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 
-  #corpo .btn {
+}
+#corpo .btn {
   width: 350px;
   background: #133141;
   background-image: -webkit-linear-gradient(top, #133141, #133141#2980b9);
@@ -180,7 +93,7 @@ body{
   text-decoration: none;
 }
 
-  #corpo .btnPerfil {
+#corpo .btnPerfil {
   width: 200px;
   background: #133141;
   background-image: -webkit-linear-gradient(top, #133141, #133141#2980b9);
@@ -196,40 +109,6 @@ body{
   font-size: 20px;
   padding: 5px 10px 5px 10px;
   text-decoration: none;
-}
-
-  #div-input-file{
-    background:url(img/file.gif) no-repeat 100% 1px;
-    height:28px;
-    width:200px;
-    margin:0px;
-    margin-bottom: 15px;
-    margin-top: -15px;
-}
-#div-input-file #file-original{
-    opacity: 0.0;
-    -moz-opacity: 0.0;
-    filter: alpha(opacity=00);
-    font-size:18px;
-    width:200px;
-    height: 38px;
-}
-#div-input-falso{
-    margin-top:-40px;
-}
-#div-input-falso #file-falso{
-    width:200px;
-    height:22px;
-    font-size:18px;
-    font-family: Verdana;
-
-}
-
-
-
-#corpo #login form{
-  width: 300px;
-  margin: 0px auto;
 }
 
 #corpo #lateral{
@@ -255,6 +134,10 @@ body{
     font-family: 'Slabo 27px', serif;
     margin-top:0px;
     margin-bottom:0px;
+}
+
+#corpo #centro .fieldset-info-central{
+	margin-top: 10px;
 }
 
 #corpo #lateral #quantidaderegistro{
@@ -297,11 +180,24 @@ body{
 #corpo #centro .centro-esquerda{
   float: right;
   margin: 0px;
+  margin-top: 20px;
 }
 
 #corpo #centro .centro-esquerda a{
-  color: blue;
-  font-size: 10pt;
+  text-decoration: none;
+  background: #133141;
+  background-image: -webkit-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -moz-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -ms-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -o-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: linear-gradient(to bottom, #133141, #133141#2980b9);
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Arial;
+  color: #ffffff;
+  padding: 12px 10px 12px 10px;
+  text-decoration: none;
 }
 #corpo .listar-livro{
     border: 2px solid black;
@@ -343,3 +239,144 @@ body{
     padding: 0px;
 
 }
+
+#corpo #lateral .foto_usuario{
+	margin-bottom: -15px; 
+	margin-top: -16px; 
+	border: 2px solid #133141;
+}
+
+#corpo #centro .nome_usuario{
+	text-transform: uppercase; 
+	font-size: 20pt; 
+	margin-bottom:0px;
+	margin-top: 0px;
+}
+
+#corpo #centro .cidade_uf_usuario{
+	text-transform: uppercase; 
+	font-size: 12pt; 
+	margin-top:0px;
+	margin-bottom:0px; 
+	margin-top: 0px;
+}
+
+#corpo #centro .centro-esquerda-desejados{
+  float: right;
+  margin: 0px;
+  margin-top: 5px;
+}
+
+#corpo #centro .centro-esquerda-desejados a{
+  text-decoration: none;
+  background: #133141;
+  background-image: -webkit-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -moz-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -ms-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: -o-linear-gradient(top, #133141, #133141#2980b9);
+  background-image: linear-gradient(to bottom, #133141, #133141#2980b9);
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Arial;
+  color: #ffffff;
+  padding: 12px 10px 12px 10px;
+  text-decoration: none;
+}
+
+#corpo .listar-livro-desejados{
+    border: 2px solid black;
+    width: 95%;
+    margin: -10px 5px 15px 6px;
+    height: 52px;
+    font-family: 'Slabo 27px', serif;
+
+}
+
+#corpo .table-listar-livro-desejados{
+  margin-top: -10px;
+  width: 690px;
+  margin-left: 2px;
+
+}
+
+
+#corpo .table-listar-livro-desejados td{
+    background-color: white;
+    width: 70px;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+#corpo .listar-livro-exibidos-desejados {
+  width: 550px;
+  margin-bottom: 8px;
+  margin-left: 6px;
+  padding-right: 90px;
+  border: 2px solid black;
+  border-right: 0px solid black;
+}
+
+#corpo .listar-livro-exibidos-desejados td{
+    background-color: white;
+    text-decoration: none;
+    width: 30px;
+    padding: 0px 0px 0px 40px;
+
+}
+
+#corpo .listar-livro-exibidos-desejados-ultimo td{
+	padding-right: 100px;
+
+}
+
+#corpo .listar-livro-exibidos-desejados-preenche {
+  width: 30px;
+  margin-bottom: 8px;
+  margin-right: 27px;
+  margin-top: -36px;
+  padding-right: 142px;
+  border: 2px solid black;
+  border-left: 0px solid black;
+  float: right;
+  height: 28px;
+  position: relative;
+}
+
+
+#corpo .listar-solicitacoes{
+    border: 2px solid black;
+    width: 95%;
+    margin: -10px 5px 15px 6px;
+    height: 100px;
+    font-family: 'Slabo 27px', serif;
+    padding-bottom: 1px;
+
+}
+
+#corpo .table-listar-solicitacoes{
+  width: 95%;
+  margin-left: 2px;
+  margin-top: -1px;
+
+}
+
+
+#corpo .table-listar-solicitacoes td{
+    background-color: white;
+    width: 10px;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+
+#corpo .listar-solicitacoes td{
+    background-color: white;
+    text-decoration: none;
+    width: 10px;
+    padding: 0px;
+
+}
+
