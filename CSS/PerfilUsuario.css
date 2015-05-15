@@ -43,7 +43,7 @@ body{
 }
 
 #corpo .MeusLivros-desejados{
-	padding: 4px;
+	   padding: 4px;
     padding-left: 12px;
     background-color: #133141;
     color: #9C9C9C;
@@ -263,8 +263,7 @@ body{
 
 #corpo #centro .centro-esquerda-desejados{
   float: right;
-  margin: 0px;
-  margin-top: 5px;
+      margin: 5px 0px 0px 0px;
 }
 
 #corpo #centro .centro-esquerda-desejados a{

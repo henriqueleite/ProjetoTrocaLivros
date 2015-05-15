@@ -3,7 +3,11 @@
   session_start();
   require_once "Conexao.php";
   //$titulo = $autor = $editora = $estado = $genero = $ano = $observacao = $foto = "";
-
+  if((!isset ($_SESSION['login']) == true))
+  {
+    unset($_SESSION['login']);
+    header('location:index.php');
+  }
 ?>
 <html>
 <head>
@@ -73,9 +77,9 @@ function contarCaracteres(box,valor){
             <tr>
               <td>Estado:*</td>
               <td> <select id="estado" name="estado">
-              <option value="Novo">Novo</option>
-              <option value="Semi-Novo">Semi-Novo</option>
-              <option value="Velho">Velho</option>
+              <option value="NOVO">Novo</option>
+              <option value="SEMI-NOVO">Semi-Novo</option>
+              <option value="VELHO">Velho</option>
               </select> </td>
             </tr>
             <tr>
@@ -115,13 +119,13 @@ $tipo   = $_SESSION['tipo'];
 
 if(@$_GET['go'] == 'cadastrar'){
 
-    $titulo     = $_POST['titulo'];
-    $autor      = $_POST['autor'];
-    $editora    = $_POST['editora'];
+    $titulo     = strtoupper($_POST['titulo']);
+    $autor      = strtoupper($_POST['autor']);
+    $editora    = strtoupper($_POST['editora']);
     $estado     = $_POST['estado'];
     $genero     = $_POST['genero'];
     $ano        = $_POST['ano'];
-    $observacao = $_POST['observacao'];
+    $observacao = strtoupper($_POST['observacao']);
     $foto       = $_FILES["foto"];
 
 
@@ -194,11 +198,11 @@ if(@$_GET['go'] == 'cadastrar'){
     }else if ($editora  == ""){
      echo "<script>alert('Preencha o campo Editora'); history.back(); </script>";
     }else if ($estado  == ""){
-      echo "<script>alert('Preencha o camp Estado'); history.back(); </script>";
+      echo "<script>alert('Preencha o campo Estado'); history.back(); </script>";
     }else if ($genero  == ""){
-      echo "<script>alert('Preencha o camp Genero'); history.back(); </script>";
+      echo "<script>alert('Preencha o campo Genero'); history.back(); </script>";
     }else if ($ano  == ""){
-      echo "<script>alert('Preencha o camp Ano'); history.back(); </script>";
+      echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
     }else{
 
       $query2 = mysql_query("INSERT INTO LIVRO (V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, V_ANO, V_FOTO, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$autor."', '".$editora."', '".$estado."', '".$observacao."', '".$genero."', '".$ano."', '".$caminho_imagem."', '".$codigo."')");
