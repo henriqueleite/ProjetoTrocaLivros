@@ -55,6 +55,12 @@ $query10 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLIC
 INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
 INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' or LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo'");
 
+$query11 = mysql_query("SELECT COUNT(*) FROM AJUDA WHERE N_COD_USUARIO_IE = '$codigo'" );
+
+
+$mensagens = mysql_num_rows($query11);
+
+
 $dados = mysql_fetch_assoc($query1);
 
 $Livros = mysql_fetch_row($query2);
@@ -111,6 +117,11 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
   </div>
 
   <div id='centro'>
+
+    <form class='form_mensagens' action="Mensagens.php">
+    <input type='hidden' name="codigousuario" id="codigousuario" value="<?php echo $codigo;?>" >
+    <input class="btnMensagens" type='submit' onclick value='Mensagens: <?php echo $mensagens;?>'></input>
+    </form>
 
     <p class="nome_usuario"><?php echo $nome; ?></p>
     <p class="cidade_uf_usuario"><?php echo $cidade; ?>,<?php echo $uf; ?></p>

@@ -39,20 +39,13 @@ session_start();
     	<h2>Login</h2>
       <div id="login">
 
-		<form method="post" action="?go=logar">
+		<form method="post" action="?go=Enviar">
 			<table id="login_table">
 				<tr>
-          <td><input class='login' type="text" placeholder='Login' name="usuario" id="usuario" class="txt" maxlength="15" required/></td>
+          <td><input class='login' type="text" placeholder='Email' name="email" id="email" class="txt" maxlength="100" required/></td>
 				</tr>
 				<tr>
-					<td><input class='login' type="password" placeholder='Senha' name="senha" id="senha" class="txt" maxlength="15" required/></td>
-				</tr>
-        <tr>
-          <td><a href="RecuperarSenha.php">Esqueceu sua senha?<a></td>
-        </tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="Entrar" class="btn" id="btnEntrar" name = "btnEntrar"> 
-					&nbsp;<a style="text-decoration: none;" href="CadastroUsuario.php"><input style='margin-top: -10px;' type="button" value="Cadastre-se" class="btn" id="btnCad"></a></td>
+					<td colspan="2"><input type="submit" value="Enviar" class="btn" id="btnEntrar" name = "btnEntrar"> 
 				</tr>	
 			</table>
 		</form>
@@ -64,39 +57,44 @@ session_start();
 </html>
 
 <?php
+if(@$_GET['go'] == 'Enviar'){
 
-if(@$_GET['go'] == 'logar'){
 
-	$user = $_POST['usuario'];
-	$pwd  = $_POST['senha'];
+//pega a variavel via post
+$email = $_POST['email'];
+//busca no db o usuario com o email 
+$result = mysql_query("SELECT * FROM usuario WHERE V_EMAIL ='$email'");
+//conta quantos tem
+$num_rows = mysql_num_rows($result);
+//se tiver  + de 1 cadastrado
+if($num_rows=='1'){
+  //faz um while para vc coloar os dados nas variavels
+  while($Row_email = mysql_fetch_array($result)){
+    $rowemail = $Row_email['V_EMAIL'];
+    $rowsenha = $Row_email['V_SENHA'];
+    }
+    
 
-  $queryUsuario = mysql_query("SELECT N_COD_USUARIO, V_LOGIN, N_TIPO_USUARIO,B_ATIVO FROM usuario WHERE V_LOGIN = '$user' AND V_SENHA ='$pwd' ");  
-  $coluna       = mysql_fetch_array($queryUsuario);
-  $consulta     = mysql_num_rows($queryUsuario);
+//enviar um email para variavel email juntamente com a variável senha;
+$mensage ="Você solicitou a recuperação de senha confira seu dados.";
+$mensage .="E-mail= " . $rowemail;
+$mensage .="Senha:" . $rowsenha;
+$headers = 'From: bruno.jo.gos@hotmail.com' . "\r\n" .
+    'Reply-To: bruno.jo.gos@hotmail.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
 
-  if ($consulta == 1) {
+mail($rowemail, "Troca Livros, recuperação de senha", $mensage, $headers);
 
-    $usuarioOK = $coluna['B_ATIVO'];
+echo"<script>alert('Sua senha foi enviada para o e-mail indicado.');window.open('Login.php','_self')</script>";
 
-    if ($usuarioOK == 'F') {
-      echo "<script>alert('O usuário ".$user.", não pode mais utilizar o sistema, pois está bloqueado !! '); history.back();</script>"; 
-      die();
-    } 
 
-    $_SESSION["login"]     = $user;
-    $_SESSION["codigo"]    = $coluna['N_COD_USUARIO'];
-    $_SESSION["tipo"]      = $coluna['N_TIPO_USUARIO'];
-
-      if ($_SESSION["tipo"] == 1) {
-          header("Location: PerfilAdministrador.php");
-      }else{
-          header("Location: PerfilUsuario.php");
-      }
+}else{
   
-  } else {
-    echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
-  }
   
-
-
+  echo"<script>alert('E-mail não cadastrado em nosso sistema');window.open('RecuperarSenha.php','_self')</script>";
+  
 }
+}
+
+
+?>

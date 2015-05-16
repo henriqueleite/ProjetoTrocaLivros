@@ -29,8 +29,9 @@ session_start();
     <p class="email">
          <label for="name">Tipo</label>
          <select name="tipo" id="tipo" required>
-            <option value="1">Dúvida</option>
-            <option value="2">Sugestão</option>
+            <option value="Dúvida">Dúvida</option>
+            <option value="Sugestão">Sugestão</option>
+            <option value="Reclamação">Reclamação</option>
          </select>
     </p>
     <p class="text">

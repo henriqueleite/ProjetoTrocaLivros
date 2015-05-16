@@ -1,15 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Slabo+27px);
 
 footer{
-    position:fixed;
+    position:absolute;
     background-color: #133141;
-    margin: 10px auto auto -8px; 
+    margin: -40px auto auto -9px; 
     width: 100%;
-    bottom: 0;
+    bottom: 0%;
     border-top: 3px solid #036564;
     padding: 10px;
     color: #9C9C9C;
-
+    clear: both
 }  
 footer .bar{
     width: 960px;
