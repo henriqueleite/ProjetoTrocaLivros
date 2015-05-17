@@ -36,6 +36,7 @@ $tipo = $_SESSION['tipo'];
            <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
            <li><a href='GerenciarUsuario.php'><span>GERENCIAR USUÁRIOS</span></a></li>
            <li><a href='index.php'><span>EVENTO/CAMPANHA</span></a></li>
+           <li><a href='Suporte.php'><span>SUPORTE</span></a></li>
            <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
            <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
            <li class='active' style="float: right" class="right"><a href='PerfilAdministrador.php'><span>PAINEL</span></a></li> 
@@ -48,8 +49,9 @@ $tipo = $_SESSION['tipo'];
     	<h2>Painel Administrativo</h2>
 
     
-            <input style="width: 300px; height: 100px; margin-left: 175px; margin-top: 250px;" type="submit" value="GERENCIAR USUÁRIOS" class="btn" id="btn" onclick="javascript: location.href='GerenciarUsuario.php';">
-            <input style="width: 300px; height: 100px; margin: 0 em auto;" type="submit" value="EVENTOS / CAMPANHAS" class="btn" id="btn">
+            <input style="width: 270px; height: 100px; margin-left: 70px; margin-top: 250px;" type="submit" value="GERENCIAR USUÁRIOS" class="btn" id="btn" onclick="javascript: location.href='GerenciarUsuario.php';">
+            <input style="width: 270px; height: 100px; margin: 0 em auto;" type="submit" value="EVENTOS / CAMPANHAS" class="btn" id="btn">
+            <input style="width: 270px; height: 100px; margin: 0 em auto;" type="submit" value="SUPORTE" class="btn" id="btn" onclick="javascript: location.href='Suporte.php';">
 
     </div>
 

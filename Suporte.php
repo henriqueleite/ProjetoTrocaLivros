@@ -64,42 +64,28 @@ if (isset ($_POST['buscar'])){
     </tr>
     <tr>
       <td style="color: #036564;" width="80" align="center" valign="middle" bgcolor="#133141">Código</td>
-      <td style="color: #036564;" width="300" align="center" valign="middle" bgcolor="#133141">Nome</td>
-      <td style="color: #036564;" width="100" align="center" valign="middle" bgcolor="#133141">Login</td>
-      <td style="color: #036564;" width="100" align="center" valign="middle" bgcolor="#133141">CPF</td>
-      <td style="color: #036564;" width="200" align="center" valign="middle" bgcolor="#133141">Data Último Login</td>
-      <td style="color: #036564;" width="30" align="center" valign="middle" bgcolor="#133141">Status</td>
-      <td style="color: #036564;" width="70" align="center" valign="middle" bgcolor="#133141">Ação</td>
+      <td style="color: #036564;" width="300" align="center" valign="middle" bgcolor="#133141">Título</td>
+      <td style="color: #036564;" width="100" align="center" valign="middle" bgcolor="#133141">Tipo</td>
+      <td style="color: #036564;" width="30" align="center" valign="middle" bgcolor="#133141">Mensagem</td>
+      <td style="color: #036564;" width="30" align="center" valign="middle" bgcolor="#133141">Ação</td>
     </tr>
   </form>
 
       <?php
-       if (isset ($_POST['Bloquear'])){
-            mysql_query("UPDATE usuario SET B_ATIVO = 'F' WHERE N_COD_USUARIO =".$_POST['codigo']."");
-            echo "<script>alert('Usuário Bloqueado com Sucesso!');</script>";
-            echo "<meta http-equiv='refresh' content='0, url=GerenciarUsuario.php'>"; 
-       }
 
-       if (isset ($_POST['Desbloquear'])){
-            mysql_query("UPDATE usuario SET B_ATIVO = 'T' WHERE N_COD_USUARIO =".$_POST['codigo']."");
-            echo "<script>alert('Usuário Desbloqueado com Sucesso!');</script>";
-            echo "<meta http-equiv='refresh' content='0, url=GerenciarUsuario.php'>"; 
-       }
-
-      $consulta = mysql_query("SELECT * FROM usuario");
+      $consulta = mysql_query("SELECT * FROM ajuda");
 
       if (isset ($_POST['buscar'])){
-        $consulta = mysql_query("SELECT * FROM usuario where V_NOME like'%".$_POST['buscar']."%'");
+        $consulta = mysql_query("SELECT * FROM ajuda where V_TITULO like'%".$_POST['buscar']."%'");
         $pesquisa = $_POST['buscar'];
       }
 
       while ($linha=mysql_fetch_array($consulta)){
-        $codigo   = $linha['N_COD_USUARIO'];
-       $nome= $linha['V_NOME'];
-       $login    = $linha['V_LOGIN'];
-       $cpf    = $linha['V_CPF'];
-       $ativo   = $linha['B_ATIVO'];
-       $dataultimologin = $linha['D_DATA_ULTIMO_LOGIN'];
+        $codigoajuda   = $linha['N_COD_AJUDA'];
+       $nome= $linha['V_TITULO'];
+       $login    = $linha['V_TIPO'];
+       $cpf    = $linha['V_MENSAGEM'];
+       $ativo   = $linha['N_COD_USUARIO_IE'];
 
           if ($ativo == "T") {
             $cor = "#eee";
@@ -116,17 +102,15 @@ if (isset ($_POST['buscar'])){
           }
           
       ?>
-        <form id="form2" name="form2" method="post" action="">
+        <form id="form2" name="form2" method="post" action="VisualizarMensagem.php">
         <tr>
-          <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $codigo; ?></td>
+          <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $codigoajuda; ?></td>
           <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $nome; ?></td>
           <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $login; ?></td>
-          <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $cpf; ?></td>
-          <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo date('d/m/Y \á\s H:i:s', strtotime($dataultimologin)); ?></td>
-          <td align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $descStatus; ?></td>
+          <td style='width:30px; height: auto;' align="center" valign="middle" bgcolor="<?php echo $cor ?>"><?php echo $cpf; ?></td>
           <td align="center" valign="middle" bgcolor="<?php echo $cor ?>">
-            <input style="visibility: hidden; margin-left:0px; position: absolute" type="text" name="<?php echo $Form; ?>" size=1>
-            <input style="width: 40px;" title="<?php echo $AcaoStatus; ?>" type="image" name="<?php echo $Form; ?>"  id="<?php echo $Form; ?>"   src="<?php echo $ImagemStatus; ?>" />
+            <input type="hidden" name="idajuda" id="idajuda" value="<?php echo $codigoajuda;?>">
+            <input style="width: 80px;" title="Responder" type="submit" name="Responder"  id="Responder"   value="Responder" />
           </td>
           <input type='hidden' name="codigo" id="codigo" value="<?php echo $codigo;?>" >
                  </tr> 
