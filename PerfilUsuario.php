@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <?php
 require_once "Conexao.php";
-?>
-<html>
-<head>
-<?php  
 session_start();
 if((!isset ($_SESSION['login']) == true))
 {
   unset($_SESSION['login']);
   header('location:index.php');
-  }
+}
 
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
-
 ?>
+<html>
+<head>
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="CSS/PerfilUsuario.css">

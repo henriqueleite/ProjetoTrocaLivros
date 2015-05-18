@@ -344,3 +344,53 @@ body{
     padding: 0px;
 
 }
+#box-livro
+{
+  border:1px solid #ccc;
+  width: 340px;
+  height: 150px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  float: left;
+    margin-left: 30px;
+}
+#box-livro a
+{
+  text-decoration: none;
+}
+#fotoLivro
+{
+  width: 100px;
+  height: 150px;
+  float: left;
+}
+#infoLivro
+{
+  float: left;
+  height: 140px;
+  width: 180px;
+  margin-left: 20px;
+  margin-top: 10px;
+    line-height: 20px;
+    font-size: 14px;
+}
+#infoLivro .tituloLivro
+{
+  font-weight: bolder;
+  font-size: 17px;
+  color:black;
+}
+#infoLivro .tituloLivro:hover
+{
+  text-decoration: underline;
+}
+
+#infoLivro .colorinfoLivro
+{
+  color:black;
+  font-size: 13px;
+}
+#infoLivro .colorinfoLivro:hover
+{
+  text-decoration: underline;
+}
