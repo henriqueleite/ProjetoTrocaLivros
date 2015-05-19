@@ -86,6 +86,7 @@ function formatar(mascara, documento){
 			<tr>
 				<td class='tr_cadastro'>Cep:*</td>
 				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="11" size=35 /></td>
+				<td><a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro">Clique aqui para Descobrir seu CEP</a></td>
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>cidade:</td>
