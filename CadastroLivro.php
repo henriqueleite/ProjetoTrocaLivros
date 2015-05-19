@@ -51,7 +51,7 @@ function contarCaracteres(box,valor){
     <div id='corpo'>
      <h2>Cadastro Livro</h2>
 
-        <form name="CadastroUsuario" method="post" action="?go=cadastrar" enctype="multipart/form-data">
+        <form name="CadastroUsuario" method="post" action="InserirLivro.php" enctype="multipart/form-data">
           <table id="cad_table">
             <tr >  
               <td>
