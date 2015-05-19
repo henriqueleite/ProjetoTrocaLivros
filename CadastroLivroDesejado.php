@@ -25,7 +25,7 @@
   <div id='corpo'>
      <h2>Cadastro Livro Desejado</h2>
 
-        <form name="CadastroUsuario" method="post" action="?go=cadastrar" enctype="multipart/form-data">
+        <form name="CadastroUsuario" method="post" action="repositorioLivrodesejado.php" enctype="multipart/form-data">
           <table id="cad_table">
             <tr>
               <td>Título:*</td>
@@ -54,37 +54,3 @@
 </body>
 </html>
 
-<?php
-
-$logado = $_SESSION['login'];
-$codigo = $_SESSION['codigo'];
-$tipo   = $_SESSION['tipo'];
-
-
-if(@$_GET['go'] == 'cadastrar'){
-
-    $titulo     = strtoupper($_POST['titulo']);
-    $genero     = $_POST['genero'];
-    $ano        = $_POST['ano'];
-
-   if ($titulo == ""){
-      echo "<script>alert('Preencha o campo Titulo'); history.back(); </script>";
-    }else if ($genero  == ""){
-      echo "<script>alert('Preencha o campo Genero'); history.back(); </script>";
-    }else if ($ano  == ""){
-      echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
-    }else{
-
-      $query2 = mysql_query("INSERT INTO LIVRO_DESEJADO (V_TITULO, D_ANO, N_COD_CATEGORIA_IE, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$ano."',  '".$genero."', '".$codigo."')");
-
-      if (!$query2) {
-        echo "<script>alert('Falha no cadastro!!'); history.back();</script>";
-        die();
-      }else{
-        echo "<script>alert('Livro cadastrado com sucesso!!');</script>"; 
-        echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
-        die();
-      }
-    }
-}
-?>
