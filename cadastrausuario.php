@@ -1,13 +1,17 @@
 <?php
 require_once "Conexao.php";		
+$conecta = mysql_connect("localhost", "root", ""); 
+mysql_select_db("trocalivro", $conecta);
+
 		$nome = $_POST['nome'];
 		$user = $_POST['login'];
 		$pwd = $_POST['senha'];
 		$email = $_POST['email'];
+		$idade = $_POST['idade'];
 		$cpf = $_POST['cpf'];
 		$telefone = $_POST['telefone'];
 		$celular =$_POST['celular'];
-		$rua = $_POST['rua'];
+		$bairro = $_POST['bairro'];
 		$cidade =$_POST['cidade'];
 		$cep = $_POST['cep'];
 		$uf = $_POST['uf'];
@@ -43,11 +47,11 @@ require_once "Conexao.php";
 				{// Adiciona o numero enviado na variavel $cpf_enviado, poderia ser outro nome, e executa a função acima
 				$cpf_enviado = validaCPF($_POST['cpf']);
 				// Verifica a resposta da função e exibe na tela
-				if($cpf_enviado == true)
-					echo "<script>alert('CPF Válido'); history.back();</script>";
-				elseif($cpf_enviado == false)
+				if($cpf_enviado == false){
 					echo "<script>alert('CPF Inválido'); history.back();</script>";
-				}
+				} elseif($cpf_enviado == true){
+					echo "<script>;</script>";
+				
 
 			function validaemail($email){
 			//verifica se e-mail esta no formato correto de escrita
@@ -67,69 +71,46 @@ require_once "Conexao.php";
 		}	
 		if(isset($_POST['btvalidar'])){
 			$email_enviado = validaemail($_POST['email']);
-			if ($email_enviado == true) 
-				echo "<script>alert('Email Válido'); history.back();</script>";
-			elseif($cpf_enviado == false)
-				echo "<script>alert('Email Inválido'); history.back();</script>";			
-		}
+			if($email_enviado == false){
+				echo "<script>alert('Email Inexistente'); history.back();</script>";			
+		}elseif ($email_enviado == true) {
+				echo "<script>;</script>";
+			
 
 		
-			if (empty($nome)) {
-			echo "<script>alert('Preencha o campo Nome para completar cadastro.'); history.back();</script>";
-		}elseif (empty($email)) {
-			echo "<script>alert('Preencha o campo enail para completar cadastro.'); history.back();</script>";
-		}elseif (empty($cpf)) {
-			echo "<script>alert('Preencha o campo cpf para completar cadastro.'); history.back();</script>";
-		}elseif (empty($user)) {
-			echo "<script>alert('Preencha o campo usuario para completar cadastro.'); history.back();</script>";
-		}elseif (empty($apelido)) {
-			echo "<script>alert('Preencha o campo Apelido para completar cadastro.'); history.back();</script>";
-		}elseif (empty($pwd)) {
-			echo "<script>alert('Preencha o campo senha para completar cadastro.'); history.back();</script>";
-		}elseif (empty($telefone)) {
-			echo "<script>alert('Preencha o campo telefone para completar cadastro.'); history.back();</script>";
-		}elseif (empty($celular)) {
-			echo "<script>alert('Preencha o campo celular para completar cadastro.'); history.back();</script>";
-		}elseif (empty($rua)) {
-			echo "<script>alert('Preencha o campo Lugradouro para completar cadastro.'); history.back();</script>";
-		}elseif (empty($cidade)) {
-			echo "<script>alert('Preencha o campo cidade para completar cadastro.'); history.back();</script>";
-		}elseif (empty($cep)) {
-			echo "<script>alert('Preencha o campo Cep para completar cadastro.'); history.back();</script>";
-		}elseif (empty($uf)) {
-			echo "<script>alert('Preencha o campo UF para completar cadastro.'); history.back();</script>";
+		
+		$query1 = mysql_query("SELECT COUNT(N_COD_USUARIO) FROM usuario WHERE V_LOGIN='$user'");
+		$eReg = mysql_fetch_array($query1);
+		$login_check = $eReg[0];
+
+		$query3 = mysql_query("SELECT COUNT(V_CPF) FROM usuario WHERE V_CPF='$cpf'");
+		$eReg3 = mysql_fetch_array($query3);
+		$cpf_check = $eReg3[0];
+
+		if ($login_check > 0){
+			echo "<script>document.getElementById('#login').focus();</script>";
+			echo "<script>alert('Login Inválido!!'); history.back();</script>";
+
+
+		} if ($cpf_check > 0){
+			echo "<script>alert('CPF já cadastrado!!'); history.back();</script>";
 		}else{
-			$query1 = mysql_num_rows(mysql_query("SELECT * FROM usuario WHERE usuario = '$user'"));
-			if ($query1 == 1) {
-				echo "<script>alert('Esse Nome de Usuário já existe.'); history.back();</script>";
+			$data = date('Y,m,d');
+			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO) values ('$nome','$user','$pwd','$email','$cpf','$idade','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0')");		
+
+			if (!$query2) {
+			echo "<script>alert('Ocorreu um Erro'); history.back();</script>";
 			}else{
-				mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_USUARIO, V_EMAIL, V_CPF, V_TELEFONE, V_CELULAR, V_LOGRADOURO, V_CIDADE, V_CEP, V_UF) values ('$nome','$user','$pwd','$email','$cpf','$telefone','$celular','$rua','$cidade','$cep','$uf')");				echo "<script>alert('Usuário cadastrado com sucesso.'); </script>";
-				//echo "<meta http-equiv='refresh' content='0, url=Principal.php'>";
-				header("location:index.php");
-				die();
+			echo "<script>alert('Cadastrado com sucesso!!');</script>";
+			echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
 			}
 		}
+		}
+		}
+	}
+}	
+/*N_TIPO_USUARIO = 0 (USUARIO NORMAL)
+N_TIPO_USUARIO = 1 (USUARIO ADMINISTRADOR)
+*/
 
-	
-// Gravar Mensagem ************
-	//$usuario = $_GET['nome'];
-	//$mensagen =  $_POST['mensagen'];
-	//if ($_GET['funcao'] == "gravar") {
-	//$sql_gravar = mysql_query("update usuario set mensagen='$mensagen' where usuario='$usuario'");
-	//header('location:Contato.php');
-	//}
-
-//******************************************************************
-//******	if($_GET['funcao'] == "editar"){
-	//	$id = $_GET['id'];
-	//	$sql_alterar = mysql_query("update usuario set nome='$alterar_nome', email='$alterar_email', usuario='$alterar_user', senha='$alterar_pwd' where id = '$id'");
-	//	header('Location:Listar.php');
-	//}/////*****
-//***********************************************************************************8888888
-	//	if($_GET['funcao'] == "excluir"){
-//			$id = $_GET['id'];
-//			$sql_excluir = mysql_query("delete from usuario where id = '$id'");
-//			header('Location:Listar.php');
-
-		//}
 ?>

@@ -40,12 +40,9 @@ function formatar(mascara, documento){
 <body>
 	 <?php include('topo.php'); ?>
 
-
-
-
 <div id='corpo'>
 <h2>Cadastro </h2>
-	<form name="CadastroUsuario" method="post" action="?go=cadastrar">
+	<form method="post" action="cadastrausuario.php">
 		<table id="cad_table">
 			<tr>
 				<td class='tr_cadastro'>Nome:*</td>
@@ -88,7 +85,7 @@ function formatar(mascara, documento){
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>Cep:*</td>
-				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="10" OnKeyPress="formatar('#####-###', this)" size=35 required/></td>
+				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="11" size=35 /></td>
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>cidade:</td>
@@ -104,7 +101,7 @@ function formatar(mascara, documento){
 				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" size=2/></td>
 			</tr>
 			
-				<td colspan="2"><input class='btn' type="submit" value="Cadatrar" id="buton1" name="btvalidar"><br>
+				<td colspan="2"><input class='btn' type="submit" id="buton1" name="btvalidar" value="cadastrar"><br>
 				
 				</td>
 			</tr>
@@ -117,164 +114,8 @@ function formatar(mascara, documento){
 
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
 </div>
-   <?php include('rodape.php'); ?>
-</body>
+
+</body>   
 </html>
 
 
-<?php
-
-if(@$_GET['go'] == 'cadastrar'){
-		$nome = strtoupper($_POST['nome']);
-		$user = $_POST['login'];
-		$pwd = $_POST['senha'];
-		$email = strtolower($_POST['email']);
-		$idade = $_POST['idade'];
-		$sexo  = strtoupper($_POST['sexo']);
-		$cpf = $_POST['cpf'];
-		$telefone = $_POST['telefone'];
-		$celular = $_POST['celular'];
-		$bairro = strtoupper($_POST['bairro']);
-		$cidade = strtoupper($_POST['cidade']);
-		$cep = $_POST['cep'];
-		$uf = strtoupper($_POST['uf']);
-
-		   if ($nome == ""){
-      echo "<script>alert('Preencha o campo Nome'); history.back(); </script>";
-    }else if ($user == ""){
-      echo "<script>alert('Preencha o campo Login'); history.back(); </script>";
-    }else if ($pwd  == ""){
-     echo "<script>alert('Preencha o campo Senha'); history.back(); </script>";
-    }else if ($cpf  == ""){
-      echo "<script>alert('Preencha o camp CPF'); history.back(); </script>";
-    }else if ($cep  == ""){
-      echo "<script>alert('Preencha o camp CEP'); history.back(); </script>";
-    }else{
-
-		function validaCPF($cpf)
-		{	// Verifiva se o número digitado contém todos os digitos
-		    $cpf = str_pad(ereg_replace('[^0-9]', '', $cpf), 11, '0', STR_PAD_LEFT);
-			
-			// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
-		    if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999')
-			{
-			return false;
-		    }
-			else
-			{   // Calcula os números para verificar se o CPF é verdadeiro
-		        for ($t = 9; $t < 11; $t++) {
-		            for ($d = 0, $c = 0; $c < $t; $c++) {
-		                $d += $cpf{$c} * (($t + 1) - $c);
-		            }
-		 
-		            $d = ((10 * $d) % 11) % 10;
-		 
-		            if ($cpf{$c} != $d) {
-		                return false;
-		            }
-		        }
-		 
-		        return true;
-		    }
-		}
-// Verifica se o botão de validação foi acionado
-			if(isset($_POST['btvalidar']))
-				{// Adiciona o numero enviado na variavel $cpf_enviado, poderia ser outro nome, e executa a função acima
-				$cpf_enviado = validaCPF($_POST['cpf']);
-				// Verifica a resposta da função e exibe na tela
-				if($cpf_enviado == false){
-					echo "<script>alert('CPF Inválido'); history.back();</script>";
-				} elseif($cpf_enviado == true){
-					echo "<script>;</script>";
-				
-
-			function validaemail($email){
-			//verifica se e-mail esta no formato correto de escrita
-			if (!ereg('^([a-zA-Z0-9.-])*([@])([a-z0-9]).([a-z]{2,3})',$email)){
-				$mensagem='E-mail Inv&aacute;lido!';
-				return $mensagem;
-		    }
-		    else{
-				//Valida o dominio
-				$dominio=explode('@',$email);
-				if(!checkdnsrr($dominio[1],'A')){
-					$mensagem='E-mail Inv&aacute;lido!';
-					return $mensagem;
-				}
-				else{return true;} // Retorno true para indicar que o e-mail é valido
-			}
-		}	
-		if(isset($_POST['btvalidar'])){
-			$email_enviado = validaemail($_POST['email']);
-			if($email_enviado == false){
-				echo "<script>alert('Email Inválido'); history.back();</script>";			
-		}elseif ($email_enviado == true) {
-				echo "<script>;</script>";
-			
-
-		
-		
-		$query1 = mysql_query("SELECT COUNT(N_COD_USUARIO) FROM usuario WHERE V_LOGIN='$user'");
-		$eReg = mysql_fetch_array($query1);
-		$login_check = $eReg[0];
-
-		$query3 = mysql_query("SELECT COUNT(V_CPF) FROM usuario WHERE V_CPF='$cpf'");
-		$eReg3 = mysql_fetch_array($query3);
-		$cpf_check = $eReg3[0];
-
-		if ($login_check > 0)
-		{
-			echo "<script>document.getElementById('#login').focus();</script>";
-			echo "<script>alert('Login Inválido!!'); history.back();</script>";
-
-
-		} 
-		if ($cpf_check > 0)
-		{
-			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
-		}
-		else
-		{
-			$data = date('Y,m,d');
-
-			$query2 = mysql_query("INSERT INTO usuario (V_NOME,V_SEXO, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, V_IDADE, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO, D_DATA_ULTIMO_LOGIN) VALUES('$nome','$sexo','$user','$pwd', '$email', '$cpf','$idade','$telefone', '$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$data')");	
-			if (!$query2) 
-			{				
-			  echo "<script>alert('Erro'); history.back();</script>";
-			}else
-			{
-			  echo "<script>alert('Cadastrado com sucesso!!');</script>";
-			  echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
-		}
-		}
-		}
-	}
-}
-	
-/*N_TIPO_USUARIO = 0 (USUARIO NORMAL)
-N_TIPO_USUARIO = 1 (USUARIO ADMINISTRADOR)
-*/
-}
-/*
-if(@$_GET['go'] == 'buscarcep'){
-
-	$cep = $_POST['cep'];
-	function busca_cep($cep){  
-    $resultado = @file_get_contents('http://republicavirtual.com.br/web_cep.php?cep='.urlencode($cep).'&formato=query_string');  
-    if(!$resultado){  
-        $resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";  
-    }  
-    parse_str($resultado, $retorno);  
-    return $retorno;  
-}  
-$resultado_busca = busca_cep($cep);  
-
- 
-   $resultado_busca['tipo_logradouro']
-    $resultado_busca['logradouro']
-   	$resultado_busca['bairro']
-    $resultado_busca['cidade']
-    $resultado_busca['uf'];  */
-}
-}
-?>
