@@ -21,6 +21,15 @@
     </script>
 
 <script LANGUAGE="JavaScript">
+
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+      if (tecla==8 || tecla==0) return true;
+  else  return false;
+    }
+}
 function mostrarResultado(box,num_max,campospan){
   var contagem_carac = box.length;
   if (contagem_carac != 0){
@@ -92,7 +101,7 @@ function contarCaracteres(box,valor){
             </tr>
             <tr>
               <td>Ano:*</td>
-              <td><input type="text" name="ano" id="ano" class="txt1" maxlength="10" size=35 required/></td>
+              <td><input type="text" name="ano" id="ano" class="txt1" onkeypress='return SomenteNumero(event)' maxlength="10" size=6 required/></td>
             </tr>
             <tr>
               <td><label for="mensagem">Observação</label></td>
