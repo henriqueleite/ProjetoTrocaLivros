@@ -27,6 +27,15 @@ function formatar(mascara, documento){
   
 }
 
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+      if (tecla==8 || tecla==0) return true;
+  else  return false;
+    }
+}
+
 
 </script>
 
@@ -77,11 +86,11 @@ function formatar(mascara, documento){
 			</tr>
             <tr>
 				<td class='tr_cadastro'>Telefone:</td>
-				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" size=35/></td>
+				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" onkeypress="formatar('##-####-####', this); return SomenteNumero(event); "  size=35/></td>
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>Celular:</td>
-				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" size=35/></td>
+				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" onkeypress="formatar('##-####-####', this); return SomenteNumero(event); "  size=35/></td>
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>Cep:*</td>
