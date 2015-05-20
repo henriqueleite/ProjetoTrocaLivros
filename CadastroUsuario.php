@@ -27,6 +27,19 @@ function formatar(mascara, documento){
   
 }
 
+function MascaraData(obj) 
+{
+   switch (obj.value.length) 
+   {
+      case 2:
+           obj.value = obj.value + "/";
+           break;
+      case 5:
+           obj.value = obj.value + "/";
+           break;
+   }
+}
+
 function SomenteNumero(e){
     var tecla=(window.event)?event.keyCode:e.which;   
     if((tecla>47 && tecla<58)) return true;
@@ -62,8 +75,8 @@ function SomenteNumero(e){
 				<td><input type="email" name="email" id="email" class="txt" size=35 required/></td>
 			</tr>
 			<tr>
-				<td class='tr_cadastro'>Idade: </td>
-				<td><input type="text" name="idade" id="idade" class="txt" size=3 required/>&nbsp Anos</td>
+				<td class='tr_cadastro'>Data Nasc.: </td>
+				<td><input type='text' name='dataNascimento' id="dataNascimento" class="txt" maxlength='10' size='14' onKeyPress='MascaraData(this); return SomenteNumero(event); ' required/></td>
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>Sexo: </td>
