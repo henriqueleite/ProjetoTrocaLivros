@@ -145,10 +145,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
       <td style="width: 40px;">Título</td>
       <td style="width: 40px;">Autor</td>
       <td style="width: 40px;">Editora</td>
-      <td style="width: 35px;">Estado</td>
-      <td style="width: 40px;">Ano</td>
       <td style="width: 40px;">Gênero</td>
-      <td style="width: 30px;">Obs</td>
+      <td style="width: 35px;">Estado</td>
     </table>
 
     <?php
@@ -172,10 +170,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
           <td class="listar-livro-titulo"><?php echo $titulo; ?></td> <br>
           <td class="listar-livro-autor"><?php echo $autor;?></td>
           <td class="listar-livro-genero"><?php echo $editora;?></td>
-          <td class="listar-livro-estado-livro"><?php echo $estado_livro;?></td>
-          <td class="listar-livro-ano"><?php echo $ano;?></td>
           <td class="listar-livro-genero"><?php echo $genero;?></td>
-          <td class="listar-livro-observacao"><?php echo $observacao;?></td>
+           <td class="listar-livro-estado-livro"><?php echo $estado_livro;?></td>
           <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
           <td class="listar-livro-genero"><input type="submit" name="Ver"  id="Ver"   value="Ver" /></td>
       </tr>

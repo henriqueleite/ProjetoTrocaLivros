@@ -8,7 +8,7 @@ if(isset($_POST['codigolivro']))
   $_SESSION['codigoLivroAlt'] = $codigolivro;
 }
 //se a o id do livro tiver vindo da pagina index ele vai visualizar o livro
-elseif(isset($_GET['id']))
+else if(isset($_GET['id']))
 {
   $codigolivro = $_GET['id'];
   $_SESSION['codigoLivroAlt'] = $codigolivro;
@@ -93,7 +93,7 @@ if((isset ($_SESSION['login']) == true))
 
       </fieldset>
       <?php
-      if((isset ($_SESSION['login']) == true)){
+      if( (isset ($_SESSION['login']) == true) and ($_SESSION['codigo'] <> $codigousuario)){
         ?>
         <td colspan="2"><input style="  width: 200px;" type="submit" class='btn' name="Solicitar" id="Solicitar" value="Solicitar"/>
           <?php

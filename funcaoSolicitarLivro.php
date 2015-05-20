@@ -5,18 +5,17 @@ require_once"Conexao.php";
 if(isset($_SESSION['login']))
 {
 	$nomeLogado = $_SESSION['login'];
-	$idLogado = $_SESSION['codigo'];
+	$idLogado   = $_SESSION['codigo'];
 	$tipoLogado = $_SESSION['tipo'];
 
 	//verificar se o usuario tem livro cadastrado
 	$queryExisteLivro = mysql_query("SELECT * FROM livro WHERE N_COD_USUARIO_IE = $idLogado");
 	$resultado = mysql_num_rows($queryExisteLivro);
 	//se o usuario tiver pelo menos um livro 
-	if($resultado == 1)
-	{
+	if($resultado >= 1){
 		//pega o id do livro
-		if(isset($_GET['id']))
-		{
+		if(isset($_GET['id'])){
+
 			$idLivroSolicitado = $_GET['id'];
 			$_SESSION['idLivroSolicitado'] = $idLivroSolicitado;
 			//faz uma consulta para verificar se o livro solicitado é o seu proprio livro 
@@ -57,7 +56,7 @@ if(isset($_SESSION['login']))
 	//se o usuario nao tiver nenhum livro
 	else
 	{
-		echo "Voce nao tem livro cadastrado, para continuar cadastre pelo menos um livro";
+		echo "<script>alert('Você não tem livro cadastrado, para continuar cadastre pelo menos um livro'); history.back();</script>";
 	}
 }
 //se um usuario tentar solicitar um livro sem está logado volta para a pagina index

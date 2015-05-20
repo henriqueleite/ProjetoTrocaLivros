@@ -34,12 +34,18 @@ $tipoLogado = $_SESSION['tipo'];;
 		{
 			while($resultado = mysql_fetch_array($queryListar))
 			{
-				$titulo = $resultado['V_TITULO'];
+				$titulo       = $resultado['V_TITULO'];
 				$idLivroTroca = $resultado['N_COD_LIVRO'];
+				$foto         = $resultado['V_FOTO'];
+				$autor        = $resultado['V_AUTOR'];
 
 			?>
 				<div style="border:1px solid #ccc; width: 300px; margin-top: 10px">
-					<h3>Livro: <a href=""><?php echo $titulo; ?></a></h3>&nbsp<a href="funcaoAceitarTroca.php?id=<?php echo $idLivroTroca; ?>">Trocar</a>
+					      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="<?php echo $foto; ?>"width="110" height="110"></p>
+					<h4>Titulo: <a><?php echo $titulo; ?></a></h4>
+					<h4>Autor: <a><?php echo $autor; ?></a></h4>
+					&nbsp
+					<a href="funcaoAceitarTroca.php?id=<?php echo $idLivroTroca; ?>">Trocar</a>
 				</div>
 			<?php				
 			}						
@@ -47,15 +53,10 @@ $tipoLogado = $_SESSION['tipo'];;
 		else
 		{
 			echo "Erro na consulta";
+			header("Location: index.php");  
+			die();
 		}
 	?>
-
-
-
-
-
-
-
 
 	<?php include('rodape.php'); ?>
 </body>
