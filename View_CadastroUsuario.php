@@ -64,7 +64,7 @@ function SomenteNumero(e){
 
 <div id='corpo'>
 <h2>Cadastro </h2>
-	<form method="post" action="cadastrausuario.php">
+	<form method="post" action="Repositorio_cadastrausuario.php">
 		<table id="cad_table">
 			<tr>
 				<td class='tr_cadastro'>Nome:*</td>

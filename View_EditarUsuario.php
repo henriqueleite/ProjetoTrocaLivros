@@ -61,7 +61,7 @@ function formatar(mascara, documento){
 
 <div id='corpo' style="height: 680px;">
 <h2>Editar Perfil </h2>
-	<form name="CadastroUsuario" method="post" action="repositorioEditarUsuario.php">
+	<form name="CadastroUsuario" method="post" action="RepositorioEditarUsuario.php">
 		<table id="cad_table">
 			<tr>
 				<td>Nome:*</td>
