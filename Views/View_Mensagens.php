@@ -25,7 +25,7 @@ $tipo = $_SESSION['tipo'];
 </script>
 </head>
 <body>
- <?php include('topo.php'); ?>
+ <?php include('View_topo.php'); ?>
 
 
  <div style="height: 700px; "id='corpo'>
@@ -101,6 +101,6 @@ $tipo = $_SESSION['tipo'];
 
     </div>
 
-    <?php include('rodape.php'); ?>
+    <?php include('View_rodape.php'); ?>
   </body>
   </html>

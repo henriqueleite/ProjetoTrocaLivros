@@ -37,7 +37,7 @@ require_once "Conexao.php";
   </script>
 </head>
 <body>
-  <?php include('topo.php'); ?>
+  <?php include('View_topo.php'); ?>
   <div id="troca">
     <?php
     $query4 = mysql_query("SELECT COUNT(*), usuario.V_NOME, livro.V_TITULO, troca.V_STATUS FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE inner join usuario on usuario.N_COD_USUARIO = troca.N_COD_USUARIO_IE WHERE livro.N_COD_USUARIO_IE = '$codigo'");

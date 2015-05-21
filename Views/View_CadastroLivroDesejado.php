@@ -21,7 +21,7 @@
     </script> 
 </head>
 <body>
-      <?php include('topo.php'); ?>
+      <?php include('View_topo.php'); ?>
   <div id='corpo'>
      <h2>Cadastro Livro Desejado</h2>
 
@@ -50,7 +50,7 @@
         </form>
     </div>
 
-   <?php include('rodape.php'); ?>
+   <?php include('View_rodape.php'); ?>
 </body>
 </html>
 

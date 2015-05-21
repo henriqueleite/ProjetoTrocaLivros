@@ -3,7 +3,7 @@
 
 session_start();
 
-require_once "Conexao.php";
+//require_once "Conexao.php";
 
 
 ?>
@@ -19,7 +19,7 @@ require_once "Conexao.php";
 </script>
 </head>
 <body>
-  <?php include('topo.php'); ?>
+  <?php include('View_topo.php'); ?>
 
   <div id='corpo'>
     Corpo do Site</br>
@@ -58,7 +58,8 @@ require_once "Conexao.php";
       <?php 
       }
       ?>
+      <img src="C:\xampp\htdocs\ProjetoTrocaLivros\Imagens\LogoTrocaLivro.png">
 </div>
-<?php include('rodape.php'); ?>
+<?php include('Views/View_rodape.php'); ?>
 </body>
 </html>

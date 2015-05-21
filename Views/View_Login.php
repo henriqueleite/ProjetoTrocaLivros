@@ -59,7 +59,7 @@ session_start();
 	  </div>
     </div>
 
-    <?php include('rodape.php'); ?>
+    <?php include('View_rodape.php'); ?>
 </body>
 </html>
 

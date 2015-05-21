@@ -17,7 +17,7 @@ session_start();
 
 
 <body>
-  <?php include('topo.php'); ?>
+  <?php include('View_topo.php'); ?>
 
   <div class='formulario'>
     <h2 class='titulo_formulario'>Formulário de Ajuda/Contato</h2>
@@ -44,7 +44,7 @@ session_start();
     </form>
   </div>
 
-  <?php include('rodape.php'); ?>
+  <?php include('View_rodape.php'); ?>
     
 </body>
 </html>

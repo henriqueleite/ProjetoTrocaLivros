@@ -44,7 +44,7 @@ if((isset ($_SESSION['login']) == true))
 
 </head>
 <body>
-  <?php include('topo.php'); ?>    
+  <?php include('View_topo.php'); ?>    
   <?php
 
   if (isset ($_POST['Solicitar'])){
@@ -121,6 +121,6 @@ if((isset ($_SESSION['login']) == true))
 
   </div>
 </form> 
-<?php include('rodape.php'); ?>
+<?php include('View_rodape.php'); ?>
 </body>
 </html>

@@ -57,7 +57,7 @@ function formatar(mascara, documento){
 </script>
 </head>
 <body>
-	   <?php include('topo.php'); ?>
+	   <?php include('View_topo.php'); ?>
 
 <div id='corpo' style="height: 680px;">
 <h2>Editar Perfil </h2>
@@ -124,7 +124,7 @@ function formatar(mascara, documento){
 	</form>
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
 </div>
-    <?php include('rodape.php'); ?>
+    <?php include('View_rodape.php'); ?>
 </body>
 </html>
 
