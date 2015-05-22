@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 ?>
 <html>
@@ -8,9 +8,9 @@ session_start();
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="estilo.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
+    <link rel="stylesheet" type="text/css" href="..CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="..CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
     </script>
 </head>
@@ -18,10 +18,10 @@ session_start();
     <div id='cssmenu'>
       <div id='container'>
         <ul>
-           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-           <li class='active'><a href='index.php'><span>ÍNICIO</span></a></li>
+           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="../Imagens/LogoTrocaLivro.png"></img></a></li>
+           <li class='active'><a href='/index.php'><span>ÍNICIO</span></a></li>
            <li style="float: right" class="right"><a href='#'><span>LOGIN</span></a></li>
-           <li style="float: right" class="right"><a href='CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>
+           <li style="float: right" class="right"><a href='./Views/View_CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>
            <li><a href='Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
            <li><a href='Form_Ajuda.php'><span>SOBRE</span></a></li>
            <li class='last'><a href='Form_Ajuda.php'><span>CONTATO</span></a></li>
@@ -52,7 +52,7 @@ session_start();
 	  </div>
     </div>
 
-    <?php include('rodape.php'); ?>
+    <?php include('../Views/View_rodape.php'); ?>
 </body>
 </html>
 
