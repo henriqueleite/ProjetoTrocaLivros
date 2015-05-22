@@ -1,5 +1,5 @@
 <?php
-require_once "../Dados/Conexao.php";
+require_once "Conexao.php";
 
 	$user = $_POST['usuario'];
 	$pwd  = $_POST['senha'];

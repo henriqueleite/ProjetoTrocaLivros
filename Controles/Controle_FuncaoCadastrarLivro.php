@@ -1,8 +1,8 @@
 ﻿<?php
-include("./Dados/Conexao.php");
+include("Conexao.php");
 session_start();
 if(!isset($_POST['Cadastrar'])){
-	header("Location: ./Views/View_CadastroLivro.php");
+	header("Location: CadastroLivro.php");
 }
 
     $msg = array();

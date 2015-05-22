@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once ".Conexao.php";
+require_once "Conexao.php";
 session_start();
 
 if((isset ($_SESSION['login']) == true))

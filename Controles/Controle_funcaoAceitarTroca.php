@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once"./Dados/Conexao.php";
+require_once"Conexao.php";
 if(isset($_GET['id']))
 {
 	$idLivroTroca = $_GET['id'];

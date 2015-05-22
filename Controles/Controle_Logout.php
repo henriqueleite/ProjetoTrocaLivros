@@ -1,6 +1,6 @@
 
 <?php
-	require_once "./Dados/Conexao.php";
+	require_once "Conexao.php";
 	//destruo as variaveis da session.
 	session_start();
 	date_default_timezone_set("America/Sao_Paulo");
