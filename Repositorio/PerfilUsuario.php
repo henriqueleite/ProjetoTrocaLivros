@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 if((!isset ($_SESSION['login']) == true))
 {
@@ -16,9 +16,9 @@ $tipo = $_SESSION['tipo'];
 <head>
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="CSS/PerfilUsuario.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/PerfilUsuario.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/></script>
     <script>
     $(document).ready(function(){
@@ -32,7 +32,7 @@ $tipo = $_SESSION['tipo'];
     </script>
 </head>
 <body>
-<?php include('topo.php'); ?>
+<?php include('../Views/View_topo.php'); ?>
 
 <?php
 $query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, V_IDADE, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
@@ -261,14 +261,14 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
     </div>
   </div>
 
-   <?php include('rodape.php'); ?>
+   <?php include("../Views/View_rodape.php"); ?>
 </body>
 </html>
 
 
 
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];

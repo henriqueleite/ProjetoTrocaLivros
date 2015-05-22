@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html, charset=utf-8">
 <?php
-require_once "Conexao.php";
+require_once "./Dados/Conexao.php";
 
 $titulo = $_POST["titulo"];
 $tipo = $_POST["tipo"];
