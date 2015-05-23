@@ -9,9 +9,13 @@ session_start();
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Login.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+	<link rel="shortcut icon" href="../favicon.ico"> 
+	<script src="js/modernizr.custom.63321.js"></script>
     </script>
 </head>
 <body>
@@ -35,31 +39,59 @@ session_start();
       </div>
     </div>
 
-    <div id='corpo'>
-    	<h2>Login</h2>
+
       <div id="login">
 
-		<form method="post" action="../Repositorio/Repositorio_autenticacao.php">
-			<table id="login_table">
-				<tr>
-          <td><input class='login' type="text" placeholder='Login' name="usuario" id="usuario" class="txt" maxlength="15" required/></td>
-				</tr>
-				<tr>
-					<td><input class='login' type="password" placeholder='Senha' name="senha" id="senha" class="txt" maxlength="15" required/></td>
-				</tr>
-        <tr>
-          <td><a href="../Controles/Controle_RecuperarSenha.php">Esqueceu sua senha?<a></td>
-        </tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="Entrar" class="btn" id="btnEntrar" name = "btnEntrar"> 
-					&nbsp;<a style="text-decoration: none;" href="View_CadastroUsuario.php"><input style='margin-top: -10px;' type="button" value="Cadastre-se" class="btn" id="btnCad"></a></td>
-				</tr>	
-			</table>
-		</form>
+		<form class="form-2" method="post" action="../Repositorio/Repositorio_autenticacao.php">
+					<h1><span class="log-in">Logar</span> ou <a href="View_CadastroUsuario.php"><span class="sign-up"> Cadastre-se</span></a></h1>
+					<p class="float">
+						<label for="login"><i class="icon-user"></i>Username</label>
+						<input type="text" name="usuario" placeholder="Username">
+					</p>
+					<p class="float">
+						<label for="password"><i class="icon-lock"></i>Password</label>
+						<input type="password" name="senha" placeholder="Password" class="showpassword">
+					</p>
+					<p class="clearfix"> 
+						<a href="View_CadastroUsuario.php" class="log-twitter">CADASTRE-SE</a>    
+						<input type="submit" name="submit" value="LOGIN">
+					</p>
+		</form>​​
 	  </div>
-    </div>
 
     <?php include('View_rodape.php'); ?>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+			    $(".showpassword").each(function(index,input) {
+			        var $input = $(input);
+			        $("<p class='opt'/>").append(
+			            $("<input type='checkbox' class='showpasswordcheckbox' id='showPassword' />").click(function() {
+			                var change = $(this).is(":checked") ? "text" : "password";
+			                var rep = $("<input placeholder='Password' type='" + change + "' />")
+			                    .attr("id", $input.attr("id"))
+			                    .attr("name", $input.attr("name"))
+			                    .attr('class', $input.attr('class'))
+			                    .val($input.val())
+			                    .insertBefore($input);
+			                $input.remove();
+			                $input = rep;
+			             })
+			        ).append($("<label for='showPassword'/>").text("Show password")).insertAfter($input.parent());
+			    });
+
+			    $('#showPassword').click(function(){
+					if($("#showPassword").is(":checked")) {
+						$('.icon-lock').addClass('icon-unlock');
+						$('.icon-unlock').removeClass('icon-lock');    
+					} else {
+						$('.icon-unlock').addClass('icon-lock');
+						$('.icon-lock').removeClass('icon-unlock');
+					}
+			    });
+			});
+		</script>
 </body>
 </html>
 
