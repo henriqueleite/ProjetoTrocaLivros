@@ -1,0 +1,75 @@
+
+#corpo #janelas .janela{
+	width: 230px;
+	background: #069;
+	margin-right: 5px;
+	border-left: 1px solid #333;
+	border-right: 1px solid #333;
+}
+
+#corpo #janelas .janela .topo{
+	width: 230px;
+	background: #036;
+	height: 25px;
+	border-bottom: 1px solid #333;
+	cursor: pointer;
+}
+.topo.fixar{position: absolute, bottom:0;}
+.topo span{float: left; color: #fff; margin: 4px;}
+
+.janela input[type=text]{
+	padding: 3px;
+	padding-bottom: 1px;
+	border: 0;
+	background: #f4f4f4;
+	font-size: 13px;
+	color: #333;
+	width: 224px;	
+}
+
+.mensagens{
+	float: left;
+	width: 230px;
+	background: #fff;
+	height: 200px;
+	border-bottom: 1px solid #333;
+}
+
+.mensagens  ul.listar{
+	list-style-type: none;
+	float: left;
+	width: 230px;
+	background:  #fff;
+	height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;	
+	margin: 0px;
+	padding: 0px;
+}
+
+.mensagens ul.listar li{
+	float: left;
+	width: 100%;
+	border-bottom: 1px dotted #333;
+	padding-bottom: 3px;
+}
+
+.mensagens ul.listar li span{
+	font-size: 13px;
+	color: #333;
+	float: left;
+	width: 100%;
+	margin: 3px;	
+}
+
+.mensagens ul.listar li p{
+	font-size: 13px;
+	color: #333;
+	float: left;
+	width: 100%;
+	margin: 0px 0px 0px 3px;	
+}
+
+.btn_mensagem{
+	width: 230px;	
+}

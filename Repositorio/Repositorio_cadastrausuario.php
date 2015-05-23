@@ -18,6 +18,13 @@ mysql_select_db("trocalivro", $conecta);
 		$uf = $_POST['uf'];
 		$sexo = $_POST['sexo'];
 		
+		
+		$patternBr    = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)[0-9]{2}^";
+        $patternMySQL = "^(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])^";
+		  
+        $output = implode('/', array_reverse(explode('/', $dataNascimento)));
+            
+		
 
 		function validaCPF($cpf)
 		{	// Verifiva se o número digitado contém todos os digitos
@@ -99,7 +106,7 @@ mysql_select_db("trocalivro", $conecta);
 			echo "<script>alert('CPF já cadastrado!!'); history.back();</script>";
 		}else{
 			$data = date('Y,m,d');
-			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, D_DATA_NASC, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO,V_SEXO) values ('$nome','$user','$pwd','$email','$cpf','$dataNascimento','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$sexo')");		
+			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, D_DATA_NASC, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO,V_SEXO) values ('$nome','$user','$pwd','$email','$cpf', '$output','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$sexo')");		
 
 			if (!$query2) {
 			echo "<script>alert('Ocorreu um Erro'); history.back();</script>";

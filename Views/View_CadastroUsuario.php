@@ -9,7 +9,7 @@ require_once "../Dados/Conexao.php";
 	<link rel="stylesheet" type="text/css" href="../CSS/CadastrarAlterarUsuario.css">
 	<link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
-	<link href="CSS/main.css" rel="stylesheet" />
+	<link href="../CSS/main.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="js/gmaps.js" type="text/javascript"></script>
@@ -68,7 +68,7 @@ function SomenteNumero(e){
      <li><a href='../Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
      <li><a href='../Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
      <li class='last'><a href='../Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
-     <li><form name="frmBusca" method="post" action="iew_Buscar.php" >
+     <li><form name="frmBusca" method="post" action="View_Buscar.php" >
 
       <input type="text" name="palavra" />
       <input type="submit"  value="Buscar" />

@@ -3,7 +3,7 @@
 
 session_start();
 
-//require_once "./Dados/Conexao.php";
+require_once "./Dados/Conexao.php";
 
 
 ?>

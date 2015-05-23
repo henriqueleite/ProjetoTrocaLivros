@@ -64,7 +64,7 @@ $tipo = $_SESSION['tipo'];
 </div><!--fim div cssmenu-->
 
 <?php
-$query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, V_IDADE, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
+$query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
 $query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo'");
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
 
@@ -79,15 +79,18 @@ $query9 = mysql_query("SELECT N_COD_LIVRO_DESEJADO, V_TITULO, D_ANO, N_COD_USUAR
 
 $query10 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
 INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
-INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' or LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo'");
+INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND TROCA.V_STATUS = 'PENDENTE'");
 
 $query11 = mysql_query("SELECT COUNT(*) FROM AJUDA WHERE N_COD_USUARIO_IE = '$codigo'" );
 
+$query12 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
+INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
+INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND TROCA.V_STATUS = 'Aceito'");
 
 $mensagens = mysql_num_rows($query11);
 
 
-$dados = mysql_fetch_assoc($query1);
+$dados = mysql_fetch_array($query1);
 
 $Livros = mysql_fetch_row($query2);
 $LivrosDesejados = mysql_fetch_row($query3);
@@ -103,7 +106,7 @@ $email = $dados['V_EMAIL'];
 $cep = $dados['V_CEP'];
 $bairro = $dados['V_BAIRRO'];
 $datacadastro = $dados['D_DATA_CADASTRO'];
-$idade = $dados['V_IDADE'];
+//$idade = $dados['V_IDADE'];
 $datalogin = $dados['D_DATA_ULTIMO_LOGIN'];
 if ($dados['V_FOTO']) {
   $foto = $dados['V_FOTO'];
@@ -267,18 +270,50 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
 
 
-    <form id="form2" name="form2" method="post" action="">
+    <form id="form2" name="form2" method="get" action="../Controles/Controle_Solicitacao.php">
       <h5 class="listar-solicitacoes">
       <table class="table-listar-solicitacoes">
         <tr class="listar-solicitacoes">
           <td class="listar-solicitacoes-foto-solicitado"><img src="<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
-          <td class="listar-solicitacoes-foto-troca"><img src="Imagens/Troca.png"width="50" height="50"></td>
+          <td class="listar-solicitacoes-foto-troca"><img src="../Imagens/Troca.png"width="50" height="50"></td>
           <td class="listar-solicitacoes-foto-solicitante"><img src="<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
           <td class="listar-livro-solicitacoes-usuario-solicitado"><?php echo $usuario_solicitado;?></td>
           <td class="listar-livro-solicitacoes-usuario-solicitante"><?php echo $usuario_solicitante;?></td>
-          <input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" >
+          <td><input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" ></td>
           <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Aceitar" /></td>
           <td class="listar-livro-solicitacoes-recusar"><input type="submit" name="Ver"  id="Ver"   value="Recusar" /></td>
+      </tr>
+      </table>
+      </h5>
+    </form>
+
+    <?php } ?>
+    
+    
+     <h2 class="Solicitacoes">Trocas em Andamento</h2>
+ 
+    <?php
+      while ($linhasolicitacao=mysql_fetch_array($query12)){
+        $codigosolicitacao = $linhasolicitacao["N_COD_TROCA"];
+        $foto_solicitado = $linhasolicitacao["FOTO_SOLICITADO"];
+        $foto_solicitante= $linhasolicitacao['FOTO_SOLICITANTE']; 
+        $usuario_solicitado= $linhasolicitacao['NOME_SOLICITADO']; 
+        $usuario_solicitante= $linhasolicitacao['NOME_SOLICITANE']; 
+    ?>
+
+
+
+    <form id="form2" name="form2" method="get" action="../Controles/Controle_Solicitacao.php">
+      <h5 class="listar-solicitacoes">
+      <table class="table-listar-solicitacoes">
+        <tr class="listar-solicitacoes">
+          <td class="listar-solicitacoes-foto-solicitado"><img src="<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
+          <td class="listar-solicitacoes-foto-troca"><img src="../Imagens/Troca.png"width="50" height="50"></td>
+          <td class="listar-solicitacoes-foto-solicitante"><img src="<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
+          <td class="listar-livro-solicitacoes-usuario-solicitado"><?php echo $usuario_solicitado;?></td>
+          <td class="listar-livro-solicitacoes-usuario-solicitante"><?php echo $usuario_solicitante;?></td>
+          <td><input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" ></td>
+          <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Ver" /></td>
       </tr>
       </table>
       </h5>

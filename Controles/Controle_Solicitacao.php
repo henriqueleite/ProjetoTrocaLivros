@@ -1,87 +1,26 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
-?>
-<html>
-<head>
-  <?php  
-  session_start();
-  if((!isset ($_SESSION['login']) == true))
-  {
-    unset($_SESSION['login']);
-    header('location:index.php');
-  }
+require_once "../Dados/Conexao.php";
+session_start();
 
-  $logado = $_SESSION['login'];
-  $codigo = $_SESSION['codigo'];
-  $tipo = $_SESSION['tipo'];
-  ?>
+$idtroca = $_GET["codigosolicitacao"];
 
+$query2 = mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.N_COD_USUARIO_IE) AS IDSOLICITADO, (LIVRO_SOLICITANTE.N_COD_USUARIO_IE) AS IDSOLICITANTE, USUARIO_SOLICITANTE.V_NOME FROM TROCA INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE TROCA.N_COD_TROCA = '$idtroca'");
 
-  <title>Troca Livro</title>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <link rel="stylesheet" href="style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="estilo.css">
-  <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
-  <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/></script>
-  <script>
-    $(document).ready(function(){
-      $(".text_container").click(function(){
-        $(".listar-livro").hide(1000);
-      });
-      $(".text_container2").click(function(){
-        $(".listar-livro").show(1000);
-      });
-    });
-  </script>
-</head>
-<body>
-  <?php include('View_topo.php'); ?>
-  <div id="troca">
-    <?php
-    $query4 = mysql_query("SELECT COUNT(*), usuario.V_NOME, livro.V_TITULO, troca.V_STATUS FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE inner join usuario on usuario.N_COD_USUARIO = troca.N_COD_USUARIO_IE WHERE livro.N_COD_USUARIO_IE = '$codigo'");
-    if($query4)
-    {
-      while($lista = mysql_fetch_assoc($query4))
-      {
-        $nomeUser = $lista['V_NOME'];
-        $nomeLivro = $lista['V_TITULO'];
-        $status = $lista['V_STATUS'];
-        if($status == 'Pendente')
-        {
-          echo "<b>$nomeUser</b> solicitou a troca do livro <b>$nomeLivro</b> <a href='?a=aceitar'>Aceitar</a> | <a href='?a=excluir'>Excluir Solicitacao</a>";
-        }
-        else
-        {
-          echo "Voce nao tem Solicitacao";
-        }
-      }
-    }
-    else
-    {
-      echo "Erro na consulta";
-    }
+$coluna = mysql_fetch_array($query2);
 
+$NOME = $coluna["V_NOME"];
+$_SESSION["id_troca"] = $idtroca;
+$_SESSION["id_solicitado"] = $coluna['IDSOLICITADO'];
+$_SESSION["id_solicitante"] = $coluna['IDSOLICITANTE'];
 
-
-    ?>
-  </div>
-</body>
-</html>
-<?php
-if(isset($_GET['a']) == 'aceitar')
+if(isset($_GET['Ver']) == 'Aceitar')
 {
-  $query4 = mysql_query("SELECT COUNT(*), troca.N_COD_TROCA FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  
-    inner join usuario on usuario.N_COD_USUARIO = troca.N_COD_USUARIO_IE 
-    WHERE livro.N_COD_USUARIO_IE = '$codigo'");
-  $lista = mysql_fetch_assoc($query4);
-  $idtroca = $lista['N_COD_TROCA'];
-  $query = mysql_query("UPDATE troca SET V_STATUS = 'Aceito' where  N_COD_TROCA = $idtroca");
+
+  $query = mysql_query("UPDATE troca SET V_STATUS = 'ACEITO' where  N_COD_TROCA = $idtroca");
   if($query)
   {
-    echo "<script>alert('Voce aceitou trocar com $nomeUser')</script>";
-    echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
+	header("Location: ../Views/View_ChatTroca.php");
   }
 
 }
