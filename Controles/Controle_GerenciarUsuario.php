@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+require_once "./Dados/Conexao.php";
 session_start();
 if((!isset ($_SESSION['login']) == true))
 {
   unset($_SESSION['login']);
-  header('location:index.php');
+  header('location:../index.php');
 
 }else if ($_SESSION['tipo'] != 1)
 {
   unset($_SESSION['login']);
-  header('location:index.php'); 
+  header('location:../index.php'); 
 }
 
 $logado = $_SESSION['login'];
@@ -29,9 +29,9 @@ if (isset ($_POST['buscar'])){
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="estilo.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/estilo.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
     </script>
 </head>

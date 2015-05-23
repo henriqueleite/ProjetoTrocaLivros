@@ -5,7 +5,7 @@ session_start();
 if((!isset ($_SESSION['login']) == true))
 {
   unset($_SESSION['login']);
-  header('location:index.php');
+  header('location:../index.php');
 }
 
 $logado = $_SESSION['login'];
@@ -32,7 +32,36 @@ $tipo = $_SESSION['tipo'];
     </script>
 </head>
 <body>
-<?php include('../Views/View_topo.php'); ?>
+ <div id='cssmenu'>
+  <div id='container'>
+    <ul>
+     <li><a href='#'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
+     <li class='active'><a href='../index.php'><span>ÍNICIO</span></a></li>
+     <li><a href='../Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
+     <li><a href='../Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
+     <li class='last'><a href='../Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
+     <li><form name="frmBusca" method="post" action="iew_Buscar.php" >
+
+      <input type="text" name="palavra" />
+      <input type="submit"  value="Buscar" />
+    </li>
+  </form>
+
+  <?php
+
+  if((isset ($_SESSION['login']) == true)){
+   echo "<li style='float: right' class='right'><a href='../Controles/Controle_Logout.php'><span>SAIR</span></a></li>";
+   echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
+   echo "<li style='float: right' class='right'><a href='#'><span>PAINEL</span></a></li>";
+ } else {
+  echo "<li style='float: right' class='right'><a href='./Views/View_Login.php'><span>LOGIN</span></a></li>";
+  echo "<li style='float: right' class='right'><a href='./Views/View_CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>";
+}
+?> 
+
+    </ul>
+  </div><!--fim div container-->
+</div><!--fim div cssmenu-->
 
 <?php
 $query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, V_IDADE, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
@@ -103,7 +132,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
            <input style="width: 200px;" type="file" name="foto" /><br />
            <input  type="submit" value="Mudar Foto" class="btnPerfil" id="btnPerfil">
          </form>
-         <input  type="submit" value="Editar Perfil" onclick="location.href='EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
+         <input  type="submit" value="Editar Perfil" onclick="location.href='../Views/View_EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
          <div id='quantidaderegistro'>
           <p class='info-lateral'>Livros Publicados: <?php echo $QuantidadeLivros; ?> </p>
           <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
@@ -115,7 +144,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
   <div id='centro'>
 
-    <form class='form_mensagens' action="Mensagens.php">
+    <form class='form_mensagens' action="../Views/View_Mensagens.php">
     <input type='hidden' name="codigousuario" id="codigousuario" value="<?php echo $codigo;?>" >
     <input class="btnMensagens" type='submit' onclick value='Mensagens: <?php echo $mensagens;?>'></input>
     </form>
@@ -136,7 +165,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
     </fieldset>
 
-    <h4 class="centro-esquerda"><a href="CadastroLivro.php">Cadastrar Livro</a><h4>
+    <h4 class="centro-esquerda"><a href="../Views/View_CadastroLivro.php">Cadastrar Livro</a><h4>
     <h2 class="MeusLivros">Meus Livros</h2>
 
 
@@ -162,7 +191,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
         $genero= $linha['V_GENERO']; 
     ?>
 
-    <form id="form2" name="form2" method="post" action="VisualizarLivro.php">
+    <form id="form2" name="form2" method="post" action="../Views/View_VisualizarLivro.php">
       <h5 class="listar-livro">
       <table class="table-listar-livro">
         <tr class="listar-livro-tr">
@@ -182,7 +211,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
     
     <?php } ?>
 
-    <h4 class="centro-esquerda-desejados"><a href="CadastroLivroDesejado.php">Cadastrar Livro</a><h4>
+    <h4 class="centro-esquerda-desejados"><a href="../Views/View_CadastroLivroDesejado.php">Cadastrar Livro</a><h4>
     <h2 class="MeusLivros-desejados">Meus Livros Desejados</h2>
 
 
@@ -261,7 +290,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
     </div>
   </div>
 
-   <?php include("../Views/View_rodape.php"); ?>
+   
 </body>
 </html>
 

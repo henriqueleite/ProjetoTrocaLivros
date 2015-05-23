@@ -78,9 +78,9 @@ function SomenteNumero(e){
   <?php
 
   if((isset ($_SESSION['login']) == true)){
-   echo "<li style='float: right' class='right'><a href='./Controles/Controle_Logout.php'><span>SAIR</span></a></li>";
+   echo "<li style='float: right' class='right'><a href='../Controles/Controle_Logout.php'><span>SAIR</span></a></li>";
    echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
-   echo "<li style='float: right' class='right'><a href='Repositorio/PerfilUsuario.php'><span>PAINEL</span></a></li>";
+   echo "<li style='float: right' class='right'><a href='../Repositorio/PerfilUsuario.php'><span>PAINEL</span></a></li>";
  } else {
   echo "<li style='float: right' class='right'><a href='../Views/View_Login.php'><span>LOGIN</span></a></li>";
   echo "<li style='float: right' class='right'><a href='#'><span>CADASTRAR-SE</span></a></li>";
@@ -93,7 +93,7 @@ function SomenteNumero(e){
 
 <div id='corpo'>
 <h2>Cadastro </h2>
-	<form method="post" action="Repositorio_cadastrausuario.php">
+	<form method="post" action="../Repositorio/Repositorio_cadastrausuario.php">
 		<table id="cad_table">
 			<tr>
 				<td class='tr_cadastro'>Nome:*</td>

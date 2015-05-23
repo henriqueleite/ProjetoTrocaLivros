@@ -1,5 +1,5 @@
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 
 $logado = $_SESSION['login'];
@@ -24,7 +24,7 @@ $ano = $_POST['ano'];
         die();
       }else{
         echo "<script>alert('Livro cadastrado com sucesso!!');</script>"; 
-        echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
+        echo "<meta http-equiv='refresh' content='0, url=../Repositorio/PerfilUsuario.php'>";
         die();
       }
     

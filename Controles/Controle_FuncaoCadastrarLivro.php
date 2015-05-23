@@ -61,11 +61,11 @@ if(!isset($_POST['Cadastrar'])){
         if($qtd){
           $_SESSION['cadastro'] = "Cadastrado com sucesso";
 		  unset($_SESSION['imprimir']);
-		  header("Location: PerfilUsuario.php"); 
+		  header("Location: ./Repositorio/PerfilUsuario.php"); 
         }
         else{
           $_SESSION['cadastro'] = "Erro ao cadastrar";
-		  header("Location: CadastroLivro.php");
+		  header("Location:./Views/View_CadastroLivro.php);
 		}		
     }
 	mysql_close($conecta);

@@ -1,14 +1,15 @@
 <?php
+
 session_start();
 
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
 
-require_once "Conexao.php";		
+require_once "../Dados/Conexao.php";		
 $conecta = mysql_connect("localhost", "root", ""); 
 mysql_select_db("trocalivro", $conecta);
-
+    
 
 		$nome = $_POST['nome'];
 		$user = $_POST['login'];
@@ -106,7 +107,7 @@ mysql_select_db("trocalivro", $conecta);
 			echo "<script>alert('Erro'); history.back();</script>";
 			}else{
 			echo "<script>alert('Cadastrado alterado com sucesso!!');</script>";
-			echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 	
+			echo "<meta http-equiv='refresh' content='0, url=../Repositorio/PerfilUsuario.php'>"; 	
 			}
 		}
 		}

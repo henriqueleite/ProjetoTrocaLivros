@@ -1,10 +1,10 @@
 <?php  
-require_once "Conexao.php";
-session_start();
+require_once "../Dados/Conexao.php";
+     session_start();
 	if((!isset ($_SESSION['login']) == true))
 	{
 	  unset($_SESSION['login']);
-	  header('location:index.php');
+	  header('location:../index.php');
 	 }
 
 	$logado = $_SESSION['login'];
@@ -15,7 +15,7 @@ session_start();
 	$linha = mysql_fetch_assoc($sql);
 	if (!$linha) {
 	  //Se o select não retornou registros, é porque não tem o que apagar
-	  header("Location: painel.php");
+	  header("Location: /painel.php");
 	  die();
 	}
 	$nome = $linha["V_NOME"];
@@ -37,9 +37,9 @@ session_start();
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="estilo.css">
-	<link rel="stylesheet" type="text/css" href="CSS/Menu.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
 	<title>Troca Livro</title>
 	<script>
 function formatar(mascara, documento){
@@ -57,11 +57,40 @@ function formatar(mascara, documento){
 </script>
 </head>
 <body>
-	   <?php include('View_topo.php'); ?>
+	   <div id='cssmenu'>
+  <div id='container'>
+    <ul>
+     <li><a href='#'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
+     <li class='active'><a href='../index.php'><span>ÍNICIO</span></a></li>
+     <li><a href='../Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
+     <li><a href='../Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
+     <li class='last'><a href='../Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
+     <li><form name="frmBusca" method="post" action="iew_Buscar.php" >
+
+      <input type="text" name="palavra" />
+      <input type="submit"  value="Buscar" />
+    </li>
+  </form>
+
+  <?php
+
+  if((isset ($_SESSION['login']) == true)){
+   echo "<li style='float: right' class='right'><a href='../Controles/Controle_Logout.php'><span>SAIR</span></a></li>";
+   echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
+   echo "<li style='float: right' class='right'><a href='#'><span>PAINEL</span></a></li>";
+ } else {
+  echo "<li style='float: right' class='right'><a href='./Views/View_Login.php'><span>LOGIN</span></a></li>";
+  echo "<li style='float: right' class='right'><a href='./Views/View_CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>";
+}
+?> 
+
+    </ul>
+  </div><!--fim div container-->
+</div><!--fim div cssmenu-->
 
 <div id='corpo' style="height: 680px;">
 <h2>Editar Perfil </h2>
-	<form name="CadastroUsuario" method="post" action="RepositorioEditarUsuario.php">
+	<form name="CadastroUsuario" method="post" action="../Repositorio/Repositorio_EditarUsuario.php">
 		<table id="cad_table">
 			<tr>
 				<td>Nome:*</td>
@@ -114,7 +143,7 @@ function formatar(mascara, documento){
 			</tr>
 
 				<td colspan="2"><input class='btn' type="submit" value="Salvar" id="buton1" name="btvalidar">
-					<br><input class='btn' type="button" value="Cancelar" onclick="location.href='PerfilUsuario.php'" id="buton1" name="btvalidar">
+					<br><input class='btn' type="button" value="Cancelar" onclick="location.href='../Repositorio/PerfilUsuario.php'" id="buton1" name="btvalidar">
 				
 				</td>
 			</tr>

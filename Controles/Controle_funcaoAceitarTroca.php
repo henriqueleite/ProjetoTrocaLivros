@@ -14,7 +14,7 @@ if(isset($_GET['id']))
 		{		
 			echo "<script>alert('Solicitacao enviada');</script>";
 			echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
-			//header("Location: PerfilUsuario.php");
+			//header("Location:PerfilUsuario.php");
 		}
 	}
 	else

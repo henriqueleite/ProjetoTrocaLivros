@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once"Conexao.php";
+require_once"./Dados/Conexao.php";
 //se existir algum usuario logado
 if(isset($_SESSION['login']))
 {
@@ -35,7 +35,7 @@ if(isset($_SESSION['login']))
 				if($query)
 				{
 					echo "<script>alert('Escolha um livro para trocar com $nomeUsuario');</script>";
-					header("Location: ListaLivros.php");
+					header("Location: ./Views/View_ListaLivros");
 					
 				}
 				/*$data = date('Y/m/d');
@@ -63,6 +63,17 @@ if(isset($_SESSION['login']))
 else
 {
 	unset($_SESSION['login']);
-	header('location:index.php');
+	header('location:../index.php');
 }
 ?>
+
+
+
+
+
+
+
+
+
+
+

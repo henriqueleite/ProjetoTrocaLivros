@@ -1,7 +1,8 @@
 <?php
-require_once "Conexao.php";		
+require_once "../Dados/Conexao.php";	
 $conecta = mysql_connect("localhost", "root", ""); 
 mysql_select_db("trocalivro", $conecta);
+     	
 
 		$nome = $_POST['nome'];
 		$user = $_POST['login'];
@@ -10,9 +11,9 @@ mysql_select_db("trocalivro", $conecta);
 		$dataNascimento = $_POST['dataNascimento'];
 		$cpf = $_POST['cpf'];
 		$telefone = $_POST['telefone'];
-		$celular =$_POST['celular'];
+		$celular = $_POST['celular'];
 		$bairro = $_POST['bairro'];
-		$cidade =$_POST['cidade'];
+		$cidade = $_POST['cidade'];
 		$cep = $_POST['cep'];
 		$uf = $_POST['uf'];
 		$sexo = $_POST['sexo'];
@@ -104,7 +105,7 @@ mysql_select_db("trocalivro", $conecta);
 			echo "<script>alert('Ocorreu um Erro'); history.back();</script>";
 			}else{
 			echo "<script>alert('Cadastrado com sucesso!!');</script>";
-			echo "<meta http-equiv='refresh' content='0, url=Login.php'>"; 	
+			echo "<meta http-equiv='refresh' content='0, url=../Views/View_Login.php'>"; 	
 			}
 		}
 		}

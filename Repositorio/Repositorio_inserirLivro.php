@@ -1,6 +1,6 @@
 
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];

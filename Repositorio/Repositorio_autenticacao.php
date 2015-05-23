@@ -1,5 +1,6 @@
 <?php
 require_once "../Dados/Conexao.php";
+session_start();
 
 	$user = $_POST['usuario'];
 	$pwd  = $_POST['senha'];
@@ -21,9 +22,9 @@ require_once "../Dados/Conexao.php";
     $_SESSION["tipo"]      = $coluna['N_TIPO_USUARIO'];
 
       if ($_SESSION["tipo"] == 1) {
-          header("Location: PerfilAdministrador.php");
+          header("Location: ../Repositorio/PerfilAdministrador.php");
       }else{
-          header("Location: PerfilUsuario.php");
+          header("Location: ../Repositorio/PerfilUsuario.php");
       }
   
   } else {
