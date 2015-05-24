@@ -12,6 +12,7 @@ require_once "./Dados/Conexao.php";
   <title>Troca Livro</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <link rel="stylesheet" href="style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="CSS/index.css">
   <link rel="stylesheet" type="text/css" href="CSS/estilo.css">
   <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
   <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
@@ -27,7 +28,7 @@ require_once "./Dados/Conexao.php";
      <li><a href='Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
      <li><a href='Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
      <li class='last'><a href='Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
-     <li><form name="frmBusca" method="post" action="iew_Buscar.php" >
+     <li><form name="frmBusca" method="post" action="Views/View_Buscar.php" >
 
       <input type="text" name="palavra" />
       <input type="submit"  value="Buscar" />
@@ -82,7 +83,7 @@ require_once "./Dados/Conexao.php";
             <b>Usuario</b><?php echo "<a href='PerfilUsuario.php'>";?><span class="colorinfoLivro"> <?php echo $nomeUser;?></span></a><br>
             <b>Autor</b><a href=""><span class="colorinfoLivro"> <?php echo $autor;?></span></a><br>
             <b>Editora</b><a href=""><span class="colorinfoLivro"> <?php echo $editora;?></span></a><br>
-            <a href="funcaoSolicitarLivro.php?id=<?php echo $idlivro ?>">Solicitar</a>
+            <a href="Views/View_VisualizarLivro.php?id=<?php echo $idlivro ?>">Solicitar</a>
           </div><!--fim div infoLivro-->             
         </div><!--fim div box-livro-->
       <?php 

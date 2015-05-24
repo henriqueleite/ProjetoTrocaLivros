@@ -1,8 +1,8 @@
 ﻿<?php
-include("./Dados/Conexao.php");
+include("../Dados/Conexao.php");
 session_start();
 if(!isset($_POST['Cadastrar'])){
-	header("Location: ./Views/View_CadastroLivro.php");
+	header("Location: ../Views/View_CadastroLivro.php");
 }
 
     $msg = array();
@@ -41,9 +41,9 @@ if(!isset($_POST['Cadastrar'])){
       
     }
   }
-    if(empty($nome))
+    if(empty($nome)){
         $_SESSION['erro'] = "Campo obrigatório";
-    elseif (empty($autor)) {
+	}elseif (empty($autor)) {
       $_SESSION['erro1'] = "Campo obrigatório";
     }
     elseif (empty($editora)) {
@@ -61,12 +61,11 @@ if(!isset($_POST['Cadastrar'])){
         if($qtd){
           $_SESSION['cadastro'] = "Cadastrado com sucesso";
 		  unset($_SESSION['imprimir']);
-		  header("Location: ./Repositorio/PerfilUsuario.php"); 
+		  header("Location: ../Repositorio/PerfilUsuario.php"); 
         }
         else{
           $_SESSION['cadastro'] = "Erro ao cadastrar";
-		  header("Location:./Views/View_CadastroLivro.php);
-		}		
-    }
-	mysql_close($conecta);
+		  header("Location:../Views/View_CadastroLivro.php);
+		}
+	}
 ?>

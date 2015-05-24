@@ -74,13 +74,13 @@ if((isset ($_SESSION['login']) == true))
     </ul>
   </div><!--fim div container-->
 </div><!--fim div cssmenu-->
-
+<?php
   if (isset ($_POST['Solicitar'])){
-    echo "<script>alert('Solicitação enviada com sucesso!');</script>"; 
+    echo "<meta http-equiv='refresh' content='0, url=../Controles/Controle_funcaoSolicitarLivro.php?id=$codigolivro'>";  
   }
 
   if (isset ($_POST['alterar'])){
-    echo "<meta http-equiv='refresh' content='0, url=AltLivro.php'>"; ; 
+    echo "<meta http-equiv='refresh' content='0, url=AltLivro.php'>"; 
   }
 
   $query = mysql_query("SELECT livro.*, categoria_livro.V_GENERO, usuario.V_NOME FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE INNER JOIN usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE N_COD_LIVRO = '$codigolivro'");
@@ -105,7 +105,7 @@ if((isset ($_SESSION['login']) == true))
     <div style="height: 500px;" id='corpo'>
      <h2>Livro: <?php echo $titulo; ?></h2>
      <div style="height: 450px;" id="lateral">
-      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="<?php echo $foto; ?>"width="198" height="198"></p>
+      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>" width="198" height="198"></p>
     </div>
     <div id="centro">
       <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $titulo; ?></p>

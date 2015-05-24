@@ -14,7 +14,7 @@ $_SESSION["id_troca"] = $idtroca;
 $_SESSION["id_solicitado"] = $coluna['IDSOLICITADO'];
 $_SESSION["id_solicitante"] = $coluna['IDSOLICITANTE'];
 
-if(isset($_GET['Ver']) == 'Aceitar')
+if(isset($_POST['Ver']) == 'Aceitar')
 {
 
   $query = mysql_query("UPDATE troca SET V_STATUS = 'ACEITO' where  N_COD_TROCA = $idtroca");

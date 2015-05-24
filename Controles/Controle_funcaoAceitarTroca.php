@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once"./Dados/Conexao.php";
+require_once"../Dados/Conexao.php";
 if(isset($_GET['id']))
 {
 	$idLivroTroca = $_GET['id'];
@@ -8,12 +8,12 @@ if(isset($_GET['id']))
 	{		
 		$idLivroSolicitado = $_SESSION['idLivroSolicitado'];
 		$data = date('Y,m,d');		
-		$queryInsert = mysql_query("INSERT INTO troca(N_COD_LIVRO, N_COD_LIVRO_SOLICITANTE, D_DATA, V_STATUS) VAlUES($idLivroTroca, $idLivroSolicitado, '$data', 'Pendente')");
+		$queryInsert = mysql_query("INSERT INTO troca(N_COD_LIVRO, N_COD_LIVRO_SOLICITANTE, D_DATA, V_STATUS) VAlUES($idLivroSolicitado, $idLivroTroca , '$data', 'Pendente')");
 		echo $queryInsert;
 		if($queryInsert)
 		{		
 			echo "<script>alert('Solicitacao enviada');</script>";
-			echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
+			echo "<meta http-equiv='refresh' content='0, url=../Repositorio/PerfilUsuario.php'>";
 			//header("Location:PerfilUsuario.php");
 		}
 	}

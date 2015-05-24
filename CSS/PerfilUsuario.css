@@ -1,8 +1,8 @@
-@import url(http://fonts.googleapis.com/css?family=Slabo+27px);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 body{
   z-index: 1;
-  font-family: 'Slabo 27px', serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo{
@@ -20,13 +20,14 @@ body{
     -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
     z-index: 2;
     padding-bottom: 60px;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 #corpo h2{
     padding: 4px;
     padding-left: 12px;
     background-color: #133141;
     color: #9C9C9C;
-    font-family: 'Slabo 27px', serif;
+	font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
@@ -37,7 +38,7 @@ body{
     padding-left: 12px;
     background-color: #133141;
     color: #9C9C9C;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -49,7 +50,7 @@ body{
     padding-left: 12px;
     background-color: #133141;
     color: #9C9C9C;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -61,7 +62,7 @@ body{
     padding-left: 12px;
     background-color: #133141;
     color: #9C9C9C;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin: -7px -11px 11px -11px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -83,6 +84,7 @@ body{
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo .btn:hover {
@@ -93,6 +95,7 @@ body{
   background-image: -o-linear-gradient(top, #133d41, #133d41);
   background-image: linear-gradient(to bottom, #133d41, #133d41);
   text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo .btnPerfil {
@@ -111,6 +114,7 @@ body{
   font-size: 20px;
   padding: 5px 10px 5px 10px;
   text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo #lateral{
@@ -119,6 +123,7 @@ body{
   height: auto;
   margin-left: 1px;
   border-right: 1px solid rgba(140, 140, 140, 0.4);
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo #centro{
@@ -126,6 +131,7 @@ body{
   width: 733px;
   margin-left: 5x;
   z-index: 3;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo #centro p.info-central{
@@ -133,7 +139,7 @@ body{
     padding-bottom: 5px;
     text-transform: uppercase; 
     font-size: 15pt; 
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin-top:0px;
     margin-bottom:0px;
 }
@@ -152,14 +158,16 @@ body{
     border-bottom: 1px solid rgba(140, 140, 140, 0.4);
     text-transform: uppercase; 
     font-size: 12pt; 
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin-top:0px;
     margin-bottom:0px;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo #login_table .login{
   width: 340px;
   height: 30px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .hidden>div {
@@ -183,6 +191,7 @@ body{
   float: right;
   margin: 0px;
   margin-top: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo #centro .centro-esquerda a{
@@ -200,13 +209,14 @@ body{
   color: #ffffff;
   padding: 12px 10px 12px 10px;
   text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 #corpo .listar-livro{
     border: 2px solid black;
     width: 95%;
     margin: -10px 5px 15px 6px;
     height: 120px;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
 
 }
 
@@ -214,6 +224,7 @@ body{
   margin-top: -10px;
   width: 690px;
   margin-left: 2px;
+  font-family: 'Source Sans Pro', sans-serif;
 
 }
 
@@ -223,6 +234,7 @@ body{
     width: 70px;
     text-decoration: none;
     text-align: center;
+	font-family: 'Source Sans Pro', sans-serif;
 
 }
 
@@ -232,6 +244,7 @@ body{
   margin-left: 6px;
   padding-right: 90px;
   border: 2px solid black;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #corpo .listar-livro-exibicao td{
@@ -239,6 +252,7 @@ body{
     text-decoration: none;
     text-align: center;
     padding: 0px;
+	font-family: 'Source Sans Pro', sans-serif;
 
 }
 
@@ -290,7 +304,7 @@ body{
     width: 95%;
     margin: -10px 5px 15px 6px;
     height: 52px;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
 
 }
 
@@ -351,7 +365,7 @@ body{
     width: 95%;
     margin: -10px 5px 15px 6px;
     height: 100px;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Source Sans Pro', sans-serif;
     padding-bottom: 1px;
 
 }

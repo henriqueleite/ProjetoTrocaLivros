@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "./Dados/Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 if((!isset ($_SESSION['login']) == true))
 {
@@ -104,13 +104,13 @@ if (isset ($_POST['buscar'])){
           if ($ativo == "T") {
             $cor = "#eee";
             $descStatus = "Ativo";
-            $ImagemStatus = "Imagens/BloqueiaUsuario.png";
+            $ImagemStatus = "../Imagens/BloqueiaUsuario.png";
             $AcaoStatus = "Bloquear Usuário";
             $Form = "Bloquear";
           } else if ($ativo == "F") {
             $cor = "#CD5555";
             $descStatus = "Inativo";
-            $ImagemStatus = "Imagens/DesbloqueiaUsuario.png";
+            $ImagemStatus = "../Imagens/DesbloqueiaUsuario.png";
             $AcaoStatus = "Desbloquear Usuário";
             $Form = "Desbloquear";
           }
