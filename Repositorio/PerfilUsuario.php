@@ -64,7 +64,7 @@ $tipo = $_SESSION['tipo'];
 </div><!--fim div cssmenu-->
 
 <?php
-$query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
+$query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO,V_IDADE,D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
 $query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo'");
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
 
@@ -106,7 +106,7 @@ $email = $dados['V_EMAIL'];
 $cep = $dados['V_CEP'];
 $bairro = $dados['V_BAIRRO'];
 $datacadastro = $dados['D_DATA_CADASTRO'];
-//$idade = $dados['V_IDADE'];
+$idade = $dados['V_IDADE'];
 $datalogin = $dados['D_DATA_ULTIMO_LOGIN'];
 if ($dados['V_FOTO']) {
   $foto = $dados['V_FOTO'];
