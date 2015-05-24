@@ -64,7 +64,7 @@ $tipo = $_SESSION['tipo'];
 </div><!--fim div cssmenu-->
 
 <?php
-$query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO,V_IDADE,D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
+$query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, D_DATA_NASC,D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
 $query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo'");
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
 
@@ -85,7 +85,7 @@ $query11 = mysql_query("SELECT COUNT(*) FROM AJUDA WHERE N_COD_USUARIO_IE = '$co
 
 $query12 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
 INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
-INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND TROCA.V_STATUS = 'Aceito'");
+INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE (LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' OR LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo') AND TROCA.V_STATUS = 'ACEITO'");
 
 $mensagens = mysql_num_rows($query11);
 
@@ -106,17 +106,35 @@ $email = $dados['V_EMAIL'];
 $cep = $dados['V_CEP'];
 $bairro = $dados['V_BAIRRO'];
 $datacadastro = $dados['D_DATA_CADASTRO'];
-$idade = $dados['V_IDADE'];
+$datanascimento = $dados['D_DATA_NASC'];
 $datalogin = $dados['D_DATA_ULTIMO_LOGIN'];
 if ($dados['V_FOTO']) {
   $foto = $dados['V_FOTO'];
 }else{
   if ($sexo == 'F') {
-    $foto = "FotoPerfilUsuario/foto_padraoF.jpg";
+    $foto = "../FotoPerfilUsuario/foto_padraoF.jpg";
   } else {
-    $foto = "FotoPerfilUsuario/foto_padraoM.jpg";
+    $foto = "../FotoPerfilUsuario/foto_padraoM.jpg";
   }
 }
+
+
+$patternBr    = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)[0-9]{2}^";
+$patternMySQL = "^(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])^";
+		  
+$output = implode('/', array_reverse(explode('-', $datanascimento)));
+    
+    // Separa em dia, mês e ano
+list($dia, $mes, $ano) = explode('/', $output);
+    
+    // Descobre que dia é hoje e retorna a unix timestamp
+$hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+    // Descobre a unix timestamp da data de nascimento do fulano
+$nascimento = mktime( 0, 0, 0, $mes, $dia, $ano);
+    
+    // Depois apenas fazemos o cálculo já citado :)
+$idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
+
 
 $QuantidadeLivros = $Livros[0];
 $QuantidadeLivrosDesejados = $LivrosDesejados[0];
@@ -130,10 +148,11 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
     <h2>Perfil</h2>
       <div id='lateral'>
          <p ><img class="foto_usuario" src="<?php echo $foto; ?>"width="198" height="198"></p>
-         <form action="?go=salvarfoto" method="post" enctype="multipart/form-data" name="cadastro" >
-           Foto de exibição:<br />
-           <input style="width: 200px;" type="file" name="foto" /><br />
-           <input  type="submit" value="Mudar Foto" class="btnPerfil" id="btnPerfil">
+         <form action="?go=salvarfoto" method="post" enctype="multipart/form-data" name="form" class="form" id="form" >
+           <div class="upload">
+           <p>Mudar Foto</p>
+           		<input class="btn_foto" onchange="form.submit()" type="file" name="foto" /><br />
+           </div>
          </form>
          <input  type="submit" value="Editar Perfil" onclick="location.href='../Views/View_EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
          <div id='quantidaderegistro'>
@@ -270,7 +289,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
 
 
-    <form id="form2" name="form2" method="get" action="../Controles/Controle_Solicitacao.php">
+    <form id="form2" name="form2" method="POST" action="../Controles/Controle_Solicitacao.php">
       <h5 class="listar-solicitacoes">
       <table class="table-listar-solicitacoes">
         <tr class="listar-solicitacoes">
@@ -303,7 +322,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
 
 
-    <form id="form2" name="form2" method="get" action="../Controles/Controle_Solicitacao.php">
+    <form id="form2" name="form2" method="POST" action="../Controles/Controle_VerMensagemTroca.php">
       <h5 class="listar-solicitacoes">
       <table class="table-listar-solicitacoes">
         <tr class="listar-solicitacoes">
@@ -386,7 +405,7 @@ if (@$_GET['go'] == 'salvarfoto') {
           $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
  
           // Caminho de onde ficará a imagem
-          $caminho_imagem = "FotoPerfilUsuario/" . $nome_imagem;
+          $caminho_imagem = "../FotoPerfilUsuario/" . $nome_imagem;
  
       // Faz o upload da imagem para seu respectivo caminho
       move_uploaded_file($foto["tmp_name"], $caminho_imagem);
@@ -396,9 +415,9 @@ if (@$_GET['go'] == 'salvarfoto') {
       
       // Se os dados forem inseridos com sucesso
       if (!$sql){
-        echo "<script>alert('Usuário e senha não correspondem, tente novamente !! '); history.back();</script>";
+        echo "<script>alert('Erro ao atualizar foto !! '); history.back();</script>";
       }else{
-        echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>"; 
+        echo "<meta http-equiv='refresh' content='0, url=../Repositorio/PerfilUsuario.php'>"; 
       }
     }
   
