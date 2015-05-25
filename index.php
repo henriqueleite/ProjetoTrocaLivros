@@ -24,7 +24,7 @@ require_once "./Dados/Conexao.php";
   <div id='container'>
     <ul>
      <li><a href='#'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-     <li class='active'><a href='#'><span>ÍNICIO</span></a></li>
+     <li class='active'><a href='#'><span>УNICIO</span></a></li>
      <li><a href='Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
      <li><a href='Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
      <li class='last'><a href='Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
@@ -53,14 +53,8 @@ require_once "./Dados/Conexao.php";
 
 
   <div id='corpo'>
-    Corpo do Site</br>
-    Corpo do Site</br>
-    Corpo do Site</br>
-    Corpo do Site</br>
-    Corpo do Site</br>
-    Corpo do Site</br>
-    Corpo do Site</br>
-    Corpo do Site</br>
+   
+   <img src="books-reading-2974088-1920x1200.jpg" width="1210" height="550">
     <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
       <?php 
