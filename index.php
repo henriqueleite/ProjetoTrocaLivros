@@ -34,6 +34,7 @@ require_once "./Dados/Conexao.php";
       <input type="submit"  value="Buscar" />
     </li>
   </form>
+ 
 
   <?php
 
@@ -51,7 +52,7 @@ require_once "./Dados/Conexao.php";
   </div><!--fim div container-->
 </div><!--fim div cssmenu-->
 
-
+  
   <div id='corpo'>
    
    <img src="books-reading-2974088-1920x1200.jpg" width="1210" height="550">
