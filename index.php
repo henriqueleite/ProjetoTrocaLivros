@@ -18,13 +18,19 @@ require_once "./Dados/Conexao.php";
   <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 </script>
+  <script type="text/javascript">
+function atualizar(){
+  window.location.reload();
+}
+
+ </script>
 </head>
-<body>
+<body onload="setInterval('atualizar()',7000)">
  <div id='cssmenu'>
   <div id='container'>
     <ul>
      <li><a href='#'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-     <li class='active'><a href='#'><span>УNICIO</span></a></li>
+     <li class='active'><a href='#'><span>INICIO</span></a></li>
      <li><a href='Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
      <li><a href='Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
      <li class='last'><a href='Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
@@ -34,7 +40,7 @@ require_once "./Dados/Conexao.php";
       <input type="submit"  value="Buscar" />
     </li>
   </form>
- 
+
 
   <?php
 
