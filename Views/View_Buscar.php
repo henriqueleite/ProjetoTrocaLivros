@@ -152,6 +152,6 @@ if (isset($_POST["palavra"])) {
       </table>
   </div>
 
-  <?php include('rodape.php'); ?>
+  <?php include('View_rodape.php'); ?>
 </body>
 </html>
