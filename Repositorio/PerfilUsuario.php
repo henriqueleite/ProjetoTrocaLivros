@@ -394,7 +394,7 @@ if (@$_GET['go'] == 'salvarfoto') {
     $tamanho = 1600000;
  
       // Verifica se o arquivo é uma imagem
-      if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $foto["type"])){
+      if(!preg_match("/^image\/(gif|bmp|png|jpg|jpeg)$/", $foto["type"])){
          $error[1] = "Isso não é uma imagem.";
       } 
   
@@ -447,7 +447,7 @@ if (@$_GET['go'] == 'salvarfoto') {
     if (count($error) != 0) {
       foreach ($error as $erro) {
         echo $erro . "<br />";
-        echo "<script>alert('".$erro."!! '); history.back();</script>";
+        echo "<script>alert('".$erro."!! ');</script>";
       }
     }
   }

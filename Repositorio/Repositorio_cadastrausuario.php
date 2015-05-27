@@ -1,7 +1,7 @@
 <?php
 require_once "../Dados/Conexao.php";	
 $conecta = mysql_connect("localhost", "root", ""); 
-mysql_select_db("trocalivro", $conecta);
+mysql_select_db("trocalivro2", $conecta);
      	
 
 		$nome = strtoupper($_POST['nome']);

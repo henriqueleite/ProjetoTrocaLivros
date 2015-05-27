@@ -74,7 +74,7 @@ require_once "./Dados/Conexao.php";
             <a><img src="<?php echo $foto; ?>" width="100" height="150"></a>
           </div><!--fim div fotoLivro-->
           <div id="infoLivro">
-            <?php echo "<a href='VisualizarLivro.php?id=$idlivro'>"?><span class="tituloLivro"><?php echo $nomeLivro;?></span></a><br>
+            <?php echo "<a href='Views/View_VisualizarLivro.php?id=$idlivro'>"?><span class="tituloLivro"><?php echo $nomeLivro;?></span></a><br>
             <b>Usuario</b><?php echo "<a href='PerfilUsuario.php'>";?><span class="colorinfoLivro"> <?php echo $nomeUser;?></span></a><br>
             <b>Autor</b><a href=""><span class="colorinfoLivro"> <?php echo $autor;?></span></a><br>
             <b>Editora</b><a href=""><span class="colorinfoLivro"> <?php echo $editora;?></span></a><br>
