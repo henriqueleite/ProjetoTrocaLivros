@@ -35,6 +35,7 @@ if((isset ($_SESSION['login']) == true))
   <title>Troca Livro</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <link rel="stylesheet" href="style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="../CSS/VisualizarLivro.css">
   <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
@@ -138,8 +139,45 @@ if((isset ($_SESSION['login']) == true))
         ?>
       </td>
 
+	</form>
+      
 
-      <h2 style="margin-top: 10px;">Comentários</h2>
+	  <div class="comentarios">
+
+      	<h2 style="margin-top: 10px;">Comentários</h2>
+     <?php
+	 if(isset($_SESSION['codigo'])){
+	?>	 
+        <p>Comentário:</p>
+        <form method="post" action="../Repositorio/Repositorio_EnviarComentario.php">
+        <textarea name="comentario" id="comentario" required></textarea>
+        <input type="submit" value="Enviar Comentário"/>
+        </form>
+        <hr>
+     <?php } ?> 
+        <?php
+		$querycomentarios = mysql_query("SELECT COMENTARIO.*, usuario.V_NOME, usuario.V_FOTO FROM COMENTARIO inner join usuario on usuario.N_COD_USUARIO = comentario.N_COD_USUARIO_IE WHERE COMENTARIO.N_COD_LIVRO_IE = $codigolivro");
+		
+		while($consulta = mysql_fetch_array($querycomentarios)){
+			$fotousuario = $consulta["V_FOTO"];
+			$nomeusuario = $consulta["V_NOME"];
+			$comentario = $consulta["V_COMENTARIO"];	
+			$datacomentario = $consulta["D_DATA"];
+			
+			
+		?>
+		<TABLE>
+        	<ul class="tabela_comentarios">
+            	<li class="tabela_comentarios_foto"><img src="<?php echo $fotousuario ?>"/></li>
+            	<li class="tabela_comentarios_nome"><?php echo $nomeusuario ?> comentou:</li>
+                <li class="tabela_comentarios_data"><?php echo date("d/m/Y", strtotime($datacomentario)) ?></li>
+                <li class="tabela_comentarios_comentario"><?php echo $comentario ?></li>
+                <hr>
+            </ul>
+        </TABLE>
+		<?php } ?>
+
+      </div>
     </div>
 
 

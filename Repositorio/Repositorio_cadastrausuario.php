@@ -4,7 +4,7 @@ $conecta = mysql_connect("localhost", "root", "");
 mysql_select_db("trocalivro", $conecta);
      	
 
-		$nome = $_POST['nome'];
+		$nome = strtoupper($_POST['nome']);
 		$user = $_POST['login'];
 		$pwd = $_POST['senha'];
 		$email = $_POST['email'];

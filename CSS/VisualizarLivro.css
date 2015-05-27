@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+
+.comentarios p{
+	margin: 0px;
+	padding: 0px;
+	
+}
+
+.comentarios textarea{
+	width: 700px;	
+	height: 70px;
+}
+
+.comentarios input{
+
+}
+
+.tabela_comentarios{
+	
+}
+
+table{
+	margin: 0px;
+
+}
+
+.tabela_comentarios{
+	list-style-type: none;
+	margin: 0px;
+	width: 100%;
+	padding: 0px;
+}
+
+.tabela_comentarios li{
+	padding: 0px;
+}
+
+.tabela_comentarios_foto img{
+	width: 50px;
+	float: left;
+	margin: 0px;	
+}
+
+.tabela_comentarios_nome{
+	margin: 0px 0px 0px 52px;
+}
+
+.tabela_comentarios_comentario{
+	margin: 5px 0px 0px 52px;
+}
+
+.tabela_comentarios_data{
+	margin: -6px 0px 0px 52px;
+	font-size: 12px;
+	color: gray;
+}

@@ -1,13 +1,13 @@
 <?php
 
   
-    $titulo       = $_POST['titulo'];
-    $autor        = $_POST['autor'];
-    $editora      = $_POST['editora'];
+    $titulo       = strtoupper($_POST['titulo']);
+    $autor        = strtoupper($_POST['autor']);
+    $editora      = strtoupper($_POST['editora']);
     $estado       = $_POST['estado'];
     $genero       = $_POST['genero'];
     $ano          = $_POST['ano'];
-    $observacao   = $_POST['observacao'];
+    $observacao   = strtoupper($_POST['observacao']);
     $foto         = $_FILES["foto"];
 
     $error;

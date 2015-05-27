@@ -11,19 +11,26 @@ $conecta = mysql_connect("localhost", "root", "");
 mysql_select_db("trocalivro", $conecta);
     
 
-		$nome = $_POST['nome'];
+		$nome = strtoupper($_POST['nome']);
 		$user = $_POST['login'];
 		$pwd = $_POST['senha'];
 		$email = $_POST['email'];
-		$idade = $_POST['idade'];
+		$dataNascimento = $_POST['dataNascimento'];
 		$cpf = $_POST['cpf'];
 		$telefone = $_POST['telefone'];
-		$celular =$_POST['celular'];
+		$celular = $_POST['celular'];
 		$bairro = $_POST['bairro'];
-		$cidade =$_POST['cidade'];
+		$cidade = $_POST['cidade'];
 		$cep = $_POST['cep'];
 		$uf = $_POST['uf'];
-
+		$sexo = $_POST['sexo'];
+		
+		
+		$patternBr    = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)[0-9]{2}^";
+        $patternMySQL = "^(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])^";
+		  
+        $output = implode('/', array_reverse(explode('/', $dataNascimento)));
+            
 		function validaCPF($cpf){	
 			// Verifiva se o número digitado contém todos os digitos
 		    $cpf = str_pad(ereg_replace('[^0-9]', '', $cpf), 11, '0', STR_PAD_LEFT);
@@ -101,7 +108,7 @@ mysql_select_db("trocalivro", $conecta);
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
 
-			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', V_IDADE = '$idade', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf' where N_COD_USUARIO = $codigo");		
+			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', D_DATA_NASC = '$output', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf' where N_COD_USUARIO = $codigo");		
 
 			if (!$query2) {
 			echo "<script>alert('Erro'); history.back();</script>";

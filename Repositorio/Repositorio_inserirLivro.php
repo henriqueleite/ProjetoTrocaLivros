@@ -15,9 +15,6 @@ $observacao = strtoupper($_POST['observacao']);
 $foto = $_FILES["foto"];
 
 
-
-    //echo "<script>alert(".$foto["name"]."); history.back();</script>";
-
     $error = "Sem Erro";
     $caminho_imagem = '';
   // Recupera os dados dos campos
