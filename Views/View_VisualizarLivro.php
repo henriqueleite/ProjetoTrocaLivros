@@ -81,7 +81,7 @@ if((isset ($_SESSION['login']) == true))
   }
 
   if (isset ($_POST['alterar'])){
-    echo "<meta http-equiv='refresh' content='0, url=AltLivro.php'>"; 
+    echo "<meta http-equiv='refresh' content='0, url=View_AltLivro.php'>"; 
   }
 
   $query = mysql_query("SELECT livro.*, categoria_livro.V_GENERO, usuario.V_NOME FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE INNER JOIN usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE N_COD_LIVRO = '$codigolivro'");

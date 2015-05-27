@@ -8,9 +8,6 @@ if((!isset ($_SESSION['login']) == true))
   unset($_SESSION['login']);
   header('location:../index.php');
 }
-
-$ID_SOLICITANTE = $_SESSION['id_solicitante'];
-$ID_SOLICITADO = $_SESSION['id_solicitado'];
 $mensagem = '';
 $codigo = $_SESSION['codigo'];
 
@@ -113,7 +110,7 @@ $codigo = $_SESSION['codigo'];
 											INNER JOIN usuario AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
 											INNER JOIN usuario AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
 											INNER JOIN usuario as USUARIO_MENSAGEM ON USUARIO_MENSAGEM.N_COD_USUARIO = mensagens_troca.N_USUARIO_DE 
-											WHERE mensagens_troca.N_COD_TROCA_IE = ".$_SESSION['id_troca'].";");
+											WHERE mensagens_troca.N_COD_TROCA_IE = ".$_SESSION['id_troca']." order by mensagens_troca.n_cod_mensagens_troca;");
 					while ($consulta = mysql_fetch_array($query)){
 					$mensagem = $consulta["V_MENSAGEM"];	
 					$usuario = $consulta["V_NOME"];

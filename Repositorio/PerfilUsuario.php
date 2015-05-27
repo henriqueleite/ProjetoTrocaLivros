@@ -30,6 +30,28 @@ $tipo = $_SESSION['tipo'];
     });
     });
     </script>
+   <!-- <script type="text/javascript">
+    function atualizar(){
+
+    $.ajax({
+      url:"PerfilUsuario.php",
+      method: "GET"
+    })
+    .done(function(Data){
+      debugger;
+      $("#corpo").html(Data);
+      
+      setTimeout(function () {
+        atualizar();
+      },15000);
+    });
+}
+
+$(function () {
+  //atualizar();
+})
+
+    </script>-->
 </head>
 <body>
  <div id='cssmenu'>
@@ -217,7 +239,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
       <h5 class="listar-livro">
       <table class="table-listar-livro">
         <tr class="listar-livro-tr">
-          <td class="listar-livro-foto"><img src="<?php echo $foto; ?>"width="100" height="100"></td>
+          <td class="listar-livro-foto"><img src="../<?php echo $foto; ?>"width="100" height="100"></td>
           <td class="listar-livro-titulo"><?php echo $titulo; ?></td> <br>
           <td class="listar-livro-autor"><?php echo $autor;?></td>
           <td class="listar-livro-genero"><?php echo $editora;?></td>

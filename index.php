@@ -18,14 +18,8 @@ require_once "./Dados/Conexao.php";
   <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 </script>
-  <script type="text/javascript">
-function atualizar(){
-  window.location.reload();
-}
-
- </script>
 </head>
-<body onload="setInterval('atualizar()',1000)">
+<body >
  <div id='cssmenu'>
   <div id='container'>
     <ul>
@@ -59,7 +53,7 @@ function atualizar(){
 </div><!--fim div cssmenu-->
 
   
-  <div id='corpo'>
+  <div id='corpo' onload="setInterval('atualizar()',1000)">
    
    <img src="books-reading-2974088-1920x1200.jpg" width="1210" height="550">
     <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
