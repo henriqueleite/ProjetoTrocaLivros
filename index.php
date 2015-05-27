@@ -25,7 +25,7 @@ function atualizar(){
 
  </script>
 </head>
-<body onload="setInterval('atualizar()',7000)">
+<body onload="setInterval('atualizar()',1000)">
  <div id='cssmenu'>
   <div id='container'>
     <ul>
