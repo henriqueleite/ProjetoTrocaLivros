@@ -67,7 +67,7 @@ $foto = $_FILES["foto"];
           $caminho_imagem = "FotoLivroUsuario/" . $nome_imagem;
  
       // Faz o upload da imagem para seu respectivo caminho
-      move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+      move_uploaded_file($foto["tmp_name"], "../".$caminho_imagem);
 
     }
   }else{

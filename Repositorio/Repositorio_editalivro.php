@@ -1,6 +1,9 @@
 <?php
-
-  
+session_start();
+require_once("../Dados/Conexao.php");
+  if(isset($_POST['btnSalvar']))
+  {
+    $codigolivro = $_SESSION['codigoLivroAlt'];
     $titulo       = strtoupper($_POST['titulo']);
     $autor        = strtoupper($_POST['autor']);
     $editora      = strtoupper($_POST['editora']);
@@ -8,7 +11,7 @@
     $genero       = $_POST['genero'];
     $ano          = $_POST['ano'];
     $observacao   = strtoupper($_POST['observacao']);
-    $foto         = $_FILES["foto"];
+    /*$foto         = $_FILES["foto"];
 
     $error;
     // Recupera os dados dos campos
@@ -60,15 +63,16 @@
         $caminho_imagem = "FotoLivroUsuario/" . $nome_imagem;
    
         // Faz o upload da imagem para seu respectivo caminho
-        move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+        move_uploaded_file($foto["tmp_name"], "../".$caminho_imagem);
       }
     }
-
-    if($caminho_imagem == ""){
+    else
+    {
       $queryLivro     = mysql_query("SELECT V_FOTO FROM LIVRO WHERE N_COD_LIVRO =".$codigolivro." ");  
       $coluna         = mysql_fetch_array($queryLivro);
       $caminho_imagem = $coluna['V_FOTO'];
-    }
+    }*/
+
 
     if ($titulo == ""){
       echo "<script>alert('Preencha o campo Titulo'); history.back(); </script>";
@@ -84,19 +88,24 @@
       echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
     }else{
 
-      $query2 = mysql_query("UPDATE LIVRO SET V_TITULO ='".$titulo."', V_AUTOR ='".$autor."', V_EDITORA  ='".$editora."', V_ESTADO_LIVRO ='".$estado."', V_OBSERVACAO ='".$observacao."', N_COD_CATEGORIA_IE ='".$genero."', V_ANO ='".$ano."', V_FOTO ='".$caminho_imagem."' WHERE N_COD_LIVRO ='".$codigolivro."'");
+      $query2 = mysql_query("UPDATE LIVRO SET V_TITULO ='$titulo', V_AUTOR ='$autor', V_EDITORA  ='$editora', V_ESTADO_LIVRO ='$estado', V_OBSERVACAO ='$observacao', N_COD_CATEGORIA_IE ='$genero', V_ANO ='$ano' WHERE N_COD_LIVRO ='$codigolivro'");
 
 
       if (!$query2) {
         echo "<script>alert('Falha no cadastro!!'); history.back();</script>";
         die();
       }else{
-        echo "<script>alert('Livro alterado com sucesso!!');</script>"; 
-        echo "<meta http-equiv='refresh' content='0, url=PerfilUsuario.php'>";
+        echo "<script>alert('Livro alterado com sucesso!!');</script>";         
+        echo "<meta http-equiv='refresh' content='0, url=../Views/View_VisualizarLivro.php'>";
         die();
       }
   
   }
 
-
+}
+if(isset($_POST["btnCancelar"]))
+{
+    header("Location: ../Views/View_VisualizarLivro.php");  //não está funcionando
+    die();
+  }
 ?>
