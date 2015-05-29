@@ -2,7 +2,7 @@
 require_once "../Dados/Conexao.php";	
 
 
-		$nome = $_POST['nome'];
+		$nome = strtoupper($_POST['nome']);
 		$user = $_POST['login'];
 		$pwd = $_POST['senha'];
 		$email = $_POST['email'];
