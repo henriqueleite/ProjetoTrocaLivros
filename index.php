@@ -84,7 +84,7 @@ require_once "./Dados/Conexao.php";
       <?php 
       }
       ?>
-      <img src="C:\xampp\htdocs\ProjetoTrocaLivros\Imagens\LogoTrocaLivro.png">
+
 </div>
 <?php include('Views/View_rodape.php'); ?>
 </body>

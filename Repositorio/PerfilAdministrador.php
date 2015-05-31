@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 if((!isset ($_SESSION['login']) == true))
 {
@@ -49,9 +49,9 @@ $tipo = $_SESSION['tipo'];
     	<h2>Painel Administrativo</h2>
 
     
-            <input style="width: 270px; height: 100px; margin-left: 70px; margin-top: 250px;" type="submit" value="GERENCIAR USUÁRIOS" class="btn" id="btn" onclick="javascript: location.href='GerenciarUsuario.php';">
+            <input style="width: 270px; height: 100px; margin-left: 70px; margin-top: 250px;" type="submit" value="GERENCIAR USUÁRIOS" class="btn" id="btn" onclick="javascript: location.href='../Controles/Controle_GerenciarUsuario.php';">
             <input style="width: 270px; height: 100px; margin: 0 em auto;" type="submit" value="EVENTOS / CAMPANHAS" class="btn" id="btn">
-            <input style="width: 270px; height: 100px; margin: 0 em auto;" type="submit" value="SUPORTE" class="btn" id="btn" onclick="javascript: location.href='Suporte.php';">
+            <input style="width: 270px; height: 100px; margin: 0 em auto;" type="submit" value="SUPORTE" class="btn" id="btn" onclick="javascript: location.href='../Views/View_Suporte.php';">
 
     </div>
 

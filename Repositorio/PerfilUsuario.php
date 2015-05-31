@@ -201,6 +201,22 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
     </table>
 
     <?php
+    if (mysql_num_rows($query8) <= 0){
+    ?>
+
+       <form>
+        <h5 class="listar-livro">
+          <table class="table-listar-livro-sem-registro">
+            <tr class="listar-livro-tr">
+              <td class="listar-livro-sem-registro"><p>Nenhum registro</p></td>
+            </tr>
+          </table>
+        </h5>
+      </form>
+
+    <?php
+    }else{
+
     while ($linha=mysql_fetch_array($query8)){
       $codigolivro = $linha["N_COD_LIVRO"];
       $titulo= $linha['V_TITULO']; 
@@ -231,7 +247,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
       </form>
 
 
-      <?php } ?>
+      <?php } 
+    }?>
 
       <h4 class="centro-esquerda-desejados"><a href="../Views/View_CadastroLivroDesejado.php">Cadastrar Livro</a><h4>
         <h2 class="MeusLivros-desejados">Meus Livros Desejados</h2>
@@ -247,9 +264,22 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
           <td> </td>
         </table>
 
-
-
         <?php
+          if (mysql_num_rows($query9) <= 0){
+
+        ?>
+
+          <form id="form2" name="form2" method="post" action="">
+            <h5 class="listar-livro-desejados">
+              <table class="table-listar-livro-desejados-sem-registro">
+                <tr class="listar-livro-tr-desejados">
+                  <td class="listar-livro-desejados-sem-registro"><p>Nenhum Registro</p></td> <br>
+                </tr>
+              </table>
+            </h5>
+          </form>
+        <?php
+      }else{
         while ($linhadesejado=mysql_fetch_array($query9)){
           $codigolivrodesejado = $linhadesejado["N_COD_LIVRO_DESEJADO"];
           $titulodesejado= $linhadesejado['V_TITULO']; 
@@ -274,11 +304,28 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
             </h5>
           </form>
 
-          <?php } ?>
+          <?php }
+          } ?>
 
           <h2 class="Solicitacoes">Solicitações</h2>
 
           <?php
+            if (mysql_num_rows($query10) <= 0){
+
+          ?>
+
+
+            <form>
+              <h5 class="listar-solicitacoes">
+                <table class="table-listar-solicitacoes">
+                  <tr class="listar-solicitacoes">
+                    <td class="listar-solicitacoes-sem-registro"><p>Nenhum Registro</p></td>
+                  </tr>
+                </table>
+              </h5>
+            </form>
+          <?php
+        }else{
           while ($linhasolicitacao=mysql_fetch_array($query10)){
             $codigosolicitacao = $linhasolicitacao["N_COD_TROCA"];
             $foto_solicitado = $linhasolicitacao["FOTO_SOLICITADO"];
@@ -293,11 +340,11 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
               <h5 class="listar-solicitacoes">
                 <table class="table-listar-solicitacoes">
                   <tr class="listar-solicitacoes">
-                    <td class="listar-solicitacoes-foto-solicitado"><img src="<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
+                    <td class="listar-solicitacoes-foto-solicitado"><img src="../<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
                     <td class="listar-solicitacoes-foto-troca"><img src="../Imagens/Troca.png"width="50" height="50"></td>
-                    <td class="listar-solicitacoes-foto-solicitante"><img src="<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
+                    <td class="listar-solicitacoes-foto-solicitante"><img src="../<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
                     <td class="listar-livro-solicitacoes-usuario-solicitado"><?php echo $usuario_solicitado;?></td>
-                    <td class="listar-livro-solicitacoes-usuario-solicitante"><?php echo $usuario_solicitante;?></td>
+                    <td class="listar-livro-solicitacoes-usuario-solicitante">STATUS: AGUARDANDO</td>
                     <td><input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" ></td>
                     <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Aceitar" /></td>
                     <td class="listar-livro-solicitacoes-recusar"><input type="submit" name="Ver"  id="Ver"   value="Recusar" /></td>
@@ -306,12 +353,27 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
               </h5>
             </form>
 
-            <?php } ?>
+            <?php }
+            } ?>
 
 
             <h2 class="Solicitacoes">Trocas em Andamento</h2>
+            <?php
+              if (mysql_num_rows($query12) <= 0){
+            ?>
+
+              <form>
+                <h5 class="listar-solicitacoes">
+                  <table class="table-listar-solicitacoes">
+                    <tr class="listar-solicitacoes">
+                      <td class="listar-solicitacoes-foto-sem-registro">Nenhum Registro</td>
+                    </tr>
+                  </table>
+                </h5>
+              </form>
 
             <?php
+          }else{
             while ($linhasolicitacao=mysql_fetch_array($query12)){
               $codigosolicitacao = $linhasolicitacao["N_COD_TROCA"];
               $foto_solicitado = $linhasolicitacao["FOTO_SOLICITADO"];
@@ -338,7 +400,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
                 </h5>
               </form>
 
-              <?php } ?>
+              <?php } 
+              } ?>
 
 
             </div>

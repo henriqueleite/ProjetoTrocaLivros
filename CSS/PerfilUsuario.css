@@ -371,7 +371,7 @@ body{
 }
 
 #corpo .table-listar-solicitacoes{
-  width: 95%;
+  width: 100%;
   margin-left: 2px;
   margin-top: -1px;
 
@@ -453,4 +453,32 @@ div.upload {
 div.upload p{
 	margin: 3px 0px 0px 40px;
 	overflow: hidden;
+}
+
+
+.listar-livro-sem-registro{
+  width: 100%;
+  height: 110px;
+  margin: 15px 0px 0px 0px;
+
+}
+
+#corpo .table-listar-livro-sem-registro{
+  margin-top: 0px;
+  width: 690px;
+  margin-left: 2px;
+  text-align: center;
+
+}
+
+.listar-livro-desejados-sem-registro{
+  margin-top: 10px;
+}
+
+.table-listar-livro-desejados-sem-registro{
+  margin-top: -18px;
+  width: 690px;
+  margin-left: 3spx;
+  text-align: center;
+
 }
