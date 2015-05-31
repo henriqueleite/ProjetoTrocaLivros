@@ -1,4 +1,4 @@
- <div class="chat-box" >
+ <div class="chat-box" id="chat-box" >
            <?php
           $query = mysql_query("SELECT mensagens_troca.*, USUARIO_MENSAGEM.V_NOME, USUARIO_MENSAGEM.N_COD_USUARIO, USUARIO_MENSAGEM.V_FOTO, mensagens_troca.D_DATA_MENSAGEM from mensagens_troca INNER JOIN troca ON troca.N_COD_TROCA = mensagens_troca.N_COD_TROCA_IE
                       INNER JOIN livro AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO

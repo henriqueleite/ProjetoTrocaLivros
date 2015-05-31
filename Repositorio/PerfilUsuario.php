@@ -365,11 +365,11 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
           if (!empty($foto["name"])) {
 
     // Largura máxima em pixels
-            $largura = 1920;
+            $largura = 3000;
     // Altura máxima em pixels
-            $altura = 1080;
+            $altura = 3000;
     // Tamanho máximo do arquivo em bytes
-            $tamanho = 1600000;
+            $tamanho = 160000000;
 
       // Verifica se o arquivo é uma imagem
             if(!preg_match("/^image\/(gif|bmp|png|jpg|jpeg)$/", $foto["type"])){
