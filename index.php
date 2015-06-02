@@ -25,7 +25,7 @@ require_once "./Dados/Conexao.php";
     <ul>
      <li><a href='#'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
      <li class='active'><a href='#'><span>INICIO</span></a></li>
-     <li><a href='Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
+     <li><a href='Views/View_ComoFunciona.php'><span>COMO FUNCIONA</span></a></li>
      <li><a href='Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
      <li class='last'><a href='Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
      <li><form name="frmBusca" method="post" action="Views/View_Buscar.php" >

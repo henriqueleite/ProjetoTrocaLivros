@@ -39,7 +39,7 @@ if (isset ($_POST['excluir']))
  else
  {
   echo "<script>alert('Erro ao excluir livro!');</script>";
- }
+}
 }
 
 ?>
@@ -47,16 +47,39 @@ if (isset ($_POST['excluir']))
 <head>
   <title>Troca Livro</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <link rel="stylesheet" href="style.css" media="all" />
+  <!--<link rel="stylesheet" href="style.css" media="all" />-->
   <link rel="stylesheet" type="text/css" href="../CSS/VisualizarLivro.css">
   <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
-</script>
 
+  <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../jquery.rating.js"></script>
+  <script type="text/javascript">
+    jQuery(function(){
+      jQuery('form.rating').rating();
+    });
+  </script>
+  
+  <style type="text/css">
+    .rating{clear: both; cursor: pointer; display: block; width: 100px;}
+    .rating:after{content: '.'; display: block; height: 0;width: 0;clear: both; visibility: hidden;}
+    .cancel, .star {float: left; width: 17px;height: 15px;overflow: hidden;text-indent: -999em;cursor: pointer; }
 
+    .star,
+    .star a {background: url(../star.gif) no-repeat 0 0px;}
+    .star a { display: block; width: 100%; height: 100%; background-position: 0 0px; }
+
+    div.rating div.on a { background-position: 0 -16px;}
+    div.rating div.hover a, div.rating div a:hover { background-position: 0 -32px; }
+
+    div.done, div.done a { cursor: default; }
+
+    #votosComputados{font-family: sans-serif; font-size: 12px;}
+  </style>
 </head>
+
 <body>
   <div id='cssmenu'>
     <div id='container'>
@@ -118,9 +141,12 @@ while($linha=mysql_fetch_array($query)){
 <form id="form2" name="form2" method="post" action="">
   <div style="height: 500px;" id='corpo'>
    <h2>Livro: <?php echo $titulo; ?></h2>
-   <div style="height: 450px;" id="lateral">
-    <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>" width="198" height="198"></p>
+   <div style="height: 210px;" id="lateral">
+    <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>" width="198" height="198"></p>  
+
   </div>
+
+
   <div id="centro">
     <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $titulo; ?></p>
     <p style="text-transform: uppercase; font-size: 10pt; margin-bottom:0px; margin-top: 0px;">Dono: <?php echo $nomeusuario; ?></p>
@@ -166,6 +192,40 @@ while($linha=mysql_fetch_array($query)){
       <textarea name="comentario" id="comentario" required></textarea>
       <input type="submit" value="Enviar Comentário"/>
     </form>
+
+
+
+
+    <!-- Avaliação por estrelas-->
+    
+    <?php
+    $rs = mysql_query("SELECT V_VOTOS, V_PONTOS FROM comentario inner join livro on livro.N_COD_LIVRO = comentario.N_COD_LIVRO_IE WHERE N_COD_LIVRO_IE = $codigolivro");
+    $rf = mysql_fetch_array($rs);
+    $r = 0.00;
+    if($rf['V_VOTOS'] != 0)
+    {
+      $r = number_format($rf['V_VOTOS'] / $rf['V_PONTOS'],2,'.','.');
+    }
+    ?>
+    <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php">
+      <input type="hidden" name="valor" value="<?php echo $codigolivro; ?>">                            
+      <select id="r1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </form>
+    <div id="votosComputados">
+      <?php echo "Pontuação: ". $r."/5 (".$rf['V_VOTOS']." votos)"; ?>
+    </div><!--fim div votosComputados-->  
+
+    <!--termina a avaliação por estrelas-->
+
+
+
+
     <hr>
     <?php } ?> 
     <?php
@@ -196,6 +256,8 @@ while($linha=mysql_fetch_array($query)){
 
 
  <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >
+
+ 
 
 
 </div>

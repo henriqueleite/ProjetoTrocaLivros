@@ -24,7 +24,6 @@
   echo "<li style='float: right' class='right'><a href='./Views/View_CadastroUsuario.php'><span>CADASTRAR-SE</span></a></li>";
 }
 ?> 
-
     </ul>
   </div><!--fim div container-->
 </div><!--fim div cssmenu-->
