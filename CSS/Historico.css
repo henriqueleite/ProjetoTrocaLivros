@@ -1,0 +1,24 @@
+#meio{ 
+  width: 960px;
+  height: auto;
+  display: table;
+  position: relative;
+  min-height: 100%;
+  background-color: #FFF;
+  border-radius: 9px;
+  margin: 30px auto 100px auto;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+}
+.tabela
+{
+	border-collapse: collapse;
+}
+.tabela tr td
+{
+	border: 1px solid #ccc;
+	width: 200px;
+}
+

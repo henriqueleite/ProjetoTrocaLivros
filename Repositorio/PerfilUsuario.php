@@ -155,6 +155,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
      </div>
    </form>
    <input  type="submit" value="Editar Perfil" onclick="location.href='../Views/View_EditarUsuario.php'" class="btnPerfil" id="btnPerfil"> 
+   <input  type="submit" value="Historico de Trocas" onclick="location.href='../Views/View_Historico.php'" class="btnPerfil" id="btnHistorico">
    <div id='quantidaderegistro'>
     <p class='info-lateral'>Livros Publicados: <?php echo $QuantidadeLivros; ?> </p>
     <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
