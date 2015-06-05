@@ -52,9 +52,9 @@ if (isset ($_POST['excluir']))
   <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
-
   <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
   <script type="text/javascript" src="../jquery.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="../jquery.rating.js"></script>
   <script type="text/javascript">
     jQuery(function(){
@@ -143,10 +143,7 @@ while($linha=mysql_fetch_array($query)){
    <h2>Livro: <?php echo $titulo; ?></h2>
    <div style="height: 210px;" id="lateral">
     <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>" width="198" height="198"></p>  
-
   </div>
-
-
   <div id="centro">
     <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $titulo; ?></p>
     <p style="text-transform: uppercase; font-size: 10pt; margin-bottom:0px; margin-top: 0px;">Dono: <?php echo $nomeusuario; ?></p>
@@ -181,6 +178,7 @@ while($linha=mysql_fetch_array($query)){
   </form>
 
 
+
   <div class="comentarios">
 
    <h2 style="margin-top: 10px;">Comentários</h2>
@@ -192,19 +190,15 @@ while($linha=mysql_fetch_array($query)){
       <textarea name="comentario" id="comentario" required></textarea>
       <input type="submit" value="Enviar Comentário"/>
     </form>
-
-
-
-
-    <!-- Avaliação por estrelas-->
-    
+  <!-- Avaliação por estrelas-->
+    <p>Avaliação desse livro:</p>
     <?php
     $rs = mysql_query("SELECT V_VOTOS, V_PONTOS FROM comentario inner join livro on livro.N_COD_LIVRO = comentario.N_COD_LIVRO_IE WHERE N_COD_LIVRO_IE = $codigolivro");
     $rf = mysql_fetch_array($rs);
-    $r = 0.00;
+  
     if($rf['V_VOTOS'] != 0)
     {
-      $r = number_format($rf['V_VOTOS'] / $rf['V_PONTOS'],2,'.','.');
+      $r = number_format($rf['V_PONTOS'] / $rf['V_VOTOS'],2,'.','.');
     }
     ?>
     <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php">
@@ -222,6 +216,10 @@ while($linha=mysql_fetch_array($query)){
     </div><!--fim div votosComputados-->  
 
     <!--termina a avaliação por estrelas-->
+
+
+
+   
 
 
 
