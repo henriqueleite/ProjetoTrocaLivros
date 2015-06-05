@@ -6,12 +6,12 @@ if(isset($_POST['btfinalizar']))
 {
 	$idtroca = $_SESSION["id_troca"];
 	$data = date("Y-m-d H:i:s");
-	$idLivroSolicitado = $_SESSION['codigoLivroAlt'];
+	//$idLivroSolicitado = $_SESSION['codigoLivroAlt'];
 	$queryFinalizar = mysql_query("UPDATE troca SET B_ATIVO = 'F', D_DATA_FINALIZOU = '$data', V_STATUS = 'Finalizado' WHERE N_COD_TROCA = $idtroca");
 	if($queryFinalizar)
 	{
 		echo "<script>alert('Troca Finalizada');</script>";
-		echo "<script>location.href = 'PerfilUsuario.php'</script>";
+		echo "<script>location.href = '../Views/View_AvaliacaoTroca.php'</script>";
 
 	}
 	else
