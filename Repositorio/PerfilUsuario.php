@@ -72,9 +72,10 @@ $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_I
 $query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND troca.V_STATUS = 'Pendente'");
 
 $query5 = mysql_query("SELECT COUNT(*) FROM TROCA INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND V_STATUS = 'Pendente'");
-$query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND B_ATIVO = 'F'");
 
-$query8 = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE WHERE N_COD_USUARIO_IE = '$codigo'");
+$query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND troca.B_ATIVO = 'F'");
+
+$query8 = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE WHERE livro.B_ATIVO = 'T' AND N_COD_USUARIO_IE = '$codigo'");
 
 $query9 = mysql_query("SELECT N_COD_LIVRO_DESEJADO, V_TITULO, D_ANO, N_COD_USUARIO_IE, N_COD_CATEGORIA_IE, categoria_livro.V_GENERO FROM livro_desejado INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro_desejado.N_COD_CATEGORIA_IE where N_COD_USUARIO_IE = '$codigo'");
 
@@ -290,20 +291,25 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 
 
 
-          <form id="form2" name="form2" method="post" action="">
+          
             <h5 class="listar-livro-desejados">
               <table class="table-listar-livro-desejados">
                 <tr class="listar-livro-tr-desejados">
                   <td class="listar-livro-titulo-desejados"><?php echo $titulodesejado; ?></td> <br>
                   <td class="listar-livro-ano-desejados"><?php echo $anodesejado;?></td>
                   <td class="listar-livro-genero-desejados"><?php echo $generodesejado;?></td>
+                  <form id="form2" name="form2" method="post" action="../Views/View_EditarLivroDesejado.php">
                   <input type='hidden' name="codigolivrodesejado" id="codigolivrodesejado" value="<?php echo $codigolivrodesejado;?>" >
                   <td class="listar-livro-alterar-desejados"><input type="submit" name="Ver"  id="Ver"   value="Alterar" /></td>
+                  </form>
+                  <form id="form3" name="form3" method="post" action="../Repositorio/Repositorio_ExcluirLivroDesejado.php">
+                  <input type='hidden' name="codigolivrodesejado" id="codigolivrodesejado" value="<?php echo $codigolivrodesejado;?>" >
                   <td class="listar-livro-deletar-desejados"><input type="submit" name="Ver"  id="Ver"   value="Excluir" /></td>
+                  </form>
                 </tr>
               </table>
             </h5>
-          </form>
+  
 
           <?php }
           } ?>

@@ -59,7 +59,7 @@ require_once "./Dados/Conexao.php";
     <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
       <?php 
-      $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO < 100 ORDER BY rand() LIMIT 20");
+      $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO < 100 and livro.B_ATIVO = 'T' ORDER BY rand() LIMIT 20");
       while ($lista = mysql_fetch_array($query))
       {
          $idlivro = $lista['N_COD_LIVRO'];

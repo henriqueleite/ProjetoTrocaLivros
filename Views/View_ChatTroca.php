@@ -13,6 +13,7 @@ $codigo = $_SESSION['codigo'];
 
 
 
+
 ?>
 <html>
 <head>
@@ -23,7 +24,6 @@ $codigo = $_SESSION['codigo'];
 	<link rel="stylesheet" type="text/css" href="../CSS/ChatTroca.css">
 	<link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
 	<link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
-	<script type='text/javascript' src='../js/chat.js'></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 </script>
 
@@ -34,10 +34,10 @@ $codigo = $_SESSION['codigo'];
 			url:"../Controles/Controle_Chat.php",
 			method: "GET"
 		})
-		.done(function(Data);
+		.done(function(Data){
 			$("#chat-box").html(Data);
 
-			setTimeout(atualizar();,15000);
+			setTimeout(atualizar,10000);
 		});
 	}
 
@@ -47,7 +47,7 @@ $codigo = $_SESSION['codigo'];
 
 </script>
 </head>
-<body onload="setInterval('atualizar()',1000)">
+<body onload="setInterval('atualizar',1000)">
 	<div id='cssmenu'>
 		<div id='container'>
 			<ul>
@@ -187,11 +187,10 @@ $codigo = $_SESSION['codigo'];
 <?PHP 
 $query2 = mysql_query("SELECT (LIVRO_SOLICITADO.V_FOTO) AS FOTOSOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTOSOLICITANTE, (LIVRO_SOLICITADO.V_TITULO) AS LIVRONOMESOLICITADO, 
 	(LIVRO_SOLICITANTE.V_TITULO) AS LIVRONOMESOLICITANTE 
-	FROM mensagens_troca 
-	INNER JOIN troca ON troca.N_COD_TROCA = mensagens_troca.N_COD_TROCA_IE
+	FROM troca 
 	INNER JOIN livro AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = troca.N_COD_LIVRO
 	INNER JOIN livro AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE
-	WHERE mensagens_troca.N_COD_TROCA_IE = ".$_SESSION['id_troca']." LIMIT 1");
+	WHERE troca.N_COD_TROCA = ".$_SESSION['id_troca']." LIMIT 1");
 while($dados = mysql_fetch_array($query2)){
 	$FOTOSOLICITADO = $dados["FOTOSOLICITADO"]; 
 	$FOTOSOLICITANTE = $dados["FOTOSOLICITANTE"];
