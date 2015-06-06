@@ -59,7 +59,7 @@ require_once "./Dados/Conexao.php";
     <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
       <?php 
-      $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE");
+      $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO < 100 ORDER BY rand() LIMIT 20");
       while ($lista = mysql_fetch_array($query))
       {
          $idlivro = $lista['N_COD_LIVRO'];
@@ -69,22 +69,22 @@ require_once "./Dados/Conexao.php";
          $autor = $lista['V_AUTOR'];
          $editora = $lista['V_EDITORA'];                         
          ?>
-         <div id="box-livro">
-          <div id="fotoLivro">
-            <a><img src="<?php echo $foto; ?>" width="100" height="150"></a>
-          </div><!--fim div fotoLivro-->
-          <div id="infoLivro">
-            <?php echo "<a href='Views/View_VisualizarLivro.php?id=$idlivro'>"?><span class="tituloLivro"><?php echo $nomeLivro;?></span></a><br>
-            <b>Usuario</b><?php echo "<a href='PerfilUsuario.php'>";?><span class="colorinfoLivro"> <?php echo $nomeUser;?></span></a><br>
-            <b>Autor</b><a href=""><span class="colorinfoLivro"> <?php echo $autor;?></span></a><br>
-            <b>Editora</b><a href=""><span class="colorinfoLivro"> <?php echo $editora;?></span></a><br>
-            <a href="Views/View_VisualizarLivro.php?id=<?php echo $idlivro ?>">Solicitar</a>
-          </div><!--fim div infoLivro-->             
-        </div><!--fim div box-livro-->
+         <a class="box-livro" href="Views/View_VisualizarLivro.php?id=<?php echo $idlivro ?>">
+         <div id="pricing-table" class="clear">
+          <div class="plan">
+          <h3><?php echo $nomeLivro;?><span><img style="border-radius: 100px;" src="<?php echo $foto; ?>" width="100" height="100"></span></h3>
+          <ul>
+            <li><b>Usuario:</b><?php echo $nomeUser;?></li>
+            <li><b>Autor:</b><?php echo $autor;?></li>
+            <li><b>Editora:</b><?php echo $editora;?></li>      
+        </ul>   
+        <span class="signup" href="">Ver</span> 
+        </div><!--fim div box-livro <a href="Views/View_VisualizarLivro.php?id=<?php echo $idlivro ?>">Solicitar</a> -->
+      </div>
+      </a>
       <?php 
       }
       ?>
-
 </div>
 <?php include('Views/View_rodape.php'); ?>
 </body>
