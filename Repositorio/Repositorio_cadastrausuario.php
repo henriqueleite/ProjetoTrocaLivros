@@ -5,6 +5,7 @@ require_once "../Dados/Conexao.php";
 		$nome = strtoupper($_POST['nome']);
 		$user = $_POST['login'];
 		$pwd = $_POST['senha'];
+		$pwd2 = $_POST['senha2'];
 		$email = $_POST['email'];
 		$dataNascimento = $_POST['dataNascimento'];
 		$cpf = $_POST['cpf'];
@@ -23,6 +24,12 @@ require_once "../Dados/Conexao.php";
         $output = implode('/', array_reverse(explode('/', $dataNascimento)));
             
 		
+		//confirma senha
+		if( $pwd != $pwd2){
+				echo "<script>alert('senhas diferentes'); history.back();</script>";
+			}else{
+							
+	
 
 		function validaCPF($cpf)
 		{	// Verifiva se o número digitado contém todos os digitos
@@ -100,7 +107,8 @@ require_once "../Dados/Conexao.php";
 			echo "<script>alert('Login Inválido!!'); history.back();</script>";
 
 
-		} if ($cpf_check > 0){
+		} else {
+			if ($cpf_check > 0){
 			echo "<script>alert('CPF já cadastrado!!'); history.back();</script>";
 		}else{
 			$data = date('Y,m,d');
@@ -117,6 +125,8 @@ require_once "../Dados/Conexao.php";
 		}
 	}
 }	
+}
+}
 /*N_TIPO_USUARIO = 0 (USUARIO NORMAL)
 N_TIPO_USUARIO = 1 (USUARIO ADMINISTRADOR)
 */
