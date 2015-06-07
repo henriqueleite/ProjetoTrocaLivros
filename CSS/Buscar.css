@@ -1,5 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Slabo+27px);
-
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 
 
@@ -29,5 +28,33 @@
     border-top-right-radius: 9px;
 }
 
+table{
+
+}
+
+.autocomplete{
+    list-style-type: none;
+    text-align: left;
+    background-color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-bottom: 1px solid rgba(160, 160, 160, 0.4);
+    border-left: 1px solid rgba(160, 160, 160, 0.4);
+    border-right: 1px solid rgba(160, 160, 160, 0.4);
+    -webkit-box-shadow: 3px 3px 7px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 3px 7px -2px rgba(0,0,0,0.75);
+box-shadow: 3px 3px 7px -2px rgba(0,0,0,0.75);
+}
+
+.autocomplete:hover{
+    background-color: #1E90FF;
+    color: white;
+}   
 
 
+.suggestionsBox{
+    float: left;
+    margin-right: -50px;
+    margin-top: -1px;
+    position: absolute;
+    width: 322px;
+}

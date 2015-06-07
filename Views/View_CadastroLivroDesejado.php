@@ -9,11 +9,34 @@
   }
 
 ?>
+<script type="text/javascript" src="jquery-1.3.js"></script>
+<script type="text/javascript">
+  function lookup(titulo) {
+    if(titulo.length == 0) {
+      // Hide the suggestion box.
+      $('#suggestions').hide();
+    } else {
+      $.post("../Controles/Controle_AutoComplete.php", {queryString: ""+titulo+""}, function(data){
+        if(data.length >0) {
+          $('#suggestions').show();
+          $('#autoSuggestionsList').html(data);
+        }
+      });
+    }
+  } // lookup
+  
+  function fill(thisValue) {
+    $('#titulo').val(thisValue);
+    setTimeout("$('#suggestions').hide();", 200);
+  }
+</script>
+
 <html>
 <head>
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../CSS/CadastrarAlterarLivroDesejado.css">
     <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
@@ -58,7 +81,12 @@
           <table id="cad_table">
             <tr>
               <td>Título:*</td>
-              <td><input type="text" name="titulo" id="titulo" class="txt"  size=35 required/></td>
+              <td><input type="text" name="titulo" onKeyUp="lookup(this.value);" id="titulo" class="txt"  size=35 required/></td>
+              <div class="suggestionsBox" id="suggestions" >
+              <div class="suggestionList" id="autoSuggestionsList">
+           
+              </div>
+              </div>  
             </tr>
             <tr>
               <td>Genero:*</td>

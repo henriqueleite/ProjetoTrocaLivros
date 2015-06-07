@@ -22,6 +22,33 @@ if (isset($_POST["palavra"])) {
   $pesquisa = $_POST["palavra"];
 }
 
+
+
+?>
+<script type="text/javascript" src="jquery-1.3.js"></script>
+<script type="text/javascript">
+  function lookup(buscar) {
+    if(buscar.length == 0) {
+      // Hide the suggestion box.
+      $('#suggestions').hide();
+    } else {
+      $.post("../Controles/Controle_AutoComplete.php", {queryString: ""+buscar+""}, function(data){
+        if(data.length >0) {
+          $('#suggestions').show();
+          $('#autoSuggestionsList').html(data);
+        }
+      });
+    }
+  } // lookup
+  
+  function fill(thisValue) {
+    $('#buscar').val(thisValue);
+    setTimeout("$('#suggestions').hide();", 200);
+  }
+</script>
+
+<?php
+
 ?>
 <html>
 <head>
@@ -85,7 +112,13 @@ if (isset($_POST["palavra"])) {
 
           <td height="50" colspan="8" align="center" valign="middle"> 
             <label for="Descrição"></label> 
-            <input type="text" name="buscar" id="buscar" size=50 value="<?php echo $pesquisa; ?>"/>  
+            <input type="text" name="buscar" id="buscar" onKeyUp="lookup(this.value);" size=50 value="<?php echo $pesquisa; ?>"/>
+
+            <div class="suggestionsBox" id="suggestions" >
+            <div class="suggestionList" id="autoSuggestionsList">
+           
+            </div>
+            </div>  
             <input type="submit" name="btnBuscar" id="btnBuscar" value="buscar" /> 
             <label for="buscar"></label>
           </td>
