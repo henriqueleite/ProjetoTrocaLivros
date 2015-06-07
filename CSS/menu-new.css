@@ -1,0 +1,162 @@
+nav.menu a.logo {
+    width: 200px;
+    height: 60px;
+    position: absolute;
+    z-index: 10;
+    top:12px;
+    left:160px;
+    background: url("LogoTrocaLivro2.png") no-repeat center center;
+    border: none !important;
+    -webkit-transition: all 400ms;
+    transition: all 400ms;
+
+}
+
+nav.menu a.logo:hover {
+    opacity: .8;
+    padding: 1px;
+    text-decoration: underline;    
+    
+}
+
+nav.menu {
+    width: 100%;
+    position: fixed;
+    background: -webkit-linear-gradient(bottom, rgba(0,43,44,0.23), rgba(250,250,250,0.65));
+    background: -moz-linear-gradient(bottom, rgba(0,43,44,0.23), rgba(250,250,250,0.65));
+    height: 80px;
+    top: 0;
+    left: 1px;
+    border-bottom: 1px solid #b6b6b6;
+    border-top: 2px solid #007069;
+    box-shadow: 0px 1px 6px #949494;
+    z-index: 10;
+}
+
+nav.menu ul {
+    width:100%;
+    padding: 0;
+    margin: 0;
+    margin-left: -130px;
+    text-align: center;
+    
+}
+
+nav.menu ul li {
+    display: inline-block;
+    margin: 0 0 0 -4px;
+    border-left: 1px solid #c3c3c3;
+
+}
+
+nav.menu ul li:nth-child(4) {
+    border-right: 1px solid #c3c3c3;
+
+}
+
+nav.menu ul li a{
+    padding: 28px 22px 30px 22px;
+    line-height: 80px;
+    text-decoration: none;
+    color: #747474;
+    font-size: 12pt;
+    font-weight: lighter;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+}
+nav.menu ul li a:hover {
+    background-color: #007069;
+    padding: 32px 35px 32px 35px;
+    box-shadow: 0px 2px 2px #595959;
+    color: #fff;
+}
+.search {
+    width: 560px;
+    position:absolute;
+    right:280px;
+    top: 21px;
+}
+.search input[type=search]{
+    width: 200px;
+    padding: 5px 0 5px 6px;
+    font-size: 10pt;
+    color: #8a8a8a;
+    border: 1px solid #ccc;
+    box-shadow: 0 0px 2px #d5d5d5;
+}
+.search input[type=submit]{
+    width: 120px;
+    height: 32px;
+    background-color: #007069;
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    box-shadow: 0 0px 4px #898989;
+    border-radius: 2px;
+    margin: 4px;
+    -webkit-transition: all 200ms;
+    transition: all 200ms;
+
+}
+
+.search input[type=submit]:hover {
+    width: 122px;
+    height: 31px;
+    background-color: #008b84;
+    cursor: pointer;
+    padding:8px 15px; 
+}
+
+.links-group {
+    position: fixed;
+    right: 240px;
+    top: 32px;
+}
+
+.links-group a.login{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100px;
+    background-color: #1487bc;
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    box-shadow: 0 0px 4px #898989;
+    border-radius: 2px;
+    margin: 0;
+    font-size: 10pt;
+    text-decoration: none;
+    -webkit-transition: all 200ms;
+    transition: all 200ms;
+}
+
+.links-group a.login:hover {
+    background-color: #1493c8;
+    padding: 10px 20px;
+}
+
+.links-group a.cadastre-se {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color:#007069; 
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    box-shadow: 0 0px 4px #898989;
+    border-radius: 2px;
+    margin: 0;
+    margin-left: 10px;
+    font-size: 11pt;
+    text-decoration: none;
+ -webkit-transition: all 300ms;
+    transition: all 300ms;
+
+}
+
+.links-group a.cadastre-se:hover {
+    text-decoration: underline;
+    padding: 9px 19px;
+}
+
+.links-group a.sair{
+    
+}

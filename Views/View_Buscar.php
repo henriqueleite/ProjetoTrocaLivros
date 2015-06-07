@@ -27,7 +27,10 @@ if (isset($_POST["palavra"])) {
 ?>
 <script type="text/javascript" src="jquery-1.3.js"></script>
 <script type="text/javascript">
+
+
   function lookup(buscar) {
+  if (filtro.value == 1){
     if(buscar.length == 0) {
       // Hide the suggestion box.
       $('#suggestions').hide();
@@ -40,11 +43,12 @@ if (isset($_POST["palavra"])) {
       });
     }
   } // lookup
-  
+  }
   function fill(thisValue) {
     $('#buscar').val(thisValue);
     setTimeout("$('#suggestions').hide();", 200);
   }
+
 </script>
 
 <?php
@@ -93,7 +97,7 @@ if (isset($_POST["palavra"])) {
   </div><!--fim div container-->
 </div><!--fim div cssmenu-->
 
-  <div id='corpo'>
+  <div onClick="lookup('');" id='corpo'>
     <h2>Gerenciador de Usuários</h2>
 
     <form id="form1" name="form1" method="post" action="">

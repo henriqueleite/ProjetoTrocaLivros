@@ -74,7 +74,7 @@
     </ul>
   </div><!--fim div container-->
 </div><!--fim div cssmenu-->
-  <div id='corpo'>
+  <div onClick="lookup('');" id='corpo'>
      <h2>Cadastro Livro Desejado</h2>
 
         <form name="CadastroUsuario" method="post" action="../Repositorio/Repositorio_Livrodesejado.php" enctype="multipart/form-data">
