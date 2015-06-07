@@ -16,14 +16,22 @@ require_once "../Dados/Conexao.php";
 		$cep = $_POST['cep'];
 		$uf = $_POST['uf'];
 		$sexo = $_POST['sexo'];
+		$termos = $_POST['termos'];
 		
 		
 		$patternBr    = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)[0-9]{2}^";
         $patternMySQL = "^(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])^";
 		  
         $output = implode('/', array_reverse(explode('/', $dataNascimento)));
-            
-		
+         
+         
+          
+				
+		if(isset($_POST['termos']) == false){
+			echo "<script>alert('você precisa aceitar os termos de usuario'); history.back();</script>";
+}else{
+  
+
 		//confirma senha
 		if( $pwd != $pwd2){
 				echo "<script>alert('senhas diferentes'); history.back();</script>";
@@ -121,10 +129,11 @@ require_once "../Dados/Conexao.php";
 			echo "<meta http-equiv='refresh' content='0, url=../Views/View_Login.php'>"; 	
 			}
 		}
-		}
-		}
 	}
+	}
+}
 }	
+}
 }
 }
 /*N_TIPO_USUARIO = 0 (USUARIO NORMAL)

@@ -156,17 +156,17 @@ function SomenteNumero(e){
 				<td class='tr_cadastro'>UF:</td>
 				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" size=2/></td>
 			</tr>
-			
+				
 				<td colspan="2"><input class='btn' type="submit" id="buton1" name="btvalidar" value="cadastrar"><br>
+				<td><input type="checkbox" name="termos"/><h5> Li e Aceito os termos de uso</h5></td>
+				<td><input type="hidden" name="leia" value="0" /> </td><td><a href="#" onclick="window.open('../Views/View_Termos.html', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=770, HEIGHT=400');">Leia os termos de Uso</a></td>
 				
 				</td>
 			</tr>
-		</table>
-		
-		
-	</form>
 
-				<div class="grid_7 map" id="map1"></div>
+		</table>
+	</form>
+		 			<div class="grid_7 map" id="map1"></div>
 
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
 </div>
