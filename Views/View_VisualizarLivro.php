@@ -200,6 +200,7 @@ while($linha=mysql_fetch_array($query)){
     {
       $r = number_format($rf['V_PONTOS'] / $rf['V_VOTOS'],2,'.','.');
     }
+    $r="1";
     ?>
     <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php">
       <input type="hidden" name="valor" value="<?php echo $codigolivro; ?>">                            
