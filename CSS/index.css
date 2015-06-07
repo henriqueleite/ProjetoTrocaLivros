@@ -173,9 +173,11 @@
   #corpo h2{
     padding: 4px;
     padding-left: 12px;
-    background-color: #133141;
-    color: #9C9C9C;
+    background-color: #007069;
+    color: #C3C3C3;
     font-family: 'Slabo 27px', serif;
     margin: -11px -11px 11px -11px;
-
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
   }

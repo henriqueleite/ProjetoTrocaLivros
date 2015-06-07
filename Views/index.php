@@ -14,7 +14,6 @@ require_once "../Dados/Conexao.php";
   <link rel="stylesheet" href="style.css" media="all" />
   <link rel="stylesheet" type="text/css" href="../CSS/index.css">
   <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
-  <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 </script>

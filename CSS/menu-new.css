@@ -2,10 +2,10 @@ nav.menu a.logo {
     width: 200px;
     height: 60px;
     position: absolute;
-    z-index: 10;
+    z-index: 999;
     top:12px;
-    left:160px;
-    background: url("LogoTrocaLivro2.png") no-repeat center center;
+    left:202px;
+    background: url("LogoTrocaLivro.png") no-repeat center center;
     border: none !important;
     -webkit-transition: all 400ms;
     transition: all 400ms;
