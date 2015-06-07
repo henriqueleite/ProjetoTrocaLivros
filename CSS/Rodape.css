@@ -1,17 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Slabo+27px);
 
 footer{
-    background-color: #133141;
+    background: -webkit-linear-gradient(bottom, rgba(0,43,44,0.43), rgba(250,250,250,0.95));
     margin: 10px auto auto -32px; 
     width: 100%;
     bottom: 0%;
     border-top: 3px solid #036564;
     padding: 20px;
-    color: #9C9C9C;
+    color: black;
     clear: both
 }  
 footer .bar{
-    width: 960px;
+    width: 990px;
     margin: 0px auto;
 }
 footer .bar2{
@@ -19,7 +19,7 @@ footer .bar2{
     margin: 0px auto;
 }
 footer .footer2{
-    background-color: #133d41;
+    background: -webkit-linear-gradient(bottom, rgba(0,63,20,0.53), rgba(250,250,250,0.65));
     margin: 10px auto -8px -9px; 
     width: 100%;
     padding: 10px;
