@@ -17,12 +17,16 @@ require_once "../Dados/Conexao.php";
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 </script>
+<script>
+
+
+    </script>
 </head>
 <body >
   <?php include('../Views/View_topo.php'); ?>
 
  
-  <div id='corpo' onload="setInterval('atualizar()',1000)">
+  <div id='corpo'>
    
   <img src="books-bookshelf-buildings-library-man-made-2730837-1920x1200.jpg" width="1210" height="550">   
 
