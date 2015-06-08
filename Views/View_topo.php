@@ -7,11 +7,7 @@
               <li><a href="../Views/View_Form_Ajuda.php">Contato</a></li>
               </ul>
           
-              <form name="frmBusca" method="post" action="View_Buscar.php" class="search">
-              <input type="search" name="palavra" class="input_pesquisa" placeholder="Faça sua busca">
-              <input type="submit" value="Buscar">
-              </form>
-
+              
           <div class="links-group">
 
               <?php
@@ -36,7 +32,8 @@
               }*/
 
               echo "<a href='../Views/View_Login.php' class='login painel'>Login</a>";
-              echo "<a href='../Views/View_CadastroUsuario.php' class='cadastre-se sair'>Cadastre-se</a>";
+              echo "<a href='../Views/View_CadastroUsuario.php' class='cadastre-se'>Cadastre-se</a>";
+              echo "<a href='../Controles/Controle_Logout.php' class='sair'>Sair</a>";
               ?>
 
           </div>
@@ -44,4 +41,8 @@
       </nav>
 
   </div><!--fim div container-->
+<form name="frmBusca" method="post" action="View_Buscar.php" class="search">
+              <input type="search" name="palavra" class="input_pesquisa" placeholder="Faça sua busca">
+              <input type="submit" value="Buscar">
+              </form>
 

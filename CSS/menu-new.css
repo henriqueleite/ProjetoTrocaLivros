@@ -21,7 +21,7 @@ nav.menu a.logo:hover {
 
 nav.menu {
     width: 100%;
-    position: fixed;
+    position: absolute;
     background: -webkit-linear-gradient(bottom, rgba(0,43,44,0.23), rgba(250,250,250,0.65));
     background: -moz-linear-gradient(bottom, rgba(0,43,44,0.23), rgba(250,250,250,0.65));
     height: 80px;
@@ -72,12 +72,13 @@ nav.menu ul li a:hover {
     color: #fff;
 }
 .links-group {
-    position: fixed;
-    right:360px;
+    position: absolute;
+    right:260px;
     top: 32px;
 }
 
 .links-group a.login{
+
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     width: 100px;
     background-color: #1487bc;
@@ -120,40 +121,58 @@ nav.menu ul li a:hover {
 }
 
 .links-group a.sair{
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color:#ff0000; 
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    box-shadow: 0 0px 4px #898989;
+    border-radius: 2px;
+    margin: 0;
+    margin-left: 20px;
+    font-size: 11pt;
+    text-decoration: none;
+ -webkit-transition: all 300ms;
+    transition: all 300ms;
     
 }
-.search {
-    width: 560px;
-    margin-left:1000px;
+.links-group a.sair:hover{
+     width: 160px;
+    padding: 9px 19px;    
     
  
 }
 .search input[type=search]{
-    width: 200px;
+    margin-top: 100px;
+    margin-left: 280px;
+    width: 600px;
+    height: 30px;
     padding: 5px 0 5px 6px;
     font-size: 10pt;
     color: #8a8a8a;
-    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 12px;
+    border: 3px solid #ccc;
     box-shadow: 0 0px 2px #d5d5d5;
 }
 .search input[type=submit]{
     width: 120px;
     height: 32px;
-    background-color: #007069;
+    background-color: #1493c8;
     color: #ffffff;
     padding: 8px 15px;
-    box-shadow: 0 0px 4px #898989;
-    border-radius: 8px;
-    -webkit-transition: all 200ms;
-    transition: all 200ms;
+    box-shadow: 0 0px 2px #898989;
+    border-radius: 3px;
+    -webkit-transition: all 400ms;
+    transition: all 400ms;
 
 }
 
 .search input[type=submit]:hover {
-    width: 122px;
-    height: 31px;
+    width: 121px;
+    height: 33px;
     background-color: #008b84;
     cursor: pointer;
-    padding:8px 15px; 
+     
 }
 
