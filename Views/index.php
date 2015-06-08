@@ -21,11 +21,12 @@ require_once "../Dados/Conexao.php";
 <body >
   <?php include('../Views/View_topo.php'); ?>
 
-  
+ 
   <div id='corpo' onload="setInterval('atualizar()',1000)">
    
-   <img src="books-reading-2974088-1920x1200.jpg" width="1210" height="550">
-    <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
+  <img src="books-bookshelf-buildings-library-man-made-2730837-1920x1200.jpg" width="1210" height="550">   
+
+      <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
       <?php 
       $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO < 100 and livro.B_ATIVO = 'T' ORDER BY rand() LIMIT 20");

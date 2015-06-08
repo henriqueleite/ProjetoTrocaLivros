@@ -18,8 +18,8 @@
     width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
     float: left;
     position: relative;
- -webkit-transition: all 400ms;
-    transition: all 400ms;
+ -webkit-transition: all 600ms;
+    transition: all 600ms;
 
 }
 
@@ -128,8 +128,8 @@
     border-radius: 3px;     
     text-shadow: 0 1px 0 rgba(0,0,0,.3);        
     box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
- -webkit-transition: all 400ms;
-    transition: all 400ms;
+ -webkit-transition: all 600ms;
+    transition: all 600ms;
 
 }
 
