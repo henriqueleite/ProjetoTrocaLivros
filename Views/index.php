@@ -38,7 +38,7 @@ require_once "../Dados/Conexao.php";
          $autor = $lista['V_AUTOR'];
          $editora = $lista['V_EDITORA'];                         
          ?>
-         <a class="box-livro" href="Views/View_VisualizarLivro.php?id=<?php echo $idlivro ?>">
+         <a class="box-livro" href="../Views/View_VisualizarLivro.php?id=<?php echo $idlivro ?>">
          <div id="pricing-table" class="clear">
           <div class="plan">
           <h3><?php echo $nomeLivro;?><span><img style="border-radius: 100px;" src="../<?php echo $foto; ?>" width="100" height="100"></span></h3>

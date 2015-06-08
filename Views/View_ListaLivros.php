@@ -58,7 +58,7 @@ $tipoLogado = $_SESSION['tipo'];;
 
 	<?php 
 		//faço uma consulta de todos os livros do usuario logado para realizar a troca
-		$queryListar = mysql_query("SELECT * FROM livro WHERE N_COD_USUARIO_IE = $idLogado");
+		$queryListar = mysql_query("SELECT * FROM livro WHERE N_COD_USUARIO_IE = $idLogado and B_ATIVO = 'T'");
 		if($queryListar)
 		{
 			while($resultado = mysql_fetch_array($queryListar))

@@ -108,7 +108,7 @@ mysql_select_db("trocalivro", $conecta);
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
 
-			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', D_DATA_NASC = '$output', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf' where N_COD_USUARIO = $codigo");		
+			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', D_DATA_NASC = '$output', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf', V_SEXO = '$sexo' where N_COD_USUARIO = $codigo");		
 
 			if (!$query2) {
 			echo "<script>alert('Erro'); history.back();</script>";

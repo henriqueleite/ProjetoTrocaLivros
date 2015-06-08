@@ -22,7 +22,6 @@ $sql = mysql_query("SELECT V_TITULO, D_ANO, N_COD_CATEGORIA_IE FROM livro_deseja
   $titulo = $linha["V_TITULO"];
   $categoria = $linha["N_COD_CATEGORIA_IE"];
   $ano = $linha["D_ANO"];
-  ?>
 
 
 ?>
@@ -31,7 +30,7 @@ $sql = mysql_query("SELECT V_TITULO, D_ANO, N_COD_CATEGORIA_IE FROM livro_deseja
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/CadastrarAlterarLivroDesejado.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">

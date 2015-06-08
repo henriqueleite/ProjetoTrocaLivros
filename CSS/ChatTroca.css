@@ -262,3 +262,28 @@ width: 60px;
 .time-right{
 width: 60px;
 }
+
+ #corpo{
+    width: 960px;
+    height: auto;
+    display: table;
+    position: relative;
+    background-color: #FFF;
+    border-radius: 9px;
+    margin: 0px auto;
+    margin-top: 30px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
+    z-index: 2;
+}
+  
+  #corpo h2{
+    padding: 4px;
+    padding-left: 12px;
+    color: white;
+    font-family: 'Slabo 27px', serif;
+    margin: -11px -11px 11px -11px;
+    background: #5FB471 none repeat scroll 0% 0%;
+  }
