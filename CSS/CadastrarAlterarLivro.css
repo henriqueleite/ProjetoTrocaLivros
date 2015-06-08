@@ -33,30 +33,6 @@ body{
   }
 
   
-  footer{
-    background-color: #133141;
-    margin: 10px auto auto -8px; 
-    width: 100%;
-    bottom: 0;
-    border-top: 3px solid #036564;
-    padding: 10px;
-    color: #9C9C9C;
-  }
-  footer .bar{
-    width: 960px;
-    margin: 0px auto;
-  }
-  footer .bar2{
-    width: 960px;
-    margin: 0px auto;
-  }
-
-  footer .footer2{
-    background-color: #133d41;
-    margin: 10px auto -8px -9px; 
-    width: 100%;
-    padding: 10px;
-  }
 
   #corpo #cad_table{
     margin: 0px auto;

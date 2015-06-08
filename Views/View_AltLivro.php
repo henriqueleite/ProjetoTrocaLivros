@@ -28,10 +28,9 @@ $foto       = $coluna['V_FOTO'];
   <head>
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" href="style.css" media="all" />
+
     <link rel="stylesheet" type="text/css" href="../CSS/CadastrarAlterarLivro.css">
     <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
   </script>

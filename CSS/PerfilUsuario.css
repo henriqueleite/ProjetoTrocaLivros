@@ -13,7 +13,7 @@ body{
     min-height: 100%;
     background-color: #FFF;
     border-radius: 9px;
-    margin: 30px auto 100px auto;
+    margin: 100px auto 100px auto;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
     -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
@@ -26,7 +26,7 @@ body{
     padding: 4px;
     padding-left: 12px;
     background-color: #1487bc;
-    color: #9C9C9C;
+    color: #C3C3C3;
 	font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 9px;
@@ -37,7 +37,7 @@ body{
 	padding: 4px;
     padding-left: 12px;
     background-color: #1487bc;
-    color: #9C9C9C;
+        color: #C3C3C3;
     font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 0px;
@@ -49,7 +49,7 @@ body{
 	   padding: 4px;
     padding-left: 12px;
     background-color: #1487bc;
-    color: #9C9C9C;
+        color: #C3C3C3;
     font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 0px;
@@ -58,10 +58,10 @@ body{
 }
 
 #corpo .Solicitacoes{
-	padding: 4px;
+	   padding: 4px;
     padding-left: 12px;
     background-color: #1487bc;
-    color: #9C9C9C;
+    color: #C3C3C3;
     font-family: 'Source Sans Pro', sans-serif;
     margin: -7px -11px 11px -11px;
     border-top-left-radius: 0px;
@@ -190,7 +190,7 @@ body{
 #corpo #centro .centro-esquerda{
   float: right;
   margin: 0px;
-  margin-top: 20px;
+  margin-top: 19px;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -293,9 +293,10 @@ body{
   -webkit-border-radius: 9;
   -moz-border-radius: 9;
   border-radius: 9px;
-  font-family: Arial;
+  font-family: 'Source Sans Pro', sans-serif;
+
   color: #ffffff;
-  padding: 12px 10px 12px 10px;
+  padding: 14px 10px 12px 10px;
   text-decoration: none;
 }
 
@@ -350,12 +351,12 @@ body{
   width: 30px;
   margin-bottom: 8px;
   margin-right: 27px;
-  margin-top: -36px;
+  margin-top: -37px;
   padding-right: 142px;
   border: 2px solid black;
   border-left: 0px solid black;
   float: right;
-  height: 28px;
+  height: 29px;
   position: relative;
 }
 
@@ -415,7 +416,8 @@ body{
   color: #ffffff;
   font-size: 20px;
   padding: 5px 10px 5px 10px;
-  text-decoration: n#1487bc
+  text-decoration: #1487bc
+}
 
 .btn_foto{
     display: block !important;
@@ -476,7 +478,7 @@ div.upload p{
 .table-listar-livro-desejados-sem-registro{
   margin-top: -18px;
   width: 690px;
-  margin-left: 3spx;
+  margin-left: 3px;
   text-align: center;
 
 }

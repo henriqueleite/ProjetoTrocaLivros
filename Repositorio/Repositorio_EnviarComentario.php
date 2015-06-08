@@ -13,7 +13,8 @@ if ($mensagem == ''){
 $query2 = mysql_query("INSERT INTO comentario (N_COD_USUARIO_IE, N_COD_LIVRO_IE, V_COMENTARIO, D_DATA) VALUES ($codigo, $livro, '$mensagem', '$data')");
  
 if ($query2){
-	echo "<script>history.back();</script>";	
+
+	header("Location: ../Views/View_VisualizarLivro.php?id=$livro");
 }
 }
 ?>
