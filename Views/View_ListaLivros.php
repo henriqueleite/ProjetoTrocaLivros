@@ -18,47 +18,49 @@ $tipoLogado = $_SESSION['tipo'];;
 	<title>Troca Livro</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="style.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/ListaLivro.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
 	<link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
 	<link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 </script>
 </head>
 <body>
-	  <div id='cssmenu'>
-  <div id='container'>
-    <ul>
-     <li><a href='../index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-     <li class='active'><a href='../index.php'><span>ÍNICIO</span></a></li>
-     <li><a href='../Views/View_Form_Ajuda.php'><span>COMO FUNCIONA</span></a></li>
-     <li><a href='../Views/View_Form_Ajuda.php'><span>SOBRE</span></a></li>
-     <li class='last'><a href='../Views/View_Form_Ajuda.php'><span>CONTATO</span></a></li>
-     <li><form name="frmBusca" method="post" action="iew_Buscar.php" >
-
-      <input type="text" name="palavra" />
-      <input type="submit"  value="Buscar" />
-    </li>
-  </form>
-
-  <?php
-
-  if((isset ($_SESSION['login']) == true)){
-   echo "<li style='float: right' class='right'><a href='../Controles/Controle_Logout.php'><span>SAIR</span></a></li>";
-   echo "<li style='float: right' class='right'><span style='margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; '>|</span></li>";  
-   echo "<li style='float: right' class='right'><a href='../Repositorio/PerfilUsuario.php'><span>PAINEL</span></a></li>";
- } else {
-  echo "<li style='float: right' class='right'><a href='../Views/View_Login.php'><span>LOGIN</span></a></li>";
-  echo "<li style='float: right' class='right'><a href='#'><span>CADASTRAR-SE</span></a></li>";
-}
-?> 
-
-    </ul>
-  </div><!--fim div container-->
-</div><!--fim div cssmenu-->
-
+	  <?php include('../Views/View_topo.php'); ?>
+	<div id='corpo'>  
+		<h2>Selecione um livro seu para solicitar a troca</h2>
+		<h3>Livros desejados do usuario solicitado:</h3>
 	<?php 
 		//faço uma consulta de todos os livros do usuario logado para realizar a troca
 		$queryListar = mysql_query("SELECT * FROM livro WHERE N_COD_USUARIO_IE = $idLogado and B_ATIVO = 'T'");
+
+		$queryusuario = mysql_query("SELECT LIVRO.*, usuario.N_COD_USUARIO FROM livro INNER JOIN USUARIO ON USUARIO.N_COD_USUARIO = LIVRO.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO = ".$_SESSION['idLivroSolicitado']."");
+
+		$dadosusuario = mysql_fetch_array($queryusuario);
+		$codigousuariosolicitado = $dadosusuario["N_COD_USUARIO"];
+
+		$querylivrosdesejados = mysql_query("SELECT * FROM LIVRO_DESEJADO WHERE LIVRO_DESEJADO.N_COD_USUARIO_IE = $codigousuariosolicitado");
+
+		if($querylivrosdesejados)
+		{
+			while($resultadolivrodesejado = mysql_fetch_array($querylivrosdesejados))
+			{
+				$titulolivrodesejado      = $resultadolivrodesejado['V_TITULO'];
+				$arraytitulodesejado = array($resultadolivrodesejado['V_TITULO']);
+
+
+			?>
+			
+
+					<span class="h4">Título: <a><?php echo $titulolivrodesejado; ?></a></span>
+
+			<?php				
+			}						
+		}
+		?>
+		<h3>Seus Livros:</h3>
+		<?php
+
 		if($queryListar)
 		{
 			while($resultado = mysql_fetch_array($queryListar))
@@ -67,16 +69,21 @@ $tipoLogado = $_SESSION['tipo'];;
 				$idLivroTroca = $resultado['N_COD_LIVRO'];
 				$foto         = $resultado['V_FOTO'];
 				$autor        = $resultado['V_AUTOR'];
+				$arraytitulo = array($resultado['V_TITULO']);
 
 			?>
-				<div style="border:1px solid #ccc; width: 300px; margin-top: 10px">
-					      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="<?php echo $foto; ?>"width="110" height="110"></p>
-					<h4>Titulo: <a><?php echo $titulo; ?></a></h4>
-					<h4>Autor: <a><?php echo $autor; ?></a></h4>
+			
+				<div style="border:1px solid #ccc; width: 200px; margin-top: 10px; margin-bottom: 15px; text-align: center">
+					      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>"width="110" height="110"></p>
+					<span class="h5">Título: <a><?php echo $titulo; ?></a></span>
 					&nbsp
-					<a href="../Controles/Controle_funcaoAceitarTroca.php?id=<?php echo $idLivroTroca; ?>">Trocar</a>
+					<a href="../Controles/Controle_funcaoAceitarTroca.php?id=<?php echo $idLivroTroca; ?>"><button class="btn">Trocar</button></a>
 				</div>
-			<?php				
+
+
+			<?php	
+			$result = array_intersect($arraytitulodesejado, $arraytitulo);
+			echo "<span class='h6'>Quantidade de Livros que você tem que interessam ao solicitado: " . count($result) . "</span>";		
 			}						
 		}
 		else
@@ -86,7 +93,7 @@ $tipoLogado = $_SESSION['tipo'];;
 			die();
 		}
 	?>
-
-	<?php include('View_rodape.php'); ?>
+</div>
+	<?php include('../Views/View_rodape.php'); ?>
 </body>
 </html>
