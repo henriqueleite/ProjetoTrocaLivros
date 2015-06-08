@@ -37,7 +37,7 @@ nav.menu ul {
     width:100%;
     padding: 0;
     margin: 0;
-    margin-left: -130px;
+    margin-left: -30px;
     text-align: center;
     
 }
@@ -45,7 +45,7 @@ nav.menu ul {
 nav.menu ul li {
     display: inline-block;
     margin: 0 0 0 -4px;
-    border-left: 1px solid #c3c3c3;
+    border-left: 2px solid #c3c3c3;
 
 }
 
@@ -73,7 +73,7 @@ nav.menu ul li a:hover {
 }
 .links-group {
     position: absolute;
-    right:260px;
+    right:22    0px;
     top: 32px;
 }
 
