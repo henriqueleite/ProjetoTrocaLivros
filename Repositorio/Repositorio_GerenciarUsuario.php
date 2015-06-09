@@ -29,27 +29,16 @@ if (isset ($_POST['buscar'])){
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="./CSS/estilo.css">
-    <link rel="stylesheet" type="text/css" href="./CSS/Menu.css">
-    <link rel="stylesheet" type="text/css" href="./CSS/Rodape.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/estilo.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/GerenciarUsuario.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
     </script>
 </head>
 <body>
-  <div id='cssmenu'>
-      <div id='container'>
-        <ul>
-           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-           <li><a href='GerenciarUsuario.php'><span>GERENCIAR USUÁRIOS</span></a></li>
-           <li><a href='index.php'><span>EVENTO/CAMPANHA</span></a></li>
-           <li><a href='Suporte.php'><span>SUPORTE</span></a></li>
-           <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
-           <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
-           <li class='active' style="float: right" class="right"><a href='PerfilAdministrador.php'><span>PAINEL</span></a></li> 
-        </ul>
-      </div>
-    </div>
-
+      <?php include('../Views/View_topo_administrador.php'); ?>
 
     <div style="height: 700px; "id='corpo'>
     	<h2>Gerenciador de Usuários</h2>
@@ -63,6 +52,7 @@ if (isset ($_POST['buscar'])){
 
     </tr>
     <tr>
+
       <td style="color: #036564;" width="80" align="center" valign="middle" bgcolor="#133141">Código</td>
       <td style="color: #036564;" width="300" align="center" valign="middle" bgcolor="#133141">Nome</td>
       <td style="color: #036564;" width="100" align="center" valign="middle" bgcolor="#133141">Login</td>
@@ -76,20 +66,22 @@ if (isset ($_POST['buscar'])){
       <?php
        if (isset ($_POST['Bloquear'])){
             mysql_query("UPDATE usuario SET B_ATIVO = 'F' WHERE N_COD_USUARIO =".$_POST['codigo']."");
+            mysql_query("UPDATE livro SET B_ATIVO = 'F' WHERE N_COD_USUARIO_IE =".$_POST['codigo']."");
             echo "<script>alert('Usuário Bloqueado com Sucesso!');</script>";
-            echo "<meta http-equiv='refresh' content='0, url=GerenciarUsuario.php'>"; 
+            echo "<meta http-equiv='refresh' content='0, url=Repositorio_GerenciarUsuario.php'>"; 
        }
 
        if (isset ($_POST['Desbloquear'])){
             mysql_query("UPDATE usuario SET B_ATIVO = 'T' WHERE N_COD_USUARIO =".$_POST['codigo']."");
+            mysql_query("UPDATE livro SET B_ATIVO = 'T' WHERE N_COD_USUARIO_IE =".$_POST['codigo']."");
             echo "<script>alert('Usuário Desbloqueado com Sucesso!');</script>";
-            echo "<meta http-equiv='refresh' content='0, url=GerenciarUsuario.php'>"; 
+            echo "<meta http-equiv='refresh' content='0, url=Repositorio_GerenciarUsuario.php'>"; 
        }
 
-      $consulta = mysql_query("SELECT * FROM usuario");
+      $consulta = mysql_query("SELECT * FROM usuario where usuario.N_TIPO_USUARIO <> 1");
 
       if (isset ($_POST['buscar'])){
-        $consulta = mysql_query("SELECT * FROM usuario where V_NOME like'%".$_POST['buscar']."%'");
+        $consulta = mysql_query("SELECT * FROM usuario where V_NOME like'%".$_POST['buscar']."%' AND usuario.N_TIPO_USUARIO <> 1");
         $pesquisa = $_POST['buscar'];
       }
 
@@ -145,15 +137,6 @@ if (isset ($_POST['buscar'])){
 
     </div>
 
-    <footer>
-      <div class="bar">
-        Rodapé
-      </div>
-      <div class='footer2'>
-      <div class="bar2">
-        Copyright © 2015 by Troca Livro
-      </div>
-    </div>
-    </footer>
+   <?php include('../Views/View_rodape.php'); ?>
 </body>
 </html>

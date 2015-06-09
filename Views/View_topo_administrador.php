@@ -1,15 +1,14 @@
 <div id='container'>
       <nav class="menu">
-        <div class="submenu">
-          <ul>
           <a href='#' class="logo"></a>
-          
+          <ul>
               <li><a href="../index.php">Início</a></li>
-              <li><a href="../Views/View_Form_Ajuda.php">Como Funciona</a></li>
-              <li><a href="../Views/View_Form_Ajuda.php">Contato</a></li>
+              <li><a href="../Repositorio/Repositorio_GerenciarUsuario.php">Gerenciar Usuários</a></li>
+              <li><a href="#">Eventos / Campanhas</a></li>
+              <li><a href="#">Suporte</a></li>
               </ul>
           
-           </div>
+              
           <div class="links-group">
 
               <?php
@@ -32,9 +31,5 @@
       </nav>
 
   </div><!--fim div container-->
-  <div class="buscar">
-<form name="frmBusca" method="post" action="View_Buscar.php" class="search">
-              <input type="search" name="palavra" class="input_pesquisa" placeholder="Faça sua busca">
-              <input type="submit" value="Buscar">
-              </form>
-</div>
+
+

@@ -12,6 +12,10 @@ $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
 
+if (($_SESSION['tipo'] == 1)){
+  header('location:PerfilAdministrador.php');
+}
+
 ?>
 <html>
 <head>
