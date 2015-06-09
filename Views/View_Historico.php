@@ -58,6 +58,7 @@ $tipo = $_SESSION['tipo'];
       <th>Livros Trocados</th>
       <th>Usuario Solicitado</th>
       <th>Usuario Solicitante</th>
+      <th>Avaliação Solicitado</th>
       <th>Data de finalização</th>
       <th>Status</th>
     </tr>
@@ -123,6 +124,7 @@ WHERE (usuario_solicitado.N_COD_USUARIO = $codigo or usuario_solicitante.N_COD_U
             $nomeLivro2 = $resultado['LIVROSOLICITANTE'];
             $nomeUsuarioDoLivro = $resultado['USUARIOSOLICITADO'];
             $nomeUsuarioDoLivro2 = $resultado['USUARIOSOLICITANTE'];
+            $avaliacao          = $resultado['V_AVALIACAO_TROCA'];
             $dataFinalizacao2 = $resultado['D_DATA_FINALIZOU'];
             $status = $resultado['V_STATUS'];
 
@@ -132,6 +134,7 @@ WHERE (usuario_solicitado.N_COD_USUARIO = $codigo or usuario_solicitante.N_COD_U
               <td><?php echo $nomeLivro;?> &nbsp  &nbsp<img class="seta_troca" src="../Imagens/Troca.png"/> &nbsp &nbsp<?php echo $nomeLivro2;?></td>
               <td><?php echo $nomeUsuarioDoLivro;?></td>
               <td><?php echo $nomeUsuarioDoLivro2;?></td>
+              <td><?php echo $avaliacao;?></td>
               <td><?php echo $dataFinalizacao;?></td>
               <td><?php echo $status;?></td>
             </tr>

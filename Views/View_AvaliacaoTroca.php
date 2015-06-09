@@ -22,6 +22,26 @@ if((isset ($_SESSION['login']) == true))
 
 
 ?>
+<script LANGUAGE="JavaScript">
+
+function mostrarResultado(box,num_max,campospan){
+  var contagem_carac = box.length;
+  if (contagem_carac != 0){
+    document.getElementById(campospan).innerHTML = contagem_carac + "/255 caracteres digitados";
+    if (contagem_carac == 1){
+      document.getElementById(campospan).innerHTML = contagem_carac + "/255 caracter digitado";
+    }
+    if (contagem_carac >= num_max){
+      document.getElementById(campospan).innerHTML = "Limite de 255 caracteres...";
+    }
+  }else{
+    document.getElementById(campospan).innerHTML = "0/255 caracteres digitados...";
+  }
+}
+
+
+
+</script> 
 <html>
 <head>
   <title>Troca Livro</title>
@@ -77,8 +97,10 @@ if((isset ($_SESSION['login']) == true))
 <div id="corpo">
   <h2>Avaliação da Troca</h2>
      <form method="post" action="../Repositorio/Repositorio_AvaliacaoTroca.php">
-      <textarea name="avaliacao" id="avaliacao" required></textarea>
-      <input type="submit" value="Enviar Avaliação"/>
+      <textarea name="avaliacao" id="avaliacao" rows="5" cols="80" onkeyup="mostrarResultado(this.value,255,'spcontando');contarCaracteres(this.value,255,'sprestante')"/></textarea>
+              <br><span id="spcontando">0/255 caracteres digitados...</span>
+        <br></br>
+      <input type="submit" value="Enviar Avaliação" name="btAvaliacao"/>
    
 
     </form>  
