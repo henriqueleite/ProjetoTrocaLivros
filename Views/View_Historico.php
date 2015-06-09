@@ -107,18 +107,16 @@ WHERE (usuario_solicitado.N_COD_USUARIO = $codigo or usuario_solicitante.N_COD_U
       }
     }
 
-      if($queryHistorico)
-      {
-        if($resultado = mysql_fetch_array($queryHistorico) <= 0)
-        {
-        ?>
-         <tr>        
-              <td class='sem-registro'>Não retornou nenhum registro</td>
-            </tr>
+      if($queryHistorico){
+        $consulta     = mysql_num_rows($queryHistorico);
+
+        if ($consulta == 0) {
+          ?>
+          <tr>        
+            <td class='sem-registro'>Não retornou nenhum registro</td>
+          </tr>
          <?php  
-        }
-        else
-        {
+       }else{
           while($resultado = mysql_fetch_array($queryHistorico))
           {  
             $nomeLivro = $resultado['LIVROSOLICITADO'];
@@ -138,9 +136,9 @@ WHERE (usuario_solicitado.N_COD_USUARIO = $codigo or usuario_solicitante.N_COD_U
               <td><?php echo $status;?></td>
             </tr>
             <?php          
-          }
         }
       }
+    }
       else
       {
         echo "Erro na queryHistorico";
