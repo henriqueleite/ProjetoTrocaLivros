@@ -10,13 +10,14 @@ require_once "../Dados/Conexao.php";
 <html>
 <head>
   <title>Troca Livro</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <link rel="stylesheet" href="style.css" media="all" />
   <link rel="stylesheet" type="text/css" href="../CSS/index.css">
   <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
-  <link rel="shortcut icon" href="LogoTrocaLivro.ico"/>
+
 </script>
 <script>
 
