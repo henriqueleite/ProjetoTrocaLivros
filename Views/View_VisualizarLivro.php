@@ -163,30 +163,30 @@ while($linha=mysql_fetch_array($query)){
       <input type="submit" value="Enviar Comentário"/>
     </form>
   <!-- Avaliação por estrelas-->
-    <p>Avaliação desse livro:</p>
+   <!--   <p>Avaliação desse livro:</p> -->
     <?php
-    $rs = mysql_query("SELECT V_VOTOS, V_PONTOS FROM comentario inner join livro on livro.N_COD_LIVRO = comentario.N_COD_LIVRO_IE WHERE N_COD_LIVRO_IE = $codigolivro");
-    $rf = mysql_fetch_array($rs);
-  	$r = 0.00;
-    if($rf['V_VOTOS'] != 0)
-    {
-      $r = number_format($rf['V_PONTOS'] / $rf['V_VOTOS'],2,'.','.');
-    }
-    $r="1";
-    ?>
-    <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php">
-      <input type="hidden" name="valor" value="<?php echo $codigolivro; ?>">                            
-      <select id="r1">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+    //$rs = mysql_query("SELECT V_VOTOS, V_PONTOS FROM comentario inner join livro on livro.N_COD_LIVRO = comentario.N_COD_LIVRO_IE WHERE N_COD_LIVRO_IE = $codigolivro");
+    //$rf = mysql_fetch_array($rs);
+  	//$r = 0.00;
+    //if($rf['V_VOTOS'] != 0)
+    //{
+    //  $r = number_format($rf['V_PONTOS'] / $rf['V_VOTOS'],2,'.','.');
+    //}
+    //$r="1";
+    //?>
+    <!-- <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php"> -->
+    <!--   <input type="hidden" name="valor" value="<?php echo $codigolivro; ?>">  -->                          
+    <!--   <select id="r1"> -->
+    <!--     <option value="1">1</option> -->
+    <!--     <option value="2">2</option> -->
+    <!--     <option value="3">3</option> -->
+    <!--     <option value="4">4</option> -->
+    <!--     <option value="5">5</option> -->
+     <!--  </select>
     </form>
-    <div id="votosComputados">
-      <?php echo "Pontuação: ". $r."/5 (".$rf['V_VOTOS']." votos)"; ?>
-    </div><!--fim div votosComputados-->  
+    <div id="votosComputados">-->
+      <?php //echo "Pontuação: ". $r."/5 (".$rf['V_VOTOS']." votos)"; ?>
+     <!--</div><!fim div votosComputados--> 
 
     <!--termina a avaliação por estrelas-->
 

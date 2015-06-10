@@ -82,8 +82,13 @@ $tipoLogado = $_SESSION['tipo'];;
 
 
 			<?php	
-			$result = array_intersect($arraytitulodesejado, $arraytitulo);
-			echo "<span class='h6'>Quantidade de Livros que você tem que interessam ao solicitado: " . count($result) . "</span>";		
+			//$result = array_intersect($arraytitulodesejado, $arraytitulo);
+			
+			//echo "<span class='h6'>Quantidade de Livros que você tem que interessam ao solicitado: " . count($result) . "</span>";		
+			
+
+			echo "<span class='h6'>Quantidade de Livros que você tem que interessam ao solicitado: 0</span>";		
+			
 			}						
 		}
 		else

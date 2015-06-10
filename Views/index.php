@@ -3,6 +3,10 @@
 
 session_start();
 
+if( isset ($_SESSION['codigo']) ){
+  $codigo = $_SESSION['codigo'];
+}
+
 require_once "../Dados/Conexao.php";
 
 
@@ -26,6 +30,9 @@ require_once "../Dados/Conexao.php";
 </head>
 <body >
   <?php include('../Views/View_topo.php'); ?>
+
+
+ 
 
  
   <div id='corpo'>

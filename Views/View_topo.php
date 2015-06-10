@@ -33,7 +33,7 @@
 
   </div><!--fim div container-->
   <div class="buscar">
-<form name="frmBusca" method="post" action="View_Buscar.php" class="search">
+<form name="frmBusca" method="post" action="../Views/View_Buscar.php" class="search">
               <input type="search" name="palavra" class="input_pesquisa" placeholder="Faça sua busca">
               <input type="submit" value="Buscar">
               </form>
