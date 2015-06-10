@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   session_start();
   require_once "../Dados/Conexao.php";
@@ -25,6 +24,7 @@ $sql = mysql_query("SELECT V_TITULO, D_ANO, N_COD_CATEGORIA_IE FROM livro_deseja
 
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Troca Livro</title>

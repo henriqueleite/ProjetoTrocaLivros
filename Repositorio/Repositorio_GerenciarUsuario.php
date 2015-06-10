@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
 session_start();
@@ -24,6 +23,7 @@ if (isset ($_POST['buscar'])){
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Troca Livro</title>

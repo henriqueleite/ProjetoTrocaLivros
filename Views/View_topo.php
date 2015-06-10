@@ -4,8 +4,8 @@
           <ul>
           <a href='#' class="logo"></a>
           
-              <li><a href="../index.php">Início</a></li>
-              <li><a href="../Views/View_Form_Ajuda.php">Como Funciona</a></li>
+              <li><a href="../Views/index.php">Início</a></li>
+              <li><a href="#">Como Funciona</a></li>
               <li><a href="../Views/View_Form_Ajuda.php">Contato</a></li>
               </ul>
           

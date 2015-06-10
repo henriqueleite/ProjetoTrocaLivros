@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
-session_start();
+
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Troca Livro</title>

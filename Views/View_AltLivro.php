@@ -1,7 +1,8 @@
 <?php
   //testes
-session_start();
+
 require_once "../Dados/Conexao.php";
+session_start();
 
 if (!isset($_SESSION['codigoLivroAlt'])){
   header("Location: ../Repositorio/PerfilUsuario.php");  
@@ -10,7 +11,7 @@ if (!isset($_SESSION['codigoLivroAlt'])){
 
 $codigolivro = $_SESSION['codigoLivroAlt'];
 
-$queryLivro = mysql_query("SELECT * FROM LIVRO WHERE N_COD_LIVRO =".$codigolivro." ");  
+$queryLivro = mysql_query("SELECT * FROM livro WHERE N_COD_LIVRO =".$codigolivro." ");  
 $coluna     = mysql_fetch_array($queryLivro);
 
 $titulo     = $coluna['V_TITULO'];
@@ -133,7 +134,7 @@ $foto       = $coluna['V_FOTO'];
           <span id="spcontando">0/255 caracteres digitados...</span><br /></td>
         </tr>
         <td colspan="2">
-          <input style="  width: 200px;" class='btn' type="submit" value="Cancelar" id="btnCancelar" name="btnCancelar">
+          <input style="  width: 200px; cursor:default;" class='btn' onclick="location.href='../Repositorio/PerfilUsuario.php'" value="Cancelar" id="btnCancelar" name="btnCancelar">
           <input style="  width: 200px;" class='btn' type="submit" value="Salvar" id="btnSalvar" name="btnSalvar"><br>
         </td>
       </tr>
@@ -206,7 +207,7 @@ if (@$_GET['go'] == 'salvarfoto') {
     if (!$sql){
       echo "<script>alert('Erro ao atualizar foto !! ');history.back();</script>";
     }else{
-      echo "<meta http-equiv='refresh' content='0, url=View_VisualizarLivro.php'>"; 
+      echo "<meta http-equiv='refresh' content='0'>"; 
     }
   }
 

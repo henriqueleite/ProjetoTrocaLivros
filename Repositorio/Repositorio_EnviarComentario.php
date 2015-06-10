@@ -2,8 +2,11 @@
 require_once "../Dados/Conexao.php";
 session_start();
 
-$codigo = $_SESSION["codigo"];
-$mensagem = strtoupper($_POST["comentario"]);
+
+
+$codigo = $_SESSION['codigo'];
+$logado = $_SESSION['login'];
+$mensagem = strtoupper($_POST['comentario']);
 $livro = $_SESSION['codigoLivroAlt'];
 $data = date("Y-m-d");
 

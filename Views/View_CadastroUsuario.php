@@ -1,5 +1,6 @@
 <?php
 require_once "../Dados/Conexao.php";
+session_start();
 
 ?>
 <!DOCTYPE html>

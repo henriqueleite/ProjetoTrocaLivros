@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   session_start();
   require_once "../Dados/Conexao.php";
@@ -9,6 +8,7 @@
     header('location:index.php');
   }
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Troca Livro</title>

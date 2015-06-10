@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 <?php
-require_once "Conexao.php";
+require_once "../Dados/Conexao.php";
 session_start();
 if((!isset ($_SESSION['login']) == true))
 {
@@ -24,35 +23,25 @@ $_SESSION["idsuporte"] = $id;
 
 $idajuda = $_SESSION["idsuporte"];
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="CSS/AJUDA.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Menu.css">
-    <link rel="stylesheet" type="text/css" href="CSS/Rodape.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Suporte.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
     </script>
 </head>
 <body>
-  <div id='cssmenu'>
-      <div id='container'>
-        <ul>
-           <li><a href='index.php'><img style='width: 50px; margin-top: -20px; margin-bottom: -20px; border: 1px solid #036564' src="LogoTrocaLivro.png"></img></a></li>
-           <li><a href='GerenciarUsuario.php'><span>GERENCIAR USUÁRIOS</span></a></li>
-           <li><a href='index.php'><span>EVENTO/CAMPANHA</span></a></li>
-           <li><a href='Suporte.php'><span>SUPORTE</span></a></li>
-           <li style="float: right" class="right"><a href='Logout.php'><span>SAIR</span></a></li>
-           <li style="float: right" class="right"><span style="margin-top: 12px; position: absolute; margin-left: -2px; color: #999999; opacity: 0.4; ">|</span></li>  
-           <li class='active' style="float: right" class="right"><a href='PerfilAdministrador.php'><span>PAINEL</span></a></li> 
-        </ul>
-      </div>
-    </div>
+  <?php include('../Views/View_topo_administrador.php'); ?>
 
   <?php
 
-  $query = mysql_query("SELECT * FROM AJUDA WHERE N_COD_AJUDA = '$idajuda'");
+  $query = mysql_query("SELECT * FROM ajuda WHERE N_COD_AJUDA = '$idajuda'");
 
   while ($linha=mysql_fetch_array($query)){
         $codigoajuda   = $linha['N_COD_AJUDA'];
@@ -69,16 +58,12 @@ $idajuda = $_SESSION["idsuporte"];
       <div class='formulario_suporte'>
     <form>
     <p class="name">
-        <label for="name">Título</label>
-        <input class='input_formulario' readonly="readonly" type="text" name="titulo" id="titulo" size="50" value="<?php echo $titulo; ?>" required/>
+        <label for="name">Título:</label>
+        <label><b>RE-<?php echo $titulo; ?></b></label>
     </p>
     <p class="email">
-         <label for="name">Tipo</label>
-         <select name="tipo" readonly="readonly" id="tipo" required>
-            <option value="Dúvida">Dúvida</option>
-            <option value="Sugestão">Sugestão</option>
-            <option value="Reclamação">Reclamação</option>
-         </select>
+         <label for="name">Tipo:</label>
+         <label><b><?php echo $tipoajuda; ?></b></label>
     </p>
     <p class="text">
         <label for="mensagem">Mensagem</label>
@@ -91,22 +76,26 @@ $idajuda = $_SESSION["idsuporte"];
   <h2 class="h2_suporte_2">Responder Mensagem</h2>
 
       <div class="formulario_suporte_2">
+    
     <form method="post" Action="?go=Enviar" class="form">
-    <p class="name">
-        <label for="name">Título</label>
-        <label for="titulo">RE-<?php echo $titulo; ?></label>
-    </p>
-    <p class="email">
-         <label for="name">Tipo</label>
-         <label for="tipo"><?php echo $tipoajuda; ?></label>
-    </p>
-    <p class="text">
+      <p class="name">
+        <input type="hidden" name="codigoajuda" id="codigoajuda" value="<?php echo $codigoajuda;?>">
+        <label for="name">Título:</label>
+        
+        <label for="titulo"><b>RE-<?php echo $titulo; ?></b></label>
+        </p>
+        <input type="hidden" name="tituloajuda" id="tituloajuda" value="<?php echo $titulo; ?>">
+         <p class="email">
+         <label for="name">Tipo:</label>
+         <label for="tipo"><b><?php echo $tipoajuda; ?></b></label>
+
+        <input type="hidden" name="tipoajuda" id="tipoajuda" value="Resposta">
+        </p>
+        <p class="text">
         <label for="mensagem">Resposta</label>
         <textarea name="resposta" id="resposta" placeholder="Escreva sua mensagem" required/></textarea>
-    </p>
-    <p class="submit">
+        </p>
         <input type="submit" value="Enviar" />
-    </p>
     </form>
   </div>
 
@@ -115,25 +104,17 @@ $idajuda = $_SESSION["idsuporte"];
 
     </div>
 
-    <footer>
-      <div class="bar">
-        Rodapé
-      </div>
-      <div class='footer2'>
-      <div class="bar2">
-        Copyright © 2015 by Troca Livro
-      </div>
-    </div>
-    </footer>
+    <?php include('../Views/View_rodape.php'); ?>
 </body>
 </html>
 
 <?php
 if(@$_GET['go'] == 'Enviar'){
+
   $reposta = $_POST['resposta'];
-  $tituloresposta = 'RE-'. $_POST['$tituloajuda'];
+  $tituloresposta = $_POST['tituloajuda'];
   $tipoajuda = $_POST['tipoajuda'];
-  $idmensagemreposta = $_POST['$codigoajuda'];
+  $idmensagemreposta = $_POST['codigoajuda'];
 
   if ($reposta == ""){
       echo "<script>alert('Preencha o campo Resposta'); history.back(); </script>";
@@ -147,7 +128,7 @@ if(@$_GET['go'] == 'Enviar'){
       }else
       {
         echo "<script>alert('Resposta enviada com sucesso!!');</script>";
-        echo "<meta http-equiv='refresh' content='0, url=Suporte.php'>";  
+        echo "<meta http-equiv='refresh' content='0, url=View_Suporte.php'>";  
     }
 
 

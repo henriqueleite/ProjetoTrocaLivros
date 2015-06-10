@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
 session_start();
@@ -13,6 +12,7 @@ $idLogado = $_SESSION['codigo'];
 $tipoLogado = $_SESSION['tipo'];;
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Troca Livro</title>
@@ -34,7 +34,7 @@ $tipoLogado = $_SESSION['tipo'];;
 		//faço uma consulta de todos os livros do usuario logado para realizar a troca
 		$queryListar = mysql_query("SELECT * FROM livro WHERE N_COD_USUARIO_IE = $idLogado and B_ATIVO = 'T'");
 
-		$queryusuario = mysql_query("SELECT LIVRO.*, usuario.N_COD_USUARIO FROM livro INNER JOIN USUARIO ON USUARIO.N_COD_USUARIO = LIVRO.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO = ".$_SESSION['idLivroSolicitado']."");
+		$queryusuario = mysql_query("SELECT livro.*, usuario.N_COD_USUARIO FROM livro INNER JOIN usuario ON usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE livro.N_COD_LIVRO = ".$_SESSION['idLivroSolicitado']."");
 
 		$dadosusuario = mysql_fetch_array($queryusuario);
 		$codigousuariosolicitado = $dadosusuario["N_COD_USUARIO"];
@@ -73,7 +73,7 @@ $tipoLogado = $_SESSION['tipo'];;
 
 			?>
 			
-				<div style="border:1px solid #ccc; width: 200px; margin-top: 10px; margin-bottom: 15px; text-align: center">
+				<div style="border:1px solid #ccc; width: 307px; margin-top: 10px; margin-bottom: 15px; text-align: center; float: left; margin-left: 10px">
 					      <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>"width="110" height="110"></p>
 					<span class="h5">Título: <a><?php echo $titulo; ?></a></span>
 					&nbsp
@@ -81,17 +81,9 @@ $tipoLogado = $_SESSION['tipo'];;
 				</div>
 
 
-			<?php	
-			//$result = array_intersect($arraytitulodesejado, $arraytitulo);
-			
-			//echo "<span class='h6'>Quantidade de Livros que você tem que interessam ao solicitado: " . count($result) . "</span>";		
-			
-
-			echo "<span class='h6'>Quantidade de Livros que você tem que interessam ao solicitado: 0</span>";		
-			
-			}						
+			<?php				
 		}
-		else
+		}else
 		{
 			echo "Erro na consulta";
 			header("Location: index.php");  

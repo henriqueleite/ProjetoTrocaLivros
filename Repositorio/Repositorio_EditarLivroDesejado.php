@@ -20,7 +20,7 @@ $ano = $_POST['ano'];
       echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
     }else{
 
-      $query2 = mysql_query("UPDATE LIVRO_DESEJADO SET V_TITULO = '".$titulo."', D_ANO = '".$ano."', N_COD_CATEGORIA_IE = ".$genero." WHERE N_COD_LIVRO_DESEJADO = $cod_livro_desejado");
+      $query2 = mysql_query("UPDATE livro_desejado SET V_TITULO = '".$titulo."', D_ANO = '".$ano."', N_COD_CATEGORIA_IE = ".$genero." WHERE N_COD_LIVRO_DESEJADO = $cod_livro_desejado");
 
       if (!$query2) {
         echo "<script>alert('Falha na alteração!!'); history.back();</script>";

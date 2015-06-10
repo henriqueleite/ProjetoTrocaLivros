@@ -212,7 +212,7 @@ body{
   font-family: 'Source Sans Pro', sans-serif;
 }
 #corpo .listar-livro{
-    border: 2px solid black;
+    border: 2px solid rgba(140, 140, 140, 0.4);
     width: 95%;
     margin: -10px 5px 15px 6px;
     height: 120px;
@@ -243,7 +243,7 @@ body{
   margin-bottom: 8px;
   margin-left: 6px;
   padding-right: 90px;
-  border: 2px solid black;
+  border: 1px solid rgba(140, 140, 140, 0.4);
   font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -259,7 +259,7 @@ body{
 #corpo #lateral .foto_usuario{
 	margin-bottom: -15px; 
 	margin-top: -16px; 
-	border: 2px solid #1487bc;
+	border: 1px solid rgba(140, 140, 140, 0.4);
 }
 
 #corpo #centro .nome_usuario{
@@ -300,8 +300,8 @@ body{
   text-decoration: none;
 }
 
-#corpo .listar-livr#1487bcados{
-    border: 2px solid black;
+#corpo .listar-livro-desejados{
+    border: 1px solid rgba(140, 140, 140, 0.4);
     width: 95%;
     margin: -10px 5px 15px 6px;
     height: 52px;
@@ -330,7 +330,7 @@ body{
   margin-bottom: 8px;
   margin-left: 6px;
   padding-right: 90px;
-  border: 2px solid black;
+  border: 1px solid rgba(140, 140, 140, 0.4);
   border-right: 0px solid black;
 }
 
@@ -348,21 +348,27 @@ body{
 }
 
 #corpo .listar-livro-exibidos-desejados-preenche {
-  width: 30px;
-  margin-bottom: 8px;
-  margin-right: 27px;
-  margin-top: -37px;
-  padding-right: 142px;
-  border: 2px solid black;
-  border-left: 0px solid black;
-  float: right;
-  height: 29px;
-  position: relative;
+width: 25px;
+margin-bottom: 8px;
+margin-right: 29px;
+margin-top: -35px;
+padding-right: 143px;
+border-width: 1px 1px 1px 0px;
+border-style: solid;
+border-color: rgba(140, 140, 140, 0.4) rgba(140, 140, 140, 0.4) rgba(140, 140, 140, 0.4) #000;
+-moz-border-top-colors: none;
+-moz-border-right-colors: none;
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+border-image: none;
+float: right;
+height: 27px;
+position: relative;
 }
 
 
 #corpo .listar-solicitacoes{
-    border: 2px solid black;
+    border: 2px solid rgba(140, 140, 140, 0.4);
     width: 95%;
     margin: -10px 5px 15px 6px;
     height: 100px;

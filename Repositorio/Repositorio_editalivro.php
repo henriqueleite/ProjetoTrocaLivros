@@ -88,7 +88,7 @@ require_once("../Dados/Conexao.php");
       echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
     }else{
 
-      $query2 = mysql_query("UPDATE LIVRO SET V_TITULO ='$titulo', V_AUTOR ='$autor', V_EDITORA  ='$editora', V_ESTADO_LIVRO ='$estado', V_OBSERVACAO ='$observacao', N_COD_CATEGORIA_IE ='$genero', V_ANO ='$ano' WHERE N_COD_LIVRO ='$codigolivro'");
+      $query2 = mysql_query("UPDATE livro SET V_TITULO ='$titulo', V_AUTOR ='$autor', V_EDITORA  ='$editora', V_ESTADO_LIVRO ='$estado', V_OBSERVACAO ='$observacao', N_COD_CATEGORIA_IE ='$genero', V_ANO ='$ano' WHERE N_COD_LIVRO ='$codigolivro'");
 
 
       if (!$query2) {
@@ -96,7 +96,7 @@ require_once("../Dados/Conexao.php");
         die();
       }else{
         echo "<script>alert('Livro alterado com sucesso!!');</script>";         
-        echo "<meta http-equiv='refresh' content='0, url=../Views/View_VisualizarLivro.php'>";
+        echo "<meta http-equiv='refresh' content='0, url=../Views/View_VisualizarLivro.php?id=$codigolivro'>";
         die();
       }
   

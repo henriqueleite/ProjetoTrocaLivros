@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
-session_start();
 require_once "../Dados/Conexao.php";
+session_start();
+
 if(isset($_POST['codigolivro']))
 {
   $codigolivro = $_POST['codigolivro'];
@@ -13,11 +13,7 @@ else if(isset($_GET['id']))
   $codigolivro = $_GET['id'];
   $_SESSION['codigoLivroAlt'] = $codigolivro;
 }
-else 
-{
-  header("Location: ../Repositorio/PerfilUsuario.php");  
-  die();
-}
+
 
 if((isset ($_SESSION['login']) == true))
 {
@@ -43,6 +39,7 @@ if (isset ($_POST['excluir']))
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Troca Livro</title>
@@ -95,7 +92,7 @@ $query = mysql_query("SELECT livro.*, categoria_livro.V_GENERO, usuario.V_NOME F
 
 while($linha=mysql_fetch_array($query)){
 
-  $codigo = $linha['N_COD_LIVRO'];
+  $codigolivro = $linha['N_COD_LIVRO'];
   $titulo = $linha['V_TITULO'];
   $autor = $linha['V_AUTOR'];
   $editora = $linha['V_EDITORA'];
@@ -162,20 +159,9 @@ while($linha=mysql_fetch_array($query)){
       <textarea name="comentario" id="comentario" required></textarea>
       <input type="submit" value="Enviar Comentário"/>
     </form>
-  <!-- Avaliação por estrelas-->
-   <!--   <p>Avaliação desse livro:</p> -->
-    <?php
-    //$rs = mysql_query("SELECT V_VOTOS, V_PONTOS FROM comentario inner join livro on livro.N_COD_LIVRO = comentario.N_COD_LIVRO_IE WHERE N_COD_LIVRO_IE = $codigolivro");
-    //$rf = mysql_fetch_array($rs);
-  	//$r = 0.00;
-    //if($rf['V_VOTOS'] != 0)
-    //{
-    //  $r = number_format($rf['V_PONTOS'] / $rf['V_VOTOS'],2,'.','.');
-    //}
-    //$r="1";
-    //?>
-    <!-- <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php"> -->
-    <!--   <input type="hidden" name="valor" value="<?php echo $codigolivro; ?>">  -->                          
+  <!--   <p>Avaliação desse livro:</p> -->
+     <!-- <form style="display:none" title="Average Rating: <?=$r?>" class="rating" action="../rate.php"> -->
+    <!--   <input type="hidden" name="valor" value="<?php //echo $codigolivro; ?>">  -->                          
     <!--   <select id="r1"> -->
     <!--     <option value="1">1</option> -->
     <!--     <option value="2">2</option> -->
@@ -184,12 +170,14 @@ while($linha=mysql_fetch_array($query)){
     <!--     <option value="5">5</option> -->
      <!--  </select>
     </form>
-    <div id="votosComputados">-->
+    <div id="votosComputados">
+      <?php //echo "Pontuação: ". $r."/5 (".$rf['V_VOTOS']." votos)"; ?>
+    </div><!--fim div votosComputados-->  
+    <!--<div id="votosComputados">-->
       <?php //echo "Pontuação: ". $r."/5 (".$rf['V_VOTOS']." votos)"; ?>
      <!--</div><!fim div votosComputados--> 
 
     <!--termina a avaliação por estrelas-->
-
 
 
    
@@ -198,9 +186,9 @@ while($linha=mysql_fetch_array($query)){
 
 
     <hr>
-    <?php } ?> 
-    <?php
-    $querycomentarios = mysql_query("SELECT COMENTARIO.*, usuario.V_NOME, usuario.V_FOTO FROM COMENTARIO inner join usuario on usuario.N_COD_USUARIO = comentario.N_COD_USUARIO_IE WHERE COMENTARIO.N_COD_LIVRO_IE = $codigolivro");
+     <?php
+   }
+    $querycomentarios = mysql_query("SELECT comentario.*, usuario.V_NOME, usuario.V_FOTO FROM comentario inner join usuario on usuario.N_COD_USUARIO = comentario.N_COD_USUARIO_IE WHERE comentario.N_COD_LIVRO_IE = $codigolivro");
 
     while($consulta = mysql_fetch_array($querycomentarios)){
      $fotousuario = $consulta["V_FOTO"];

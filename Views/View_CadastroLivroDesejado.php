@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   session_start();
   require_once "../Dados/Conexao.php";
@@ -9,6 +8,7 @@
   }
 
 ?>
+<!DOCTYPE html>
 <script type="text/javascript" src="jquery-1.3.js"></script>
 <script type="text/javascript">
   function lookup(titulo) {
@@ -70,7 +70,7 @@
             </tr>
             <tr>
               <td>Ano:*</td>
-              <td><input type="text" name="ano" id="ano" class="txt1" maxlength="10" size=35 required/></td>
+              <td><input type="text" name="ano" id="ano" class="txt1" maxlength="10" size=4 required/></td>
             </tr>
               <td colspan="2"><input style="  width: 390px;" class='btn' type="submit" value="Cadastrar Livro Desejado" id="buton1" name="btvalidar"><br>
               </td>

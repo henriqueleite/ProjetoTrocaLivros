@@ -1,27 +1,19 @@
-<!DOCTYPE html>
 <?php
-
 session_start();
-
-if( isset ($_SESSION['codigo']) ){
-  $codigo = $_SESSION['codigo'];
-}
-
 require_once "../Dados/Conexao.php";
 
-
 ?>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Troca Livro</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <link rel="stylesheet" href="style.css" media="all" />
   <link rel="stylesheet" type="text/css" href="../CSS/index.css">
   <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
   <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
+  <link rel="shortcult icon" type="image/x-icon" href="favicon.png">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
-
 </script>
 <script>
 
@@ -31,9 +23,6 @@ require_once "../Dados/Conexao.php";
 <body >
   <?php include('../Views/View_topo.php'); ?>
 
-
- 
-
  
   <div id='corpo'>
    
@@ -42,7 +31,7 @@ require_once "../Dados/Conexao.php";
       <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
       <?php 
-      $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE LIVRO.N_COD_LIVRO < 100 and livro.B_ATIVO = 'T' ORDER BY rand() LIMIT 16");
+      $query = mysql_query("SELECT livro.*, usuario.V_NOME  FROM livro inner join usuario on usuario.N_COD_USUARIO = livro.N_COD_USUARIO_IE WHERE livro.N_COD_LIVRO < 100 and livro.B_ATIVO = 'T' ORDER BY rand() LIMIT 16");
       while ($lista = mysql_fetch_array($query))
       {
          $idlivro = $lista['N_COD_LIVRO'];

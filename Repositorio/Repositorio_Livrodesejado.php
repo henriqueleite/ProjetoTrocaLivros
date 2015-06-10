@@ -17,7 +17,7 @@ $ano = $_POST['ano'];
       echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
     }else{
 
-      $query2 = mysql_query("INSERT INTO LIVRO_DESEJADO (V_TITULO, D_ANO, N_COD_CATEGORIA_IE, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$ano."',  '".$genero."', '".$codigo."')");
+      $query2 = mysql_query("INSERT INTO livro_desejado (V_TITULO, D_ANO, N_COD_CATEGORIA_IE, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$ano."',  '".$genero."', '".$codigo."')");
 
       if (!$query2) {
         echo "<script>alert('Falha no cadastro!!'); history.back();</script>";

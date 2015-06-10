@@ -1,4 +1,5 @@
 <?php
+require_once "../Dados/Conexao.php";		
 
 session_start();
 
@@ -6,9 +7,7 @@ $logado = $_SESSION['login'];
 $codigo = $_SESSION['codigo'];
 $tipo = $_SESSION['tipo'];
 
-require_once "../Dados/Conexao.php";		
-$conecta = mysql_connect("localhost", "root", ""); 
-mysql_select_db("trocalivro", $conecta);
+
     
 
 		$nome = strtoupper($_POST['nome']);

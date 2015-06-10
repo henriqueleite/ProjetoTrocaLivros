@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
 session_start();
+
 if((!isset ($_SESSION['login']) == true))
 {
   unset($_SESSION['login']);
@@ -17,6 +17,7 @@ if (($_SESSION['tipo'] == 1)){
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Troca Livro</title>
@@ -42,12 +43,12 @@ if (($_SESSION['tipo'] == 1)){
 
 <?php
 $query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, D_DATA_NASC,D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE V_LOGIN = '$logado'");
-$query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo'");
+$query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$codigo' and B_ATIVO = 'T'");
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$codigo'");
 
-$query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND troca.V_STATUS = 'Pendente'");
+$query4 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND troca.V_STATUS = 'Pendente'");
 
-$query5 = mysql_query("SELECT COUNT(*) FROM TROCA INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND V_STATUS = 'Pendente'");
+$query5 = mysql_query("SELECT COUNT(*) FROM troca INNER JOIN livro AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = troca.N_COD_LIVRO INNER JOIN livro AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE WHERE (LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' OR LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo') AND V_STATUS = 'Aceito'");
 
 $query7 = mysql_query("SELECT COUNT(*), livro.N_COD_USUARIO_IE FROM troca INNER JOIN livro on livro.N_COD_LIVRO = troca.N_COD_LIVRO  WHERE livro.N_COD_USUARIO_IE = '$codigo' AND troca.B_ATIVO = 'F'");
 
@@ -55,21 +56,26 @@ $query8 = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_O
 
 $query9 = mysql_query("SELECT N_COD_LIVRO_DESEJADO, V_TITULO, D_ANO, N_COD_USUARIO_IE, N_COD_CATEGORIA_IE, categoria_livro.V_GENERO FROM livro_desejado INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro_desejado.N_COD_CATEGORIA_IE where N_COD_USUARIO_IE = '$codigo'");
 
-$query10 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
-  INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
-  INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND TROCA.V_STATUS = 'PENDENTE'");
+$query10 =  mysql_query("SELECT troca.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   
+FROM troca 
+INNER JOIN livro AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = troca.N_COD_LIVRO 
+INNER JOIN livro AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE 
+INNER JOIN usuario AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
+INNER JOIN usuario AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE 
+WHERE LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' AND troca.V_STATUS = 'PENDENTE'");
 
-$query11 = mysql_query("SELECT * FROM AJUDA WHERE N_COD_USUARIO_IE = '$codigo'" );
+$query11 = mysql_query("SELECT * FROM ajuda inner join ajuda as ajuda_usuario on ajuda_usuario.N_COD_RESPOSTA = ajuda.N_COD_AJUDA where ajuda.N_COD_USUARIO_IE = '$codigo'" );
 
-$query12 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
-  INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
-  INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE (LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' OR LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo') AND TROCA.V_STATUS = 'ACEITO'");
+$query12 =  mysql_query("SELECT troca.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE, (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITANE, (USUARIO_SOLICITANTE.V_NOME) AS NOME_SOLICITADO   FROM troca 
+  INNER JOIN livro AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = troca.N_COD_LIVRO INNER JOIN livro AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE INNER JOIN usuario AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
+  INNER JOIN usuario AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE WHERE (LIVRO_SOLICITADO.N_COD_USUARIO_IE = '$codigo' OR LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo') AND troca.V_STATUS = 'ACEITO'");
+
+$query13 =  mysql_query("SELECT troca.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITADO.V_TITULO) AS DESC_LIVRO_SOLICITADO ,(LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE,  (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITADO FROM troca 
+  INNER JOIN livro AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = troca.N_COD_LIVRO INNER JOIN livro AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = troca.N_COD_LIVRO_SOLICITANTE INNER JOIN usuario AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
+  INNER JOIN usuario AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE 
+  WHERE LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo' AND troca.V_AVALIACAO_TROCA_SOLICITANTE IS NULL AND troca.V_STATUS = 'Finalizado' ");
 
 
-$query13 =  mysql_query("SELECT TROCA.*, (LIVRO_SOLICITADO.V_FOTO) AS FOTO_SOLICITADO, (LIVRO_SOLICITADO.V_TITULO) AS DESC_LIVRO_SOLICITADO ,(LIVRO_SOLICITANTE.V_FOTO) AS FOTO_SOLICITANTE,  (USUARIO_SOLICITADO.V_NOME) AS NOME_SOLICITADO   FROM TROCA 
-  INNER JOIN LIVRO AS LIVRO_SOLICITADO ON LIVRO_SOLICITADO.N_COD_LIVRO = TROCA.N_COD_LIVRO INNER JOIN LIVRO AS LIVRO_SOLICITANTE ON LIVRO_SOLICITANTE.N_COD_LIVRO = TROCA.N_COD_LIVRO_SOLICITANTE INNER JOIN USUARIO AS USUARIO_SOLICITADO ON USUARIO_SOLICITADO.N_COD_USUARIO = LIVRO_SOLICITADO.N_COD_USUARIO_IE
-  INNER JOIN USUARIO AS USUARIO_SOLICITANTE ON USUARIO_SOLICITANTE.N_COD_USUARIO = LIVRO_SOLICITANTE.N_COD_USUARIO_IE 
-  WHERE LIVRO_SOLICITANTE.N_COD_USUARIO_IE = '$codigo' AND TROCA.V_AVALIACAO_TROCA_SOLICITANTE IS NULL AND TROCA.V_STATUS = 'Finalizado' ");
 
 $mensagens = mysql_num_rows($query11);
 
@@ -142,7 +148,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
    <div id='quantidaderegistro'>
     <p class='info-lateral'>Livros Publicados: <?php echo $QuantidadeLivros; ?> </p>
     <p class='info-lateral'>Livros Desejados: <?php echo $QuantidadeLivrosDesejados; ?></p>
-    <p class='info-lateral'>Solicitações :    <?php echo $QuantidadeSolicitacoes; ?></a></p>
+    <p class='info-lateral'>Solicitações : <?php echo $QuantidadeSolicitacoes; ?></a></p>
     <p class='info-lateral'>Trocas Pendentes : <?php echo $QuantidadeTrocasPendentes; ?></p>
     <p class='info-lateral'>Trocas Realizadas : <?php echo $QuantidadeTrocasRealizadas; ?></p>
   </div>
@@ -332,8 +338,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
                     <td class="listar-solicitacoes-foto-solicitado"><img src="../<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
                     <td class="listar-solicitacoes-foto-troca"><img src="../Imagens/Troca.png"width="50" height="50"></td>
                     <td class="listar-solicitacoes-foto-solicitante"><img src="../<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
-                    <td class="listar-livro-solicitacoes-usuario-solicitado"><?php echo $usuario_solicitado;?></td>
-                    <td class="listar-livro-solicitacoes-usuario-solicitante">STATUS: AGUARDANDO</td>
+                    <td class="listar-livro-solicitacoes-usuario-solicitado"><span style="font-weight: 100;">Usuario Solicitante: <br></span><?php echo $usuario_solicitado;?></td>
+                    <td class="listar-livro-solicitacoes-usuario-solicitante"><span style="font-weight: 100;">STATUS: <br></span>AGUARDANDO</td>
                     <td><input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" ></td>
                     <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Aceitar" /></td>
                     <td class="listar-livro-solicitacoes-recusar"><input type="submit" name="Ver"  id="Ver"   value="Recusar" /></td>
@@ -380,8 +386,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
                       <td class="listar-solicitacoes-foto-solicitado"><img src="../<?php echo $foto_solicitado; ?>"width="50" height="50"></td>
                       <td class="listar-solicitacoes-foto-troca"><img src="../Imagens/Troca.png"width="50" height="50"></td>
                       <td class="listar-solicitacoes-foto-solicitante"><img src="../<?php echo $foto_solicitante; ?>"width="50" height="50"></td>
-                      <td class="listar-livro-solicitacoes-usuario-solicitado"><?php echo $usuario_solicitado;?></td>
-                      <td class="listar-livro-solicitacoes-usuario-solicitante"><?php echo $usuario_solicitante;?></td>
+                      <td class="listar-livro-solicitacoes-usuario-solicitado"><span style="font-weight: 100;">Usuario Solicitado:<br></span><?php echo $usuario_solicitado;?></td>
+                      <td class="listar-livro-solicitacoes-usuario-solicitante"><span style="font-weight: 100;">Usuario Solicitante:<br></span><?php echo $usuario_solicitante;?></td>
                       <td><input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" ></td>
                       <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Ver" /></td>
                     </tr>
@@ -392,7 +398,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
               <?php } 
               } ?>
 
-            <h2 class="Solicitacoes">Avaliações Pendentes</h2>
+              <h2 class="Solicitacoes">Avaliações Pendentes</h2>
             <?php
               if (mysql_num_rows($query13) <= 0){
             ?>
@@ -436,6 +442,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
               } ?>
 
 
+
             </div>
           </div>
 <?php include('../Views/View_rodape.php'); ?>
@@ -450,6 +457,8 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
         $logado = $_SESSION['login'];
         $codigo = $_SESSION['codigo'];
         $tipo = $_SESSION['tipo'];
+
+
 
         if (@$_GET['go'] == 'salvarfoto') {
           $error;

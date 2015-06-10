@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
 session_start();
@@ -25,6 +24,7 @@ if (isset($_POST["palavra"])) {
 
 
 ?>
+<!DOCTYPE html>
 <script type="text/javascript" src="jquery-1.3.js"></script>
 <script type="text/javascript">
 
@@ -104,30 +104,30 @@ if (isset($_POST["palavra"])) {
 
     <?php
 
-     $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_TITULO like'%".$pesquisa."%' LIMIT 20"); 
+     $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_TITULO like '".$pesquisa."%' LIMIT 20"); 
 
 
     if (isset ($_POST['buscar'])){
       $filtro = $_POST['filtro'];
 
       if ($filtro == '1'){
-        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_TITULO like'%".$_POST['buscar']."%' LIMIT 20");
+        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_TITULO like '".$_POST['buscar']."%' LIMIT 20");
         $pesquisa = $_POST['buscar'];
       }
       else if ($filtro == '2'){
-        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_AUTOR like'%".$_POST['buscar']."%' LIMIT 20");
+        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_AUTOR like '".$_POST['buscar']."%' LIMIT 20");
         $pesquisa = $_POST['buscar'];
       }
       else if ($filtro == '3'){
-        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_EDITORA like'%".$_POST['buscar']."%' LIMIT 20");
+        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_EDITORA like '".$_POST['buscar']."%' LIMIT 20");
         $pesquisa = $_POST['buscar'];
       }
       else if ($filtro == '4'){
-        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_GENERO like'%".$_POST['buscar']."%' LIMIT 20");
+        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_GENERO like '".$_POST['buscar']."%' LIMIT 20");
         $pesquisa = $_POST['buscar'];
       }
       else if ($filtro == '5'){
-        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_ANO like'%".$_POST['buscar']."%' LIMIT 20");
+        $consulta = mysql_query("SELECT N_COD_LIVRO, V_TITULO, V_AUTOR, V_ANO, V_FOTO, V_OBSERVACAO, V_ESTADO_LIVRO, categoria_livro.V_GENERO, V_EDITORA FROM livro INNER JOIN categoria_livro on categoria_livro.N_COD_CATEGORIA = livro.N_COD_CATEGORIA_IE where B_ATIVO = 'T' AND V_ANO like '".$_POST['buscar']."%' LIMIT 20");
         $pesquisa = $_POST['buscar'];
       }
     }
@@ -147,7 +147,7 @@ if (isset($_POST["palavra"])) {
 
     <form id="form2" name="form2" method="post" action="../Views/View_VisualizarLivro.php">
       <tr>
-        <td class="td_foto"><img src="<?php echo $foto; ?>"width="150" height="150"></td>
+        <td class="td_foto"><img src="../<?php echo $foto; ?>"width="150" height="150"></td>
         <td class="td_titulo"><?php echo $titulo; ?></td>
         <td>
         <input type='hidden' name="codigolivro" id="codigolivro" value="<?php echo $codigolivro;?>" >

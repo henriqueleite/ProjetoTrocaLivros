@@ -5,7 +5,7 @@
               <li><a href="../index.php">Início</a></li>
               <li><a href="../Repositorio/Repositorio_GerenciarUsuario.php">Gerenciar Usuários</a></li>
               <li><a href="#">Eventos / Campanhas</a></li>
-              <li><a href="#">Suporte</a></li>
+              <li><a href="../Views/View_Suporte.php">Suporte</a></li>
               </ul>
           
               

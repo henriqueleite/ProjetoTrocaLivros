@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
 session_start();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Troca Livro</title>
@@ -22,7 +22,7 @@ session_start();
 
   <div class='formulario'>
     <h2 class='titulo_formulario'>Formulário de Ajuda/Contato</h2>
-    <form method="post" Action="Ajuda.php" class="form">
+    <form method="post" Action="../Controles/Ajuda.php" class="form">
     <p class="name">
         <label for="name">Título</label>
         <input class='input_formulario' type="text" name="titulo" id="titulo" size="50" placeholder="Título" required/>

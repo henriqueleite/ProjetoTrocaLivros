@@ -1,5 +1,5 @@
 <?php 
-session_start();
+@session_start();
 require_once"../Dados/Conexao.php";
 //se existir algum usuario logado
 if(isset($_SESSION['login']))
@@ -35,17 +35,11 @@ if(isset($_SESSION['login']))
 				if($query)
 				{
 					echo "<script>alert('Escolha um livro para trocar com $nomeUsuario');</script>";
-					header("Location: ../Views/View_ListaLivros.php");
+					echo "<meta http-equiv='refresh' content='0, url=../Views/View_ListaLivros.php'>";
+					
 					
 				}
-				/*$data = date('Y/m/d');
-				$update = mysql_query("INSERT INTO troca(N_COD_LIVRO_SOLICITANTE, D_DATA, V_STATUS) VALUES ($idLogado, $idLivroSolicitado, '$data', 'Pendente')");
-				if($update)
-				{
-					echo "Solicitacao enviada";
-				}
-				else
-				{
+				/*
 					echo "Erro ao solicitar";
 				}*/
 			} 
@@ -63,7 +57,8 @@ if(isset($_SESSION['login']))
 else
 {
 	unset($_SESSION['login']);
-	header('location:../index.php');
+	echo "<meta http-equiv='refresh' content='0, url=../Views/index.php'>";
+	
 }
 ?>
 

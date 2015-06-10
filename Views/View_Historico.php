@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
 require_once "../Dados/Conexao.php";
 session_start();
+
 if((!isset ($_SESSION['login']) == true))
 {
   unset($_SESSION['login']);
