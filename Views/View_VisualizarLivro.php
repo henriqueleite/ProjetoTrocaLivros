@@ -25,7 +25,11 @@ if((isset ($_SESSION['login']) == true))
 if (isset ($_POST['excluir']))
 {
   $codigoLivro = $_SESSION['codigoLivroAlt'];
+
+  $deletarcomentarios = mysql_query("DELETE FROM comentario where N_COD_LIVRO_IE = '$codigoLivro'");
   $excluir = mysql_query("DELETE FROM livro WHERE N_COD_LIVRO  = '$codigoLivro'");
+
+
   if($excluir)
   {
    echo "<script>alert('Livro excluido com sucesso!');</script>";

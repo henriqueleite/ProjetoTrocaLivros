@@ -26,8 +26,19 @@ if(isset($_POST['Ver']) == 'Aceitar')
   $query = mysql_query("UPDATE troca SET V_STATUS = 'ACEITO' where  N_COD_TROCA = $idtroca");
   if($query)
   {
-	header("Location: ../Views/View_ChatTroca.php");
+	$query6 = mysql_query("DELETE FROM troca where N_COD_LIVRO = $CODLIVROSOLICITADO and N_COD_TROCA <> $idtroca AND V_STATUS='Pendente'");
+	echo "<meta http-equiv='refresh' content='0, url=../Views/View_ChatTroca.php'>";
   }
-
 }
+  
+ if(isset($_POST['Recusar']) == 'Recusar')
+{
+  $quer5 = mysql_query("DELETE FROM troca where N_COD_TROCA = $idtroca");
+  if($query5)
+  {
+	unset($_SESSION['$idtroca']);
+  }
+	echo "<script>history.back();</script>";
+}
+
 ?>

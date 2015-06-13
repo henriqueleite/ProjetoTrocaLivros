@@ -8,6 +8,7 @@ require_once "../Dados/Conexao.php";
     <title>Troca Livro</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="style.css" media="all" />
+
     <link rel="stylesheet" type="text/css" href="../CSS/Login.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
@@ -15,7 +16,47 @@ require_once "../Dados/Conexao.php";
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
 	<link rel="shortcut icon" href="../favicon.ico"> 
 	<script src="js/modernizr.custom.63321.js"></script>
+	<script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.form.js'></script>
     </script>
+
+     <script type="text/javascript">
+        // Quando carregado a página
+        $(function($) {
+
+            // Quando enviado o formulário
+            $('#form-2').submit(function() {
+
+                // Limpando mensagem de erro
+                $('div.mensagem-erro').html('');
+
+                // Mostrando loader
+                $('div.loader').show();
+
+                // Enviando informações do formulário via AJAX
+                $(this).ajaxSubmit(function(resposta) {
+
+                    // Se não retornado nenhum erro
+                    if (!resposta)
+                        // Redirecionando para o painel
+                        window.location.href = '../Repositorio/PerfilUsuario.php';
+                    else
+                    {
+                        // Encondendo loader
+                        $('div.loader').hide();
+
+                        // Exibimos a mensagem de erro
+                        $('div.mensagem-erro').html(resposta);
+                    }
+
+                });
+
+                // Retornando false para que o formulário não envie as informações da forma convencional
+                return false;
+
+            });
+        });
+        </script>
 </head>
 <body>
      <?php include('View_topo.php'); ?>
@@ -23,9 +64,14 @@ require_once "../Dados/Conexao.php";
 
       <div id="login">
 
-		<form class="form-2" method="post" action="../Repositorio/Repositorio_autenticacao.php">
+		<form class="form-2" id="form-2" method="post" action="../Repositorio/Repositorio_autenticacao.php">
 					<h1><span class="log-in">Logar</span> ou <a href="View_CadastroUsuario.php"><span class="sign-up"> Cadastre-se</span></a></h1>
+
+					<div class="loader" style="display: none;"><img src="../Imagens/loader.gif" alt="Carregando" /></div>
+                	<div class="mensagem-erro"></div>
+
 					<p class="float">
+
 						<label for="login"><i class="icon-user"></i>Username</label>
 						<input type="text" name="usuario" placeholder="Username">
 					</p>

@@ -23,10 +23,16 @@ $tipo = $_SESSION['tipo'];
     $caminho_imagem = '';
   // Recupera os dados dos campos
 
+
+
   // Se a foto estiver sido selecionada
-  if (!empty($foto)) {
+  if (empty($foto['name'])) {
+
+        $caminho_imagem = "";
+        echo "<script>alert('Nenhuma foto do livro foi inserida!!'); history.back(); </script>";
     
-    // Largura máxima em pixels
+  }else{
+     // Largura máxima em pixels
     $largura = 1920;
     // Altura máxima em pixels
     $altura = 1080;
@@ -73,10 +79,7 @@ $tipo = $_SESSION['tipo'];
       // Faz o upload da imagem para seu respectivo caminho
       move_uploaded_file($foto["tmp_name"], "../".$caminho_imagem);
 
-    }
-  }else{
-    $caminho_imagem = "";
-  }
+
 
    if ($titulo == ""){
       echo "<script>alert('Preencha o campo Titulo'); history.back(); </script>";
@@ -104,5 +107,7 @@ $tipo = $_SESSION['tipo'];
         die();
       }
     
+}
+}
 }
 ?>

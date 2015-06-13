@@ -103,13 +103,10 @@ function SomenteNumero(e){
 				<td class='tr_cadastro'>Confirme a Senha:*</td>
 				<td><input type="password" name="senha2" id="senha2" class="txt1" maxlength="15" size=35 required/></td>
 			</tr>
-            <tr>
-				<td class='tr_cadastro'>Telefone:</td>
-				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" onkeypress="formatar('##-####-####', this); return SomenteNumero(event); "  size=35/></td>
-			</tr>
+            
 			<tr>
 				<td class='tr_cadastro'>Celular:</td>
-				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" onkeypress="formatar('##-####-####', this); return SomenteNumero(event); "  size=35/></td>
+				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="14" onkeypress="formatar('##-#####-####', this); return SomenteNumero(event); "  size=35/></td>
 			</tr>
 			<tr>
 				<td class='tr_cadastro'>Cep:*</td>

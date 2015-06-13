@@ -68,7 +68,7 @@ function contarCaracteres(box,valor){
                 Foto:
               </td>
               <td>
-                <input style="width: 325px;" type="file" name="foto" />
+                <input style="width: 325px;" type="file" name="foto" required />
               </td>
             </tr>
 
