@@ -25,7 +25,11 @@ if((isset ($_SESSION['login']) == true))
 if (isset ($_POST['excluir']))
 {
   $codigoLivro = $_SESSION['codigoLivroAlt'];
+
+  $deletarcomentarios = mysql_query("DELETE FROM comentario where N_COD_LIVRO_IE = '$codigoLivro'");
   $excluir = mysql_query("DELETE FROM livro WHERE N_COD_LIVRO  = '$codigoLivro'");
+
+
   if($excluir)
   {
    echo "<script>alert('Livro excluido com sucesso!');</script>";
@@ -106,11 +110,12 @@ while($linha=mysql_fetch_array($query)){
 }
 
 ?>
+
 <form id="form2" name="form2" method="post" action="">
   <div style="height: 500px;" id='corpo'>
    <h2>Livro: <?php echo $titulo; ?></h2>
    <div style="height: 210px;" id="lateral">
-    <p style="margin-bottom: 0px;"><img style= "margin-top: -16px; border: 2px solid #133141;" src="../<?php echo $foto; ?>" width="198" height="198"></p>  
+    <p style="margin-bottom: 0px;"><img src="../<?php echo $foto; ?>" width="300" height="300"></p>  
   </div>
   <div id="centro">
     <p style="text-transform: uppercase; font-size: 20pt; margin-bottom:0px; margin-top: 0px;"><?php echo $titulo; ?></p>
@@ -127,9 +132,14 @@ while($linha=mysql_fetch_array($query)){
     </fieldset>
     <?php
     if( (isset ($_SESSION['login']) == true) and ($_SESSION['codigo'] <> $codigousuario)){
+
       ?>
       <td colspan="2"><input style="  width: 200px;" type="submit" class='btn' name="Solicitar" id="Solicitar" value="Solicitar"/>
+      <td><input style="  width: 200px;" type="submit" class='btn' name="Dono" id="Dono" value="Dono"/>
         <?php
+        if (isset ($_POST['Dono'])){
+    echo "<meta http-equiv='refresh' content='0, url=../Repositorio/Perfil.php?id=$codigousuario'>";  
+}
       }
       ?>
       <?php 

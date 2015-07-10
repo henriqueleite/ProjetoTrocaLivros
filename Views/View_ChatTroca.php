@@ -39,7 +39,7 @@ $codigo = $_SESSION['codigo'];
 		.done(function(Data){
 			$("#chat-box").html(Data);
 
-			setTimeout(atualizar,10000);
+			setTimeout(atualizar,2000);
 		});
 	}
 
@@ -190,6 +190,15 @@ while($dados = mysql_fetch_array($query2)){
 				</form>
 			</div>
 		</div>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
 		<?php include('../Views/View_rodape.php'); ?>
 	</body>
 	</html>

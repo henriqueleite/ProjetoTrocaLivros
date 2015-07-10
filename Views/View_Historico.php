@@ -154,6 +154,11 @@ WHERE (usuario_solicitado.N_COD_USUARIO = $codigo or usuario_solicitante.N_COD_U
     </table>
   </div><!--fim div tabela-->
 </div><!--fim div meio-->
+</br>
+</br>
+</br>
+</br>
+</br>
 <?php include('../Views/View_rodape.php'); ?>
 
 </body>

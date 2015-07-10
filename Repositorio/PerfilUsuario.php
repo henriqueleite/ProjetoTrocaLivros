@@ -136,7 +136,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
 <div id='corpo'>
   <h2>Perfil</h2>
   <div id='lateral'>
-   <p ><img class="foto_usuario" src="<?php echo $foto; ?>"width="198" height="198"></p>
+   <p ><img class="foto_usuario" src="<?php echo $foto; ?>"></p>
    <form action="?go=salvarfoto" method="post" enctype="multipart/form-data" name="form" class="form" id="form" >
      <div class="upload">
        <p>Mudar Foto</p>
@@ -342,7 +342,7 @@ $QuantidadeTrocasRealizadas = $TrocasRealizadas[0];
                     <td class="listar-livro-solicitacoes-usuario-solicitante"><span style="font-weight: 100;">STATUS: <br></span>AGUARDANDO</td>
                     <td><input type='hidden' name="codigosolicitacao" id="codigosolicitacao" value="<?php echo $codigosolicitacao;?>" ></td>
                     <td class="listar-livro-solicitacoes-aceitar"><input type="submit" name="Ver"  id="Ver"   value="Aceitar" /></td>
-                    <td class="listar-livro-solicitacoes-recusar"><input type="submit" name="Ver"  id="Ver"   value="Recusar" /></td>
+                    <td class="listar-livro-solicitacoes-recusar"><input type="submit" name="Recusar"  id="Recusar"   value="Recusar" /></td>
                   </tr>
                 </table>
               </h5>

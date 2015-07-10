@@ -66,82 +66,111 @@ function SomenteNumero(e){
 
 <div id='corpo'>
 <h2>Cadastro </h2>
-	<form method="post" action="../Repositorio/Repositorio_cadastrausuario.php">
-		<table id="cad_table">
-			<tr>
-				<td class='tr_cadastro'>Nome:*</td>
-				<td><input type="text" name="nome" id="nome" class="txt"  size=35 required/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Email:*</td>
-				<td><input type="email" name="email" id="email" class="txt" size=35 required/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Data Nasc.: </td>
-				<td><input type='text' name='dataNascimento' id="dataNascimento" class="txt" maxlength='10' size='14' onKeyPress='MascaraData(this); return SomenteNumero(event); ' required/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Sexo: </td>
-				<td><select id="sexo" name="sexo">
-              			<option value="M">MASCULINO</option>
-              			<option value="F">FEMININO</option>
-             		 </select></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>CPF:*</td>
-				<td><input type="text" name="cpf" id="cpf" class="txt2" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" size=35 required='aa'/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Login:*</td>
-				<td><input type="text" name="login" id="login" class="txt1" maxlength="10" size=35 required/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Senha:*</td>
-				<td><input type="password" name="senha" id="senha" class="txt1" maxlength="15" size=35 required/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Confirme a Senha:*</td>
-				<td><input type="password" name="senha2" id="senha2" class="txt1" maxlength="15" size=35 required/></td>
-			</tr>
-            <tr>
-				<td class='tr_cadastro'>Telefone:</td>
-				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" onkeypress="formatar('##-####-####', this); return SomenteNumero(event); "  size=35/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Celular:</td>
-				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" onkeypress="formatar('##-####-####', this); return SomenteNumero(event); "  size=35/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Cep:*</td>
-				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="11" size=35 /></td>
-				<td><a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro">Clique aqui para Descobrir seu CEP</a></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>cidade:</td>
-				<td><input type="text" name="cidade" id="cidade" class="txt2" maxlength="100"  size=35/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Bairro:</td>
-				<td><input type="text" name="bairro" id="bairro" class="txt" maxlength="50" size=35 /></td>
-			</tr>
+<form method="post" action="../Repositorio/Repositorio_cadastrausuario.php">
+  <div class="col-2" id="cad_table">
+    <label>
+      Nome*:
+      <input type="text" name="nome" id="nome" class="txt"  size=35 required placeholder="Digite seu nome e sobrenome" tabindex="1" />
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      Email*:
+      <input type="email" name="email" id="email" class="txt" size=35 placeholder="Digite seu email" tabindex="1" />
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      Data Nasc*.:
+      <input type='text' name='dataNascimento' id="dataNascimento" class="txt" maxlength='10' size='14' onKeyPress='MascaraData(this); return SomenteNumero(event); ' required placeholder="Digite sua data de nascimento" tabindex="2" />
+    </label>
+  </div>
+  <div style="box-shadow: 1px 2px #E4E4E4;" class="col-2">
+    <label>
+      Sexo*: 
+      <select id="sexo" name="sexo" tabindex="5">
+        <option value="M">MASCULINO</option>
+        <option value="F">FEMININO</option>
+      </select>
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      CPF*:
+      <input type="text" name="cpf" id="cpf" class="txt2" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" size=35 required='aa' placeholder="Digite seu CPF (somente números)" tabindex="2" />
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      Contato telefónico*:
+      <input type="tel" name="celular" id="celular" class="txt2" maxlength="14" onkeypress="formatar('##-#####-####', this); return SomenteNumero(event); "  size=35 placeholder="Digite seu telefone ou celular (somente números)" tabindex="4" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Login*:
+      <input type="text" name="login" id="login" class="txt1" maxlength="10" size=35 required placeholder="Digite seu login" tabindex="3" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Senha*:
+      <input type="password" name="senha" id="senha" class="txt1" maxlength="15" size=35 required placeholder="Digite sua senha" tabindex="3" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Confirme a senha*:
+      <input type="password" name="senha2" id="senha2" class="txt1" maxlength="15" size=35 required placeholder="Digite sua senha novamente" tabindex="3" />
+    </label>
+  </div>
+  <div style='width: 28.333%;' class="col-3">
+    <label>
+      CEP*:
+      <input type="text" name="cep" id="cep" class="txt2" maxlength="11" size=35 placeholder="Digite seu CEP (somente números)" tabindex="4" />
+    </label>
+  </div>
+  <div style="width: 10.333%;" class="col-3">
+    <label>
+      UF:
+      <input type="text" name="uf" id="uf" class="txt3" maxlength="2" size=2 placeholder="UF" tabindex="5" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Cidade:
+      <input type="text" name="cidade" id="cidade" class="txt2" maxlength="100"  size=35 placeholder="Digite sua cidade" tabindex="5" />
+    </label>
+  </div>
+  <div style="width: 27.7%;" class="col-3">
+    <label>
+      Bairro:
+      <input type="text" name="bairro" id="bairro" class="txt" maxlength="50" size=35 placeholder="Digite seu bairro" tabindex="5" />
+    </label>
+  </div>
+  					<a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro">Clique aqui para Descobrir seu CEP</a>
 
-			<tr>
-				<td class='tr_cadastro'>UF:</td>
-				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" size=2/></td>
-			</tr>
-				
-				<td colspan="2"><input class='btn' type="submit" id="buton1" name="btvalidar" value="cadastrar"><br>
-				<td><input type="checkbox" name="termos"/><h5> Li e Aceito os termos de uso</h5></td>
-				<td><input type="hidden" name="leia" value="0" /> </td><td><a href="#" onclick="window.open('../Views/View_Termos.html', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=770, HEIGHT=400');">Leia os termos de Uso</a></td>
-				
-				</td>
-			</tr>
 
-		</table>
-	</form>
+
+
+
+
+<br><input class='btn' type="submit" id="buton1" name="btvalidar" value="cadastrar"><br>
+				<div class="termos">
+					<input class="checkbox" type="checkbox" name="termos"/>
+					<h5> Li e Aceito os termos de uso</h5>
+					
+		 			</div>
+		 			
+					<input type="hidden" name="leia" value="0" /> 
+		 			<br><a href="#" onclick="window.open('../Views/View_Termos.html', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=770, HEIGHT=400');">Leia os termos de Uso</a><br>
+
 		 			<div class="grid_7 map" id="map1"></div>
 
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
+</form>
+
+
 </div>
 
 <?php include('View_rodape.php'); ?>

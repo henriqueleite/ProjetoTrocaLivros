@@ -68,7 +68,7 @@ function contarCaracteres(box,valor){
                 Foto:
               </td>
               <td>
-                <input style="width: 325px;" type="file" name="foto" />
+                <input style="width: 325px;" type="file" name="foto" required />
               </td>
             </tr>
 
@@ -115,7 +115,15 @@ function contarCaracteres(box,valor){
           </table>
         </form>
     </div>
-
+      </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  
    <?php include('../Views/View_rodape.php'); ?>
 </body>
 </html>

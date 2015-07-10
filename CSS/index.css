@@ -184,7 +184,12 @@
     color: #C3C3C3;
     font-family: 'Slabo 27px', serif;
     margin: -11px -11px 11px -11px;
-    border-bottom: 1px solid gray;
-    border-top: 1px solid gray;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
 }
-  }
+#corpo h2:hover{
+    border-top: 11px solid black;
+    border-bottom: 3px solid black;
+}

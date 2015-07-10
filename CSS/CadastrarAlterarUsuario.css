@@ -76,22 +76,6 @@ i{margin-top: 2px !important;}
 }
 
 
-#corpo #cad_table{
-    margin: 0px auto;
-  }
-
-  #corpo #cad_table tr td{
-      font-family: 'Slabo 27px', serif;
-      padding-right: 50px; 
-      padding-bottom: 15px;
-  }
-
-  #corpo .campo-obrigatorio{
-    float: right;
-    font-size: 10pt;
-    margin-top: -7px;
-  }
-
   #corpo .btn {
   width: 350px;
   background: #133141;
@@ -107,6 +91,7 @@ i{margin-top: 2px !important;}
   color: #ffffff;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
+  margin: 10px 32% 0px;
   text-decoration: none;
 }
 
@@ -124,3 +109,111 @@ i{margin-top: 2px !important;}
     width: 300px;
     height: 300px;
   }
+
+  html, body { width: 100%; height: 100%; background: #ECF3F3 }
+
+form
+{
+  display: block;
+  margin: 0px auto;
+  width: 950px;
+  overflow: hidden;
+  background: #FFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 5px;
+   font-size: 0;
+
+}
+
+form > div
+{
+  display: inline-block;
+  width: 100%;
+}
+
+form > div > label
+{
+  display: block;
+  padding: 20px 20px 10px;
+  vertical-align: top;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #939393;
+  cursor: pointer;
+}
+
+form > div.col-2, form > div.col-3, form > div.col-4 { box-shadow: 1px 1px #E4E4E4;   }
+
+form > div.col-2 { width: 50% }
+form > div.col-3 { width: 33.3333333333% }
+form > div.col-4 { width: 25% }
+
+form > div > label > input
+{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 27px;
+  line-height: 27px;
+  margin: 5px -5px 0;
+  padding: 7px 5px 3px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 200;
+  opacity: .66;
+  transition: opacity .3s, box-shadow .3s;
+}
+
+form > div > label > select
+{
+  display: block;
+  width: 100%;
+  margin: 16px 0 7px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 200;
+  opacity: .33;
+}
+
+form > div > label > input:focus, form > div > label > select:focus
+{
+  opacity: 1;
+
+}
+
+h5{
+  width: 170px;
+  height: 100px;
+  font-size: 15px;
+  float: right;
+  margin-top: 47px;
+  margin-right: 0px;
+}
+
+.checkbox{
+  margin-top: 50px;
+}
+
+.termos{
+  width: 195px;
+  height: 50px;
+}
+
+.campo-obrigatorio{
+  font-size: 10px;
+  float:right;
+}
+
+a{
+  font-size: 15px;
+  width: 100px;
+  margin: -10px 0px 0px 0px;
+}

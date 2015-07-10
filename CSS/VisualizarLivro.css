@@ -187,6 +187,22 @@ table{
   margin-left: 1px;
   border-right: 1px solid rgba(140, 140, 140, 0.4);
 }
+#lateral p img{
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  margin-left: 1px;
+  border-right: 1px solid rgba(140, 140, 140, 0.4);
+  -webkit-transition:all 1s;
+  -moz-transition:all 1s;
+}
+#lateral p img:hover{-webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  border-radius: 70%;
+  background-size: 400px 400px;
+  border: 4px groove;
+
+}
 
 #corpo #centro{
   float: right;
@@ -311,6 +327,12 @@ table{
   height: 150px;
   float: left;
 }
+#fotoLivro:hover{
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  border-radius: 100%;
+  background-size: 80px 120px;}
+
 #infoLivro
 {
   float: left;

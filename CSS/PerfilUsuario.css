@@ -6,13 +6,12 @@ body{
 }
 
 #corpo{
-    width: 960px;
+    width: 1000px;
     height: auto;
     display: table;
     position: relative;
     min-height: 100%;
     background-color: #FFF;
-    border-radius: 9px;
     margin: 100px auto 100px auto;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
@@ -20,53 +19,94 @@ body{
     -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 8px;
     z-index: 2;
     padding-bottom: 60px;
-	font-family: 'Source Sans Pro', sans-serif;
+	  font-family: 'Source Sans Pro', sans-serif;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black
+    -webkit-transition: all 600ms;
+     transition: all 600ms;
+}
+#corpo:hover{
+  border-top: 11px solid black;
+  border-bottom: 1px solid black;
+
 }
 #corpo h2{
     padding: 4px;
     padding-left: 12px;
-    background-color: #1487bc;
-    color: #C3C3C3;
-	font-family: 'Source Sans Pro', sans-serif;
+    background-color:#CDCDCD;
+    color: black;
+	  font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
 }
+#corpo h2:hover{
+  background-color:#007069;
+}
+
 
 #corpo .MeusLivros{
 	padding: 4px;
     padding-left: 12px;
-    background-color: #1487bc;
-        color: #C3C3C3;
+    background-color: #CDCDCD;
+        color: black;
     font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black
+     -webkit-transition: all 600ms;
+    transition: all 600ms;
 
+}
+#corpo .MeusLivros:hover{
+  background-color:#007069;
+  border-top: 2px solid black;
+    border-bottom: 2px solid black
 }
 
 #corpo .MeusLivros-desejados{
 	   padding: 4px;
     padding-left: 12px;
-    background-color: #1487bc;
-        color: #C3C3C3;
+    background-color:#CDCDCD;
+        color: black;
     font-family: 'Source Sans Pro', sans-serif;
     margin: -11px -11px 11px -11px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+     border-top: 1px solid black;
+    border-bottom: 1px solid black
+     -webkit-transition: all 600ms;
+    transition: all 600ms;
 
+}
+#corpo .MeusLivros-desejados:hover{
+   background-color:#007069;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black
 }
 
 #corpo .Solicitacoes{
 	   padding: 4px;
     padding-left: 12px;
-    background-color: #1487bc;
-    color: #C3C3C3;
+    background-color: #CDCDCD;
+    color: black;
     font-family: 'Source Sans Pro', sans-serif;
     margin: -7px -11px 11px -11px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+     border-top: 1px solid black;
+    border-bottom: 1px solid black
+     -webkit-transition: all 600ms;
+    transition: all 600ms;
 
+
+}
+#corpo .Solicitacoes:hover{
+  background-color:#007069;
+   border-top: 2px solid black;
+    border-bottom: 2px solid black
 }
 #corpo .btn {
   width: 350px;
@@ -76,8 +116,8 @@ body{
   background-image: -ms-linear-gradient(top, #133141, #133141#2980b9);
   background-image: -o-linear-gradient(top, #133141, #133141#2980b9);
   background-image: linear-gradient(to bottom, #133141, #133141#2980b9);
-  -webkit-border-radius: 9;
-  -moz-border-radius: 9;
+  -webkit-border-radius: 1;
+  -moz-border-radius: 1;
   border-radius: 9px;
   font-family: Arial;
   color: #ffffff;
@@ -85,10 +125,12 @@ body{
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
 }
 
 #corpo .btn:hover {
-  background: #1487bc;
+  background: #007069;
   background-image: -webkit-linear-gradient(top, #133d41,#133d41);
   background-image: -moz-linear-gradient(top, #133d41, #133d41);
   background-image: -ms-linear-gradient(top, #133d41, #133d41);
@@ -124,6 +166,22 @@ body{
   margin-left: 1px;
   border-right: 1px solid rgba(140, 140, 140, 0.4);
   font-family: 'Source Sans Pro', sans-serif;
+}
+#lateral p img{
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin-left: 1px;
+  border-right: 1px solid rgba(140, 140, 140, 0.4);
+  -webkit-transition:all 1s;
+  -moz-transition:all 1s;
+}
+#lateral p img:hover{-webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  border-radius: 70%;
+  background-size: 300px 300px;
+  border: 4px groove;
+
 }
 
 #corpo #centro{
@@ -210,6 +268,12 @@ body{
   padding: 12px 10px 12px 10px;
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+}
+#corpo #centro .centro-esquerda a:hover{
+  
+
 }
 #corpo .listar-livro{
     border: 2px solid rgba(140, 140, 140, 0.4);
@@ -298,6 +362,11 @@ body{
   color: #ffffff;
   padding: 14px 10px 12px 10px;
   text-decoration: none;
+   -webkit-transition: all 600ms;
+    transition: all 600ms;
+}
+#corpo #centro .centro-esquerda-desejados a{
+  background: #23238E;
 }
 
 #corpo .listar-livro-desejados{

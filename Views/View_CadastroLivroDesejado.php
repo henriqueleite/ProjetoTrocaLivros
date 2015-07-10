@@ -78,6 +78,21 @@
           </table>
         </form>
     </div>
+      </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+    </br>
+  </br>
+  </br>
+  </br>
+  </br>
 
    <?php include('../Views/View_rodape.php'); ?>
 </body>

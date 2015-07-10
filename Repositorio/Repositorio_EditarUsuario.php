@@ -16,7 +16,6 @@ $tipo = $_SESSION['tipo'];
 		$email = $_POST['email'];
 		$dataNascimento = $_POST['dataNascimento'];
 		$cpf = $_POST['cpf'];
-		$telefone = $_POST['telefone'];
 		$celular = $_POST['celular'];
 		$bairro = $_POST['bairro'];
 		$cidade = $_POST['cidade'];
@@ -107,12 +106,12 @@ $tipo = $_SESSION['tipo'];
 			echo "<script>alert('CPF já cadastrado no sistema!!'); history.back();</script>";
 		}else{
 
-			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', D_DATA_NASC = '$output', V_TELEFONE = '$telefone', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf', V_SEXO = '$sexo' where N_COD_USUARIO = $codigo");		
+			$query2 = mysql_query("update usuario set V_NOME = '$nome', V_LOGIN = '$user', V_SENHA = '$pwd', V_EMAIL = '$email', V_CPF = '$cpf', D_DATA_NASC = '$output', V_CELULAR = '$celular', V_BAIRRO = '$bairro', V_CIDADE = '$cidade', V_CEP = '$cep', V_UF = '$uf', V_SEXO = '$sexo' where N_COD_USUARIO = $codigo");		
 
 			if (!$query2) {
-			echo "<script>alert('Erro'); history.back();</script>";
+			echo "<script>alert('Erro ao gravar na Base'); history.back();</script>";
 			}else{
-			echo "<script>alert('Cadastrado alterado com sucesso!!');</script>";
+			echo "<script>alert('Seu Cadastro foi alterado com sucesso!!');</script>";
 			echo "<meta http-equiv='refresh' content='0, url=../Repositorio/PerfilUsuario.php'>"; 	
 			}
 		}

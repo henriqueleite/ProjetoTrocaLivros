@@ -26,8 +26,8 @@ require_once "../Dados/Conexao.php";
  
   <div id='corpo'>
    
-  <img src="books-bookshelf-buildings-library-man-made-2730837-1920x1200.jpg" width="1210" height="550">   
-
+  <img src="books-bookshelf-buildings-library-man-made-2730837-1920x1200.jpg" width="1210" height="550">  
+ 
       <h2 style='margin-top: 20px' class='index'>DESTAQUES</H2>
 
       <?php 

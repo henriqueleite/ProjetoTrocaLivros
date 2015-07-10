@@ -1,7 +1,10 @@
 <footer id='footer'>
-	<div class='footer2'>
-		<div class="bar2">
+
+	<div class="bar">
+	</br>
+	</br>
+	</br>	
 			Copyright © 2015 by Troca Livro
 		</div>
-	</div>
+	
 </footer>

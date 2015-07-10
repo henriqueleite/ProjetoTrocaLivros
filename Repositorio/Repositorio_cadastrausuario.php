@@ -9,7 +9,6 @@ require_once "../Dados/Conexao.php";
 		$email = $_POST['email'];
 		$dataNascimento = $_POST['dataNascimento'];
 		$cpf = $_POST['cpf'];
-		$telefone = $_POST['telefone'];
 		$celular = $_POST['celular'];
 		$bairro = $_POST['bairro'];
 		$cidade = $_POST['cidade'];
@@ -120,7 +119,7 @@ require_once "../Dados/Conexao.php";
 			echo "<script>alert('CPF já cadastrado!!'); history.back();</script>";
 		}else{
 			$data = date('Y,m,d');
-			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, D_DATA_NASC, V_TELEFONE, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO,V_SEXO) values ('$nome','$user','$pwd','$email','$cpf', '$output','$telefone','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$sexo')");		
+			$query2 = mysql_query("insert into usuario (V_NOME, V_LOGIN, V_SENHA, V_EMAIL, V_CPF, D_DATA_NASC, V_CELULAR, V_BAIRRO, V_CIDADE, V_CEP, V_UF, D_DATA_CADASTRO, B_ATIVO, N_TIPO_USUARIO,V_SEXO) values ('$nome','$user','$pwd','$email','$cpf', '$output','$celular','$bairro','$cidade','$cep','$uf','$data','T','0','$sexo')");		
 
 			if (!$query2) {
 			echo "<script>alert('Ocorreu um Erro'); history.back();</script>";

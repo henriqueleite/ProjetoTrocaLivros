@@ -11,11 +11,11 @@ require_once "../Dados/Conexao.php";
 	$codigo = $_SESSION['codigo'];
 	$tipo = $_SESSION['tipo'];
 
-	$sql = mysql_query("SELECT V_NOME, V_EMAIL, D_DATA_NASC, V_CPF, V_LOGIN, V_SENHA, V_TELEFONE, V_CELULAR, V_CEP, V_CIDADE, V_BAIRRO, V_UF, V_SEXO FROM usuario WHERE N_COD_USUARIO = '$codigo' ");
+	$sql = mysql_query("SELECT V_NOME, V_EMAIL, D_DATA_NASC, V_CPF, V_LOGIN, V_SENHA, V_CELULAR, V_CEP, V_CIDADE, V_BAIRRO, V_UF, V_SEXO FROM usuario WHERE N_COD_USUARIO = '$codigo' ");
 	$linha = mysql_fetch_assoc($sql);
 	if (!$linha) {
 	  //Se o select não retornou registros, é porque não tem o que apagar
-	  header("Location: /painel.php");
+	  echo "<meta http-equiv='refresh' content='0, url= ../Repositorio/PerfilUsuario.php'>"; 
 	  die();
 	}
 	$nome = $linha["V_NOME"];
@@ -101,12 +101,8 @@ function formatar(mascara, documento){
 				<td><input type="password" name="senha" id="senha" class="txt1" maxlength="15" value="<?php echo $senha; ?>" size=35 required/></td>
 			</tr>
             <tr>
-				<td>Telefone:</td>
-				<td><input type="tel" name="telefone" id="telefone" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" value="<?php echo $telefone; ?>" size=35/></td>
-			</tr>
-			<tr>
 				<td>Celular:</td>
-				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="12" OnKeyPress="formatar('##-####-####', this)" value="<?php echo $celular; ?>" size=35/></td>
+				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="13" OnKeyPress="formatar('##-#####-####', this)" value="<?php echo $celular; ?>" size=35/></td>
 			</tr>
 			<tr>
 				<td>Cep:*</td>
