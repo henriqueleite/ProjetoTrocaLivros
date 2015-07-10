@@ -89,7 +89,7 @@ function contarCaracteres(box,valor){
               <td> <select id="estado" name="estado">
               <option value="NOVO">Novo</option>
               <option value="SEMI-NOVO">Semi-Novo</option>
-              <option value="VELHO">Velho</option>
+              <option value="Velho">Usado</option>
               </select> </td>
             </tr>
             <tr>
@@ -97,8 +97,27 @@ function contarCaracteres(box,valor){
               <td> <select id="genero" name="genero">
               <option value="1">Comédia</option>
               <option value="2">Drama</option>
-              <option value="3">Ficcão</option>
+              <option value="3">Ficção</option>
+              <option value="4">Gibi</option>
+              <option value="5">Didatico</option>
+              <option value="6">Historia</option>
+              <option value="7">Matemática</option>
+              <option value="8">Musica</option>
+              <option value="9">Quadrinhos</option>
+              <option value="10">Sexo</option>
+              <option value="11">Terror</option>
+              <option value="12">Cronica</option>
+              <option value="13">Vestibular</option>
+              <option value="14">Poesia</option>
+              <option value="15">Biblia</option>
+              <option value="16">Romance</option>
+              <option value="17">Biologia</option>
+              <option value="18">Auto ajuda</option>
+              <option value="19">Religioso</option>
+              <option value="20">Infantil</option>
+              <option value="21">Concurso</option>
               </select> </td>
+             
             </tr>
             <tr>
               <td>Ano:*</td>

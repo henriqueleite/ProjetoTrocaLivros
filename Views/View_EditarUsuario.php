@@ -24,7 +24,6 @@ require_once "../Dados/Conexao.php";
 	$cpf = $linha["V_CPF"];
 	$login = $linha["V_LOGIN"];
 	$senha = $linha["V_SENHA"];
-	$telefone = $linha["V_TELEFONE"];
 	$celular = $linha["V_CELULAR"];
 	$cep = $linha["V_CEP"];
 	$cidade = $linha["V_CIDADE"];
@@ -46,6 +45,13 @@ require_once "../Dados/Conexao.php";
 	 <link rel="stylesheet" type="text/css" href="../CSS/menu-new.css">
 	<link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
     <link rel="stylesheet" type="text/css" href="../CSS/Rodape.css">
+    	<link href="../CSS/main.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+  <link rel="shortcut icon" href="../favicon.ico"> 
+  <script src="js/modernizr.custom.63321.js"></script>
+    <script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.form.js'></script>
+
 	<title>Troca Livro</title>
 	<script>
 function formatar(mascara, documento){
@@ -61,76 +67,198 @@ function formatar(mascara, documento){
 
 
 </script>
+	<script>
+function formatar(mascara, documento){
+  var i = documento.value.length;
+  var saida = mascara.substring(0,1);
+  var texto = mascara.substring(i)
+  
+  if (texto.substring(0,1) != saida){
+            documento.value += texto.substring(0,1);
+  }
+  
+}
+
+function MascaraData(obj) 
+{
+   switch (obj.value.length) 
+   {
+      case 2:
+           obj.value = obj.value + "/";
+           break;
+      case 5:
+           obj.value = obj.value + "/";
+           break;
+   }
+}
+
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+      if (tecla==8 || tecla==0) return true;
+  else  return false;
+    }
+}
+
+
+</script>
+        <script type="text/javascript">
+        // Quando carregado a página
+        $(function($) {
+
+            // Quando enviado o formulário
+            $('#form-cadastro').submit(function() {
+
+                // Limpando mensagem de erro
+                $('div.mensagem-erro').hide();
+
+                // Mostrando loader
+                $('div.loader').show();
+
+                // Enviando informações do formulário via AJAX
+                $(this).ajaxSubmit(function(resposta) {
+
+                    // Se não retornado nenhum erro
+                    if (!resposta)
+                        // Redirecionando para o painel
+                        window.location.href = '../Views/View_Login.php';
+                    else
+                    {
+                        // Encondendo loader
+                        $('div.loader').hide();
+
+                        // Exibimos a mensagem de erro
+                        $('div.mensagem-erro').html('<img src="../Imagens/Alerta.png" width=20px height=20px/> <span>'+resposta+'</span>');
+
+                        $('div.mensagem-erro').show();
+                    }
+
+                });
+
+                // Retornando false para que o formulário não envie as informações da forma convencional
+                return false;
+
+            });
+        });
+        </script>
+
+<script>
+    function consultacep(cep){
+      cep = cep.replace(/\D/g,"")
+      url="http://cep.correiocontrol.com.br/"+cep+".js"
+      s=document.createElement('script')
+      s.setAttribute('charset','utf-8')
+      s.src=url
+      document.querySelector('head').appendChild(s)
+    }
+
+    function correiocontrolcep(valor){
+      if (valor.erro) {
+        alert('Cep não encontrado');        
+        return;
+      };
+      document.getElementById('bairro').value=valor.bairro
+      document.getElementById('cidade').value=valor.localidade
+      document.getElementById('estado').value=valor.uf
+    }
+    </script>
+
+
+
+
 </head>
 <body>
 	     <?php include('../Views/View_topo.php'); ?>
+<div id='corpo'>
+<h2> Atualize seu Cadastro </h2>
 
-<div id='corpo' style="height: 680px;">
-<h2>Editar Perfil </h2>
-	<form name="CadastroUsuario" method="post" action="../Repositorio/Repositorio_EditarUsuario.php">
-		<table id="cad_table">
-			<tr>
-				<td>Nome:*</td>
-				<td><input type="text" name="nome" id="nome" class="txt" value="<?php echo $nome; ?>" size=35 required/></td>
-			</tr>
-			<tr>
-				<td>Email:*</td>
-				<td><input type="email" name="email" id="email" class="txt" value="<?php echo $email; ?>" size=35 required/></td>
-			</tr>
-			<tr>
-				<td>Data Nasc.:: </td>
-				<td><input type="text" name="dataNascimento" id="dataNascimento" class="txt" value="<?php echo $idade; ?>" size=15 required/></td>
-			</tr>
-			<tr>
-				<td class='tr_cadastro'>Sexo: </td>
-				<td><select id="sexo" name="sexo">
-              			<option <?php if ($sexo == 'M' ) echo 'selected'; ?> value="M">MASCULINO</option>
-              			<option <?php if ($sexo == 'F' ) echo 'selected'; ?> value="F">FEMININO</option>
-             		 </select></td>
-			</tr>
-			<tr>
-				<td>CPF:*</td>
-				<td><input type="text" name="cpf" id="cpf" class="txt2" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" value="<?php echo $cpf; ?>" size=35 required='aa'/></td>
-			</tr>
-			<tr>
-				<td>Login:*</td>
-				<td><input type="text" name="login" id="login" class="txt1" maxlength="10" value="<?php echo $login; ?>" size=35 required/></td>
-			</tr>
-			<tr>
-				<td>Senha:*</td>
-				<td><input type="password" name="senha" id="senha" class="txt1" maxlength="15" value="<?php echo $senha; ?>" size=35 required/></td>
-			</tr>
-            <tr>
-				<td>Celular:</td>
-				<td><input type="tel" name="celular" id="celular" class="txt2" maxlength="13" OnKeyPress="formatar('##-#####-####', this)" value="<?php echo $celular; ?>" size=35/></td>
-			</tr>
-			<tr>
-				<td>Cep:*</td>
-				<td><input type="text" name="cep" id="cep" class="txt2" maxlength="10" OnKeyPress="formatar('#####-###', this)" value="<?php echo $cep; ?>" size=35 required/></td>
-			</tr>
-			<tr>
-				<td>cidade:</td>
-				<td><input type="text" name="cidade" id="cidade" class="txt2" maxlength="100"  value="<?php echo $cidade; ?>" size=35/></td>
-			</tr>
-			<tr>
-				<td>Bairro:</td>
-				<td><input type="text" name="bairro" id="bairro" class="txt" maxlength="50" value="<?php echo $bairro; ?>" size=35 /></td>
-			</tr>
 
-			<tr>
-				<td>UF:</td>
-				<td><input type="text" name="uf" id="uf" class="txt3" maxlength="2" value="<?php echo $uf; ?>" size=2/></td>
-			</tr>
+   <div class="col-2" id="cad_table">
+    <label>
+      Nome*:
+      <input type="text" name="nome" id="nome" class="txt" required size=35  value="<?php echo $nome; ?>" tabindex="1" />
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      Email*:
+      <input type="email" name="email" id="email" class="txt" required size=35 value="<?php echo $email; ?>"tabindex="1" />
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      Data Nasc*.:
+      <input type='text' name='dataNascimento' id="dataNascimento" required class="txt" maxlength='10' size='14' onKeyPress='MascaraData(this); return SomenteNumero(event); ' value="<?php echo $idade; ?>" tabindex="2" />
+    </label>
+  </div>
+  <div style="box-shadow: 1px 2px #E4E4E4;" class="col-2">
+    <label>
+      Sexo*: 
+      <select id="sexo" name="sexo" tabindex="5">
+        		<option <?php if ($sexo == 'M' ) echo 'selected'; ?> value="M">MASCULINO</option>
+      			<option <?php if ($sexo == 'F' ) echo 'selected'; ?> value="F">FEMININO</option>
+      
+      </select>
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      CPF*:
+      <input type="text" name="cpf" id="cpf" class="txt2" required maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" size=35  value="<?php echo $cpf; ?>" tabindex="2" />
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      Contato telefônico*:
+      <input type="tel" name="celular" id="celular" class="txt2" required maxlength="14" onkeypress="formatar('##-#####-####', this); return SomenteNumero(event); "  size=35 value="<?php echo $celular; ?>" tabindex="4" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Login*:
+      <input type="text" name="login" id="login" required class="txt1" maxlength="10" size=35  value="<?php echo $login; ?>" tabindex="3" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Senha*:
+      <input type="password" name="senha" id="senha" required class="txt1" maxlength="15" size=35  value="<?php echo $senha; ?>" tabindex="3" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Confirme a senha*:
+      <input type="password" name="senha2" id="senha2" required class="txt1" maxlength="15" size=35 value="<?php echo $confirmasenha; ?>" tabindex="3" />
+    </label>
+  </div>
+  <div style='width: 28.333%;' class="col-3">
+    <label>
+      CEP*:
+      <input type="text" name="cep" id="cep" required class="cep"  OnKeyPress="formatar('#####-###', this)" onblur="consultacep(this.value)" maxlength="9" size=35 value="<?php echo $cpf; ?>" tabindex="4" />
+    </label>
+  </div>
+  <div style="width: 10.333%;" class="col-3">
+    <label>
+      UF:
+      <input readonly="true" type="text" name="estado" id="estado" class="estado" maxlength="2" size=2 value="<?php echo $uf; ?>" tabindex="5" />
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Cidade:
+      <input readonly="true" type="text" name="cidade" id="cidade" class="cidade" maxlength="100"  size=35 value="<?php echo $cidade; ?>" tabindex="5" />
+    </label>
+  </div>
+  <div style="width: 27.7%;" class="col-3">
+    <label>
+      Bairro:
+      <input readonly="true" type="text" name="bairro" id="bairro" class="bairro" maxlength="50" size=35 value="<?php echo $bairro; ?>" tabindex="5" />
+    </label>
+  </div>
+  					<a href="http://www.buscacep.correios.com.br/servicos/dnec/menuAction.do?Metodo=menuLogradouro">Clique aqui para Descobrir seu CEP</a>
 
-				<td colspan="2"><input class='btn' type="submit" value="Salvar" id="buton1" name="btvalidar">
-					<br><input class='btn' type="button" value="Cancelar" onclick="location.href='../Repositorio/PerfilUsuario.php'" id="buton1" name="btvalidar">
-				
-				</td>
-			</tr>
-		</table>
-		
-		
-	</form>
+<br><input class='btn' type="submit" id="buton1" name="btvalidar" value="cadastrar"><br>
 	<p class='campo-obrigatorio'>(*) Campos Obrigatórios</p>
 </div>
     <?php include('../Views/View_rodape.php'); ?>

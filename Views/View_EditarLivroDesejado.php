@@ -55,6 +55,24 @@ $sql = mysql_query("SELECT V_TITULO, D_ANO, N_COD_CATEGORIA_IE FROM livro_deseja
               <option <?php if ($categoria == 1 ) echo 'selected'; ?> value="1">Comédia</option>
               <option <?php if ($categoria == 2 ) echo 'selected'; ?> value="2">Drama</option>
               <option <?php if ($categoria == 3 ) echo 'selected'; ?> value="3">Ficcão</option>
+              <option <?php if ($categoria == 4 ) echo 'selected'; ?> value="4">Gibi</option>
+              <option <?php if ($categoria == 5 ) echo 'selected'; ?> value="5">Didatico</option>
+              <option <?php if ($categoria == 6 ) echo 'selected'; ?> value="6">Historia</option>
+              <option <?php if ($categoria == 7 ) echo 'selected'; ?> value="7">Matemática</option>
+              <option <?php if ($categoria == 8 ) echo 'selected'; ?> value="8">Musica</option>
+              <option <?php if ($categoria == 9 ) echo 'selected'; ?> value="9">Quadrinhos</option>
+              <option <?php if ($categoria == 10 ) echo 'selected'; ?> value="10">Sexo</option>
+              <option <?php if ($categoria == 11 ) echo 'selected'; ?> value="11">Terror</option>
+              <option <?php if ($categoria == 12 ) echo 'selected'; ?> value="12">Cronica</option>
+              <option <?php if ($categoria == 13 ) echo 'selected'; ?> value="13">Vestibular</option>
+              <option <?php if ($categoria == 14 ) echo 'selected'; ?> value="14">Poesia</option>
+              <option <?php if ($categoria == 15 ) echo 'selected'; ?> value="15">Biblia</option>
+              <option <?php if ($categoria == 16 ) echo 'selected'; ?> value="16">Romance</option>
+              <option <?php if ($categoria == 17 ) echo 'selected'; ?> value="17">Biologia</option>
+              <option <?php if ($categoria == 18 ) echo 'selected'; ?> value="18">Auto ajuda</option>
+              <option <?php if ($categoria == 19 ) echo 'selected'; ?> value="19">Religioso</option>
+              <option <?php if ($categoria == 20 ) echo 'selected'; ?> value="20">Infantil</option>
+              <option <?php if ($categoria == 21 ) echo 'selected'; ?> value="21">Concurso</option>
               </select> </td>
             </tr>
             <tr>

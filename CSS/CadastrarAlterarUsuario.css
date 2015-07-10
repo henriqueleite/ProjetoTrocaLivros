@@ -217,3 +217,23 @@ a{
   width: 100px;
   margin: -10px 0px 0px 0px;
 }
+
+.mensagem-erro{
+  margin-left: 10px;
+  color: red;
+}
+
+.mensagem-erro p{
+  height: 10px;
+}
+
+
+
+.mensagem-erro img{
+  padding-right: 5px;
+}
+
+span{
+  font-size: 20px;
+
+}
