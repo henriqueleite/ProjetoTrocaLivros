@@ -95,7 +95,8 @@ $tipo = $_SESSION['tipo'];
       echo "<script>alert('Preencha o campo Ano'); history.back(); </script>";
     }else{
 
-      $query2 = mysql_query("INSERT INTO livro (V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, V_ANO, V_FOTO, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$autor."', '".$editora."', '".$estado."', '".$observacao."', '".$genero."', '".$ano."', '".$caminho_imagem."', '".$codigo."')");
+      $query2 = mysql_query("INSERT INTO livro (V_TITULO, V_AUTOR, V_EDITORA, V_ESTADO_LIVRO, V_OBSERVACAO, N_COD_CATEGORIA_IE, V_ANO,
+       V_FOTO, N_COD_USUARIO_IE) VALUES ('".$titulo."', '".$autor."', '".$editora."', '".$estado."', '".$observacao."', '".$genero."', '".$ano."', '".$caminho_imagem."', '".$codigo."')");
 
 
       if (!$query2) {

@@ -62,6 +62,17 @@ if (isset ($_POST['excluir']))
       jQuery('form.rating').rating();
     });
   </script>
+  <script type="text/javascript">
+  function limpaUrl() {     //função
+    urlpg = $(location).attr('href');   //pega a url atual da página
+    urllimpa = urlpg.split("?")[0]      //tira tudo o que estiver depois de '?'
+
+    window.history.replaceState(null, null, urllimpa); //subtitui a url atual pela url limpa
+}
+
+setTimeout(limpaUrl, 1000) //chama a função depois de 4 segundos
+
+  </script>
   
   <style type="text/css">
     .rating{clear: both; cursor: pointer; display: block; width: 100px;}
@@ -136,12 +147,15 @@ while($linha=mysql_fetch_array($query)){
       ?>
       <td colspan="2"><input style="  width: 200px;" type="submit" class='btn' name="Solicitar" id="Solicitar" value="Solicitar"/>
       <td><input style="  width: 200px;" type="submit" class='btn' name="Dono" id="Dono" value="Dono"/>
-        <?php
+           <?php
         if (isset ($_POST['Dono'])){
-    echo "<meta http-equiv='refresh' content='0, url=../Repositorio/Perfil.php?id=$codigousuario'>";  
+          session_start();
+    $_SESSION['codigousuario']=$codigousuario;  
+    echo "<meta http-equiv='refresh' content='0, url=../Repositorio/Perfil.php?>";  
+}       
 }
-      }
       ?>
+         
       <?php 
       if((isset ($_SESSION['login']) == true) and ($_SESSION['codigo'] == $codigousuario)){
         ?>

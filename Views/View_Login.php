@@ -39,7 +39,7 @@ require_once "../Dados/Conexao.php";
                     // Se não retornado nenhum erro
                     if (!resposta)
                         // Redirecionando para o painel
-                        window.location.href = '../Repositorio/PerfilUsuario.php';
+                        window.location.href = 'index.php';
                     else
                     {
                         // Encondendo loader
@@ -72,12 +72,12 @@ require_once "../Dados/Conexao.php";
 
 					<p class="float">
 
-						<label for="login"><i class="icon-user"></i>Username</label>
-						<input type="text" name="usuario" placeholder="Username">
+						<label for="login"><i class="icon-user"></i>Usuario</label>
+						<input type="text" name="usuario" placeholder="Usuario">
 					</p>
 					<p class="float">
-						<label for="password"><i class="icon-lock"></i>Password</label>
-						<input type="password" name="senha" placeholder="Password" class="showpassword">
+						<label for="password"><i class="icon-lock"></i>Senha</label>
+						<input type="password" name="senha" placeholder="Senha" class="showpassword">
 					</p>
 					<p class="clearfix"> 
 						<a href="View_CadastroUsuario.php" class="log-twitter">CADASTRE-SE</a>    

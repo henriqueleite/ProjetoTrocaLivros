@@ -37,12 +37,23 @@ if (($_SESSION['tipo'] == 1)){
       });
     });
   </script>
+   <script type="text/javascript">
+  function limpaUrl() {     //função
+    urlpg = $(location).attr('href');   //pega a url atual da página
+    urllimpa = urlpg.split("?")[0]      //tira tudo o que estiver depois de '?'
+
+    window.history.replaceState(null, null, urllimpa); //subtitui a url atual pela url limpa
+}
+
+setTimeout(limpaUrl, 1000) //chama a função depois de 4 segundos
+
+  </script>
 </head>
 <body>
    <?php include('../Views/View_topo.php'); ?>
 
 <?php
-$user=$_GET['id'];
+$user= $_SESSION['codigousuario'];
 $query1 = mysql_query("SELECT V_NOME, V_CIDADE,V_SEXO, V_UF, V_EMAIL, V_CEP, V_BAIRRO, D_DATA_CADASTRO, D_DATA_NASC,D_DATA_ULTIMO_LOGIN, V_FOTO FROM usuario WHERE N_COD_USUARIO = '$user'");
 $query2 = mysql_query("SELECT COUNT(*) FROM livro WHERE N_COD_USUARIO_IE = '$user' and B_ATIVO = 'T'");
 $query3 = mysql_query("SELECT COUNT(*) FROM livro_desejado WHERE N_COD_USUARIO_IE = '$user'");

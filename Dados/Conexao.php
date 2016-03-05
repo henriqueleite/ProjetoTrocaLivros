@@ -8,4 +8,3 @@ mysql_query('SET character_set_results=utf8');
 date_default_timezone_set("America/Sao_Paulo");
 
 ?>
-

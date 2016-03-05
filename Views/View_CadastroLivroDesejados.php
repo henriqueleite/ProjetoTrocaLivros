@@ -59,21 +59,31 @@
            
               </div>
               </div>  
-              </tr>
-              <tr>
+            </tr>
+            <tr>
               <td>Genero:*</td>
-              <td>
-              <select id="genero" name="genero">
-<?php
-            $comando= mysql_query("select * from categoria_livro");
-            while ($linha=mysql_fetch_array($comando)) {
-            $id = $linha['N_COD_CATEGORIA'];
-            $categoria = $linha['V_GENERO'];
-            
-
-            ?>            
-              <option value="<?php echo $id;?>"><?php echo $categoria; ?></option>
-             <?php } ?>
+              <td> <select id="genero" name="genero">
+              <option value="1">Comédia</option>
+              <option value="2">Drama</option>
+              <option value="3">Ficção</option>
+              <option value="4">Gibi</option>
+              <option value="5">Didatico</option>
+              <option value="6">Historia</option>
+              <option value="7">Matemática</option>
+              <option value="8">Musica</option>
+              <option value="9">Quadrinhos</option>
+              <option value="10">Sexo</option>
+              <option value="11">Terror</option>
+              <option value="12">Cronica</option>
+              <option value="13">Vestibular</option>
+              <option value="14">Poesia</option>
+              <option value="15">Biblia</option>
+              <option value="16">Romance</option>
+              <option value="17">Biologia</option>
+              <option value="18">Auto ajuda</option>
+              <option value="19">Religioso</option>
+              <option value="20">Infantil</option>
+              <option value="21">Concurso</option>
               </select> </td>
             </tr>
             <tr>
@@ -96,7 +106,7 @@
   </br>
   </br>
   </br>
-  </br>
+    </br>
   </br>
   </br>
   </br>

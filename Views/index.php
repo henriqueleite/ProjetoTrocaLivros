@@ -6,7 +6,7 @@ require_once "../Dados/Conexao.php";
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Troca Livro</title>
+  <title>Troca Livros</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <link rel="stylesheet" href="style.css" media="all" />
   <link rel="stylesheet" type="text/css" href="../CSS/index.css">

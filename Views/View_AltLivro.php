@@ -106,22 +106,26 @@ $foto       = $coluna['V_FOTO'];
       </tr>
       <tr>
         <td>Genero:*</td>
+        <?php
+         $selecte = mysql_query("select * from categoria_livro where N_COD_CATEGORIA=".$genero."");
+         $row =mysql_fetch_array($selecte);
+         $codig = $row['N_COD_CATEGORIA'];
+         $gene = $row['V_GENERO'];
+        ?>
         <td> <select id="genero" name="genero">
-          <?php if ($genero == 1) {  ?>
-          <option value="1" selected >Comédia</option>
-          <?php }else{ ?>
-          <option value="1" >Comédia</option>
-          <?php } ?>
-          <?php if ($genero == 2) {  ?>
-          <option value="2" selected >Drama</option>
-          <?php }else{ ?>
-          <option value="2">Drama</option>
-          <?php } ?>
-          <?php if ($genero == 3) {  ?>
-          <option value="3" selected >Ficcão</option>
-          <?php }else{ ?>
-          <option value="3"  >Ficcão</option>
-          <?php } ?>                 
+          <option value="<?php echo $codig;?>" selected><?php echo $gene; ?></option>
+         <?php
+            $comando= mysql_query("select * from categoria_livro");
+          while ($linha=mysql_fetch_array($comando)) {
+            $id = $linha['N_COD_CATEGORIA'];
+            $categoria = $linha['V_GENERO'];
+              
+           
+            
+
+            ?>            
+              <option value="<?php echo $id;?>"><?php echo $categoria; ?></option>
+             <?php } ?>
         </select> </td>
       </tr>
       <tr>
